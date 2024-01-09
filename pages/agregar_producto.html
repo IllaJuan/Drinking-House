@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Marvel Surriable, Luciana Lencina, Juan Luis Illa, Julio Botta, Jeremias Armendia">
+    <meta name="description" content="Formulario para agregar un producto.">
+    <meta name="keywords" content="formulario, producto, admin">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/libraries/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin_style.css">
+    <title>Drinking House</title>
+</head>
+<body>
+    <header></header>
+    <main class="container">
+        <section class="bg-light my-5 p-5 border border-secondary-subtle rounded-4">
+            <h3 class="mb-3 text-center fs-3">Agregar Producto</h3>
+            <form>
+                <div>
+                    <label class="d-block mb-1 fw-bolder" for="categoria" class="mb-1">Categoría:</label>
+                    <select id="categoria" class="form-control p-2 border rounded border-secondary fs-6" required>
+                        <option value="" disabled selected>Elija una categoría</option>
+                    </select>
+                </div>
+                <div class="my-3">
+                    <label class="d-block mb-1 fw-bolder" for="codigo">Nombre:</label>
+                    <input type="text" class="form-control p-2 border rounded border-secondary fs-6" id="codigo" placeholder="Ingrese el nombre del producto" minlength="2" maxlength="100" required>
+                </div>
+                <div>
+                    <label class="d-block mb-1 fw-bolder" for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" class="form-control p-2 border rounded border-secondary fs-6" placeholder="Ingrese la descripción del producto" minlength="5" maxlength="100" cols="30" rows="2" required></textarea>
+                </div>
+                <div class="my-3">
+                    <label class="d-block mb-1 fw-bolder" for="precio">Precio:</label>
+                    <input type="text" class="form-control p-2 border rounded border-secondary fs-6" id="precio" placeholder='Ingrese el precio (utilice "," antes de los decimales)' minlength="1" maxlength="20" required>
+                </div>
+                <div class="mb-5">
+                    <label class="d-block mb-1 fw-bolder" for="urlImagen">URL de la imagen:</label>
+                    <input type="text" class="form-control p-2 border rounded border-secondary fs-6" id="urlImagen" placeholder="Ingrese la dirección de la imagen" required>
+                </div>
+                <button type="button" class="btn btn-primary">Guardar</button>  <!-- salta una modal confirmando que se ha guardado correctamente -->
+                <button type="button" class="btn btn-danger">Cancelar</button>  <!-- retorna a la página de inicio -->
+            </form>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+</html>

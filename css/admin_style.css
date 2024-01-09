@@ -1,0 +1,31 @@
+body,
+html {
+    background-color: #f0f2f5;
+}
+
+.custom-green-button,
+.custom-green-button:hover {
+    border: none;
+    border-radius: 5px;
+    background-color: #42b72a;
+    color: #ffffff;
+}
+
+.custom-green-button:active {
+    background-color: #389e23;
+    color: #ffffff;
+}
+
+.custom-blue {
+    color: #1877f2;
+}
+
+.custom-red {
+    color: #ff0000;
+}
+
+a,
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}

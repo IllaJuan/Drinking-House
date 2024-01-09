@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Marvel Surriable, Luciana Lencina, Juan Luis Illa, Julio Botta, Jeremias Armendia">
+    <meta name="description" content="Página sólo visible para los administradores.">
+    <meta name="keywords" content="Administración, administrador, admin">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/admin_style.css">
+    <title>Drinking House</title>
+</head>
+<body>
+    <header></header>
+    <main class="container py-4">
+        <div class="d-flex justify-content-between mt-4">
+            <h1>Administración de Productos</h1>
+            <div>
+                <button class="custom-green-button m-2 p-2" type="button"><a href="pages/agregar_producto.html"><i class="fa-solid fa-plus"></i>  Agregar</a></button>
+            </div>
+        </div>
+        <hr>
+        <div class="text-end">
+            <button type="button" class="mostrar-checkboxButtonProductos btn btn-primary m-2 d-none" onclick="atrasEliminarProductos()">Atrás</button> 
+            <button type="button" class="mostrar-checkboxButtonProductos btn btn-danger m-2 d-none" onclick="confirmarEliminarProductos()">Eliminar</button> 
+            <button type="button" class="boton-eliminar-producto btn btn-danger m-2" onclick="eliminarProductos()">Eliminar Productos</button> 
+        </div>
+        <article class="mt-3">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="table-secondary">
+                        <tr class="text-center">
+                            <th scope="col"></th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">URL de la imagen</th>
+                            <th scope="col" class="icono-eliminar-editar">Opciones</th>
+                            <th scope="col" class="mostrar-checkboxButtonProductos d-none"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <td><input type="checkbox" class="mostrar-checkboxButtonProductos checkbox-productos d-none mx-2" id=""></td>
+                            <th scope="row">7986755498745</th>
+                            <td>Cerveza</td>
+                            <td>Quilmes</td>
+                            <td>Cerveza Quilmes</td>
+                            <td>$1500</td>
+                            <td>https://masonlineprod.vtexassets.com/arquivos/ids/155586/Cerveza-Clasica-Quilmes-Retornable-1-Lt-2-548.jpg?v=637835119806900000</td>
+                            <td>
+                                <a href="/pages/agregar_producto.html" title="Editar Producto"><i class="icono-eliminar-editar fa-solid fa-pen me-3 custom-blue"></i></a>
+                                <a href="" title="Borrar Producto"><i class="icono-eliminar-editar fa-solid fa-trash-can custom-red"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="mostrar-checkboxButtonProductos checkbox-productos d-none mx-2" id=""></td>
+                            <th scope="row">7986755406224</th>
+                            <td>Cerveza</td>
+                            <td>Brahma</td>
+                            <td>Cerveza Brahma</td>
+                            <td>$2000</td>
+                            <td>https://acdn.mitiendanube.com/stores/798/865/products/32998144-27ee00dd88ee0fb10216729048873514-640-0.jpg</td>
+                            <td>
+                                <a href="/pages/agregar_producto.html" title="Editar Producto"><i class="icono-eliminar-editar fa-solid fa-pen me-3 custom-blue"></i></a>
+                                <a href="" title="Borrar Producto"><i class="icono-eliminar-editar fa-solid fa-trash-can custom-red"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="mostrar-checkboxButtonProductos checkbox-productos d-none mx-2" id=""></td>
+                            <th scope="row">7986755483595</th>
+                            <td>Cerveza</td>
+                            <td>Corona</td>
+                            <td>Cerveza Corona</td>
+                            <td>$3000</td>
+                            <td>https://hiperlibertad.vtexassets.com/arquivos/ids/155975-800-auto?v=637236235973730000&width=800&height=auto&aspect=true</td>
+                            <td>
+                                <a href="/pages/agregar_producto.html" title="Editar Producto"><i class="icono-eliminar-editar fa-solid fa-pen me-3 custom-blue"></i></a>
+                                <a href="" title="Borrar Producto"><i class="icono-eliminar-editar fa-solid fa-trash-can custom-red"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+        <h1 class="mt-5">Administración de Usuarios</h1>
+        <hr>
+        <div class="text-end">
+            <button type="button" class="mostrar-checkboxButton btn btn-primary m-2 d-none" onclick="atrasEliminarUsuarios()">Atrás</button> 
+            <button type="button" class="mostrar-checkboxButton btn btn-danger m-2 d-none" onclick="confirmarEliminarUsuarios()">Eliminar</button> 
+            <button type="button" class="boton-eliminar btn btn-danger m-2" onclick="eliminarUsuarios()">Eliminar usuarios</button> 
+        </div>
+        <article class="mt-3">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="table-secondary">
+                        <tr class="text-center">
+                            <th scope="col"></th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Correo Electrónico</th>
+                            <th scope="col">Contraseña</th>
+                            <th scope="col">Rol</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <td><input type="checkbox" class="mostrar-checkboxButton checkbox-usuarios d-none" id=""></td>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>mark@gmail.com</td>
+                            <td>ihbiyvygtctx56667</td>
+                            <td>Admin</td>
+                            <td>
+                                <a href="" title="Eliminar Usuario"><i class="icono-eliminar fa-solid fa-trash-can custom-red"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="mostrar-checkboxButton checkbox-usuarios d-none" id=""></td>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>jacob@gmail.com</td>
+                            <td>uyyuuyr443322</td>
+                            <td>Usuario</td>
+                            <td>
+                                <a href="" title="Eliminar Usuario"><i class="icono-eliminar fa-solid fa-trash-can custom-red"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="mostrar-checkboxButton checkbox-usuarios d-none" id=""></td>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>larry@gmail.com</td>
+                            <td>76756455343gfgfvg</td>
+                            <td>Admin</td>
+                            <td>
+                                <a href="" title="Eliminar Usuario"><i class="icono-eliminar fa-solid fa-trash-can custom-red"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </main>
+    <footer></footer>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
