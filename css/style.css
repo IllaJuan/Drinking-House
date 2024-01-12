@@ -103,27 +103,3 @@
         font-size: small;
     }
 }
-
-.custom-btn-primary {
-    background-color: #FCA311 !important;
-    color: #000000 !important;
-    border-color: #FCA311 !important;
-}
-
-.custom-btn-primary:hover{
-    border-color: #855509 !important;
-    background-color: #855509  !important;
-    color: #E5E5E5 !important;
-}
-
-.custom-btn-secondary {
-    background-color: #881c1c !important;
-    color: #E5E5E5 !important;
-    border-color: #881c1c !important;
-}
-
-.custom-btn-secondary:hover{
-    border-color: #3f0d0d !important;
-    background-color: #3f0d0d !important;
-    color: #E5E5E5 !important;
-}
