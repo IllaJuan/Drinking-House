@@ -104,6 +104,17 @@
     }
 }
 
+.button-card {
+    background: rgb(72, 71, 71);
+    color: whitesmoke;
+    font-size: small;
+}
+
+.button-card:hover {
+    background: var(--backround-btn-1);
+    color: black;
+    font-size: small;
+}
 .letterLogo-footer {
     font-size: 30px;
 }
