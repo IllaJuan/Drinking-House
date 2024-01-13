@@ -115,3 +115,10 @@
     color: black;
     font-size: small;
 }
+.letterLogo-footer {
+    font-size: 30px;
+}
+.img-logo-footer {
+    width: 150px;
+    height: 150px;
+}
