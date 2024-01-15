@@ -1,3 +1,7 @@
+let myModal = document.getElementById('staticBackdrop');
+let modal = bootstrap.Modal.getOrCreateInstance(myModal)
+modal.show()
+
 document.addEventListener('scroll' , () => { 
     const header=document.querySelector('.navcolor');
     if (window.scrollY > 80) {
