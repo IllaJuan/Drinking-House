@@ -272,6 +272,7 @@
         grid-column-start: span 2;
         grid-row-start: span 1;
     }
+}
   
 .custom-btn-error404 {
     background-color: rgba(136, 28, 28, 0.955);
