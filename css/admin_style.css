@@ -24,8 +24,8 @@ html {
     color: #ff0000;
 }
 
-a,
-a:hover {
-    color: #ffffff;
-    text-decoration: none;
+@media screen and (max-width: 576px) {
+    .custom-textarea {
+        height: 115px;
+    }
 }

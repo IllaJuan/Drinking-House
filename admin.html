@@ -9,18 +9,134 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/admin_style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Drinking House</title>
 </head>
 <body>
-    <header></header>
+    <header class="fixed-top position-sticky">
+        <nav class="navcolor navbar-dark navbar navbar-expand-lg text-primary">
+            <div class="container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a class="navbar-brand letterLogo" href="index.html">DRINKING<img src="image/Logo-Drink-House.png"
+                            alt="Logo" class="img-logo" />HOUSE</a>
+                </div>
+                <!-- Toggler Btn-->
+                <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- SideBar -->
+                <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <!-- SideBar Header -->
+                    <div class="offcanvas-header text-white border-botton">
+                        <h5 class="offcanvas-title tittle-logo" id="offcanvasNavbarLabel">
+                            DRINKING <img src="/image/Logo-Drink-House.png" alt="imagen Logo" class="img-sidebar"> HOUSE
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <!-- SideBar Body -->
+                    <div class="offcanvas-body d-flex flex-column align-items-center flex-lg-row p-4 p-lg-0">
+                        <ul class="navbar-nav justify-content-center fs-5 flex-grow-1 pe-3">
+                            <li class="nav-item mx-2">
+                                <a class="nav-link active hover-link" aria-current="page" href="index.html">Inicio</a>
+                            </li>
+                            <li class="nav-item dropdown mx-2">
+                                <a class="nav-link dropdown-toggle hover-link" href="#" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Categorias
+                                </a>
+                                <ul class="dropdown-menu menu-bg my-2">
+                                    <li><a class="dropdown-item item-bg" href="#">Vinos</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider hr-bg" />
+                                    </li>
+                                    <li><a class="dropdown-item item-bg" href="#">Cervezas</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider hr-bg" />
+                                    </li>
+                                    <li><a class="dropdown-item item-bg" href="#">Destilados</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider hr-bg" />
+                                    </li>
+                                    <li><a class="dropdown-item item-bg" href="#">Combos</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link hover-link" href="#">Contacto</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link hover-link" href="#">Nosotros</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link hover-link" href="#">Administración</a>
+                            </li>
+                        </ul>
+                        <!-- Login -->
+                        <div>
+                            <a href="#" class="heart mx-4">
+                                <i class="ri-heart-line"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#" class="heart">
+                                <i class="ri-user-3-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
     <main class="container py-4">
         <div class="d-flex justify-content-between mt-4">
             <h1>Administración de Productos</h1>
             <div>
-                <button class="custom-green-button m-2 p-2" type="button"><a href="pages/agregar_producto.html"><i class="fa-solid fa-plus"></i>  Agregar</a></button>
+                <button class="custom-green-button m-2 p-2" type="button" onclick="mostrarFormulario()"><i class="fa-solid fa-plus"></i>  Agregar</button>
             </div>
         </div>
         <hr>
+        <section id="formulario-admin" class="bg-light my-5 p-5 border border-secondary-subtle rounded-4 d-none">
+            <h3 class="mb-3 text-center fs-3">Agregar Producto</h3>
+            <form id="formulario-productos">
+                <div class="my-3 d-none">
+                    <label class="d-block mb-1 fw-bolder" for="codigo">Código Asignado:</label>
+                    <input type="text" id="codigo" class="form-control p-2 border rounded border-secondary fs-6" disabled>
+                </div>
+                <div>
+                    <label class="d-block mb-1 fw-bolder" for="categoria" class="mb-1">Categoría:</label>
+                    <select id="categoria" class="form-control p-2 border rounded border-secondary fs-6" required>
+                        <option value="" disabled selected>Elija la categoría del producto</option>
+                        <option value="vino">Vino</option>
+                        <option value="cerveza">Cerveza</option>
+                        <option value="spirits">Spirits</option>
+                        <option value="aperitivos">Aperitivos</option>
+                    </select>
+                </div>
+                <div class="my-3">
+                    <label class="d-block mb-1 fw-bolder" for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" class="form-control p-2 border rounded border-secondary fs-6" placeholder="Ingrese el nombre del producto" minlength="2" maxlength="100" required>
+                </div>
+                <div>
+                    <label class="d-block mb-1 fw-bolder" for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" class="form-control p-2 border rounded border-secondary fs-6 custom-textarea" placeholder="Ingrese la descripción del producto" minlength="5" maxlength="100" cols="30" rows="2" required></textarea>
+                </div>
+                <div class="my-3">
+                    <label class="d-block mb-1 fw-bolder" for="precio">Precio:</label>
+                    <input type="text" id="precio" class="form-control p-2 border rounded border-secondary fs-6" placeholder='Ingrese el precio (utilice , antes de los decimales)' minlength="1" maxlength="20" required>
+                </div>
+                <div class="mb-5">
+                    <label class="d-block mb-1 fw-bolder" for="urlImagen">URL de la imagen:</label>
+                    <input type="text" id="urlImagen" class="form-control p-2 border rounded border-secondary fs-6" placeholder="Ingrese la dirección de la imagen" minlength="5" required>
+                </div>
+                <div class="d-flex justify-content-evenly flex-column flex-sm-row">
+                    <button class="btn btn-primary mb-2 mb-sm-0">Guardar</button>  <!-- salta una modal confirmando que se ha guardado correctamente -->
+                    <a href="/admin.html" class="btn btn-danger">Cancelar</a>
+                </div>
+            </form>
+        </section>
         <div class="text-end">
             <button type="button" class="mostrar-checkboxButtonProductos btn btn-primary m-2 d-none" onclick="atrasEliminarProductos()">Atrás</button> 
             <button type="button" class="mostrar-checkboxButtonProductos btn btn-danger m-2 d-none" onclick="confirmarEliminarProductos()">Eliminar</button> 
@@ -42,46 +158,7 @@
                             <th scope="col" class="mostrar-checkboxButtonProductos d-none"></th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">
-                        <tr>
-                            <td><input type="checkbox" class="mostrar-checkboxButtonProductos checkbox-productos d-none mx-2" id=""></td>
-                            <th scope="row">7986755498745</th>
-                            <td>Cerveza</td>
-                            <td>Quilmes</td>
-                            <td>Cerveza Quilmes</td>
-                            <td>$1500</td>
-                            <td>https://masonlineprod.vtexassets.com/arquivos/ids/155586/Cerveza-Clasica-Quilmes-Retornable-1-Lt-2-548.jpg?v=637835119806900000</td>
-                            <td>
-                                <a href="/pages/agregar_producto.html" title="Editar Producto"><i class="icono-eliminar-editar fa-solid fa-pen me-3 custom-blue"></i></a>
-                                <a href="" title="Borrar Producto"><i class="icono-eliminar-editar fa-solid fa-trash-can custom-red"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" class="mostrar-checkboxButtonProductos checkbox-productos d-none mx-2" id=""></td>
-                            <th scope="row">7986755406224</th>
-                            <td>Cerveza</td>
-                            <td>Brahma</td>
-                            <td>Cerveza Brahma</td>
-                            <td>$2000</td>
-                            <td>https://acdn.mitiendanube.com/stores/798/865/products/32998144-27ee00dd88ee0fb10216729048873514-640-0.jpg</td>
-                            <td>
-                                <a href="/pages/agregar_producto.html" title="Editar Producto"><i class="icono-eliminar-editar fa-solid fa-pen me-3 custom-blue"></i></a>
-                                <a href="" title="Borrar Producto"><i class="icono-eliminar-editar fa-solid fa-trash-can custom-red"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" class="mostrar-checkboxButtonProductos checkbox-productos d-none mx-2" id=""></td>
-                            <th scope="row">7986755483595</th>
-                            <td>Cerveza</td>
-                            <td>Corona</td>
-                            <td>Cerveza Corona</td>
-                            <td>$3000</td>
-                            <td>https://hiperlibertad.vtexassets.com/arquivos/ids/155975-800-auto?v=637236235973730000&width=800&height=auto&aspect=true</td>
-                            <td>
-                                <a href="/pages/agregar_producto.html" title="Editar Producto"><i class="icono-eliminar-editar fa-solid fa-pen me-3 custom-blue"></i></a>
-                                <a href="" title="Borrar Producto"><i class="icono-eliminar-editar fa-solid fa-trash-can custom-red"></i></a>
-                            </td>
-                        </tr>
+                    <tbody class="text-center" id="tabla">
                     </tbody>
                 </table>
             </div>
@@ -147,7 +224,12 @@
         </article>
     </main>
     <footer></footer>
+    
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script type="module" src="js/crud_admin.js"></script>
+        <script src="js/admin_producto&usuario.js"></script>
 </body>
 </html>

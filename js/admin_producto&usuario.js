@@ -1,13 +1,18 @@
+// Variables para los usuarios
 let mostrarCheckboxButton = document.querySelectorAll(".mostrar-checkboxButton");
 let iconoEliminar = document.querySelectorAll(".icono-eliminar");
 let checkboxUsuarios = document.querySelectorAll(".checkbox-usuarios");
 let botonEliminarUsuario = document.querySelector(".boton-eliminar");
 
+// Variables para los productos
 let mostrarCheckboxButtonProductos = document.querySelectorAll(".mostrar-checkboxButtonProductos");
 let iconoEliminarEditar = document.querySelectorAll(".icono-eliminar-editar");
 let checkboxProductos = document.querySelectorAll(".checkbox-productos");
 let botonEliminarProducto = document.querySelector(".boton-eliminar-producto");
 
+let productosParaBorrar = [];
+
+let formularioAdmin = document.querySelector("#formulario-admin");
 
 function removerElemento(array) {
     array.forEach(function(elemento) {
@@ -28,10 +33,19 @@ function eliminarProductos() {
     botonEliminarProducto.classList.add("d-none");
 }
 
-function confirmarEliminarProductos() {
-    
+// CONTINUAR LUEGO DE TERMINAR LA CREACIÓN DEL PRODUCTO
+// function confirmarEliminarProductos() {
+//     productosParaBorrar = checkboxUsuarios.filter((elemento) =>
+//         elemento.checked === true
+//     );
 
-}
+//     if (productosParaBorrar.length > 0) {
+//         productosParaBorrar.forEach(function(elemento) {
+//             localStorage.removeItem(elemento);
+//         });
+//     }
+
+// }
 
 function atrasEliminarProductos() {
     agregarElemento(mostrarCheckboxButtonProductos);
@@ -63,4 +77,8 @@ function atrasEliminarUsuarios() {
     checkboxUsuarios.forEach(function(elemento) {
         elemento.checked = false;
     });
+}
+
+function mostrarFormulario() {
+    formularioAdmin.classList.remove("d-none");
 }
