@@ -16,33 +16,13 @@
 </head>
 
 <body>
-    <!-- Modal+18 -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" >
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title" id="staticBackdropLabel">Advertencia</h1>
-        </div>
-        <div class="modal-body">
-          La página a la que va ingresar tiene productos de venta prohibida a menores de 18 años.
-          La misma no se hace responsable de quienes ingresen y/o compren los productos de la misma.
-        </div>
-        <div class="modal-footer">
-          <a target="_self" href="https://www.google.com.ar">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No soy mayor de 18 años</button>
-          </a>
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Soy mayor de 18 años</button>
-        </div>
-      </div>
-    </div>
-  </div>
-    <header>
+    <header class="fixed-top position-sticky">
         <!-- Navbar -->
-        <nav class="navcolor navbar-dark navbar navbar-expand-lg text-primary fixed-top">
+        <nav class="navcolor navbar-dark navbar navbar-expand-lg text-primary">
             <div class="container">
                 <!-- Logo -->
                 <div class="logo">
-                    <a class="navbar-brand letterLogo" href="Index.html">DRINKING<img src="image/Logo-Drink-House.png"
+                    <a class="navbar-brand letterLogo" href="index.html">DRINKING<img src="image/Logo-Drink-House.png"
                             alt="Logo" class="img-logo" />HOUSE</a>
                 </div>
                 <!-- Toggler Btn-->
@@ -56,7 +36,7 @@
                     <!-- SideBar Header -->
                     <div class="offcanvas-header text-white border-botton">
                         <h5 class="offcanvas-title tittle-logo" id="offcanvasNavbarLabel">
-                            DRINKING <img src="/image/Logo-Drink-House.png" alt="imagen Logo" class="img-sidebar"> HOUSE
+                            DRINKING <img src="image/Logo-Drink-House.png" alt="imagen Logo" class="img-sidebar"> HOUSE
                         </h5>
                         <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
@@ -65,7 +45,7 @@
                     <div class="offcanvas-body d-flex flex-column align-items-center flex-lg-row p-4 p-lg-0">
                         <ul class="navbar-nav justify-content-center fs-5 flex-grow-1 pe-3">
                             <li class="nav-item mx-2">
-                                <a class="nav-link active hover-link" aria-current="page" href="Index.html">Inicio</a>
+                                <a class="nav-link active hover-link" aria-current="page" href="index.html">Inicio</a>
                             </li>
                             <li class="nav-item dropdown mx-2">
                                 <a class="nav-link dropdown-toggle hover-link" href="#" data-bs-toggle="dropdown"
@@ -113,6 +93,28 @@
                 </div>
             </div>
         </nav>
+    </header>
+    <main>
+        <!-- Modal+18 -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title" id="staticBackdropLabel">Advertencia</h1>
+                </div>
+                <div class="modal-body">
+                    La página a la que va ingresar tiene productos de venta prohibida a menores de 18 años.
+                    La misma no se hace responsable de quienes ingresen y/o compren los productos de la misma.
+                </div>
+                <div class="modal-footer">
+                <a target="_self" href="https://www.google.com.ar">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No soy mayor de 18 años</button>
+                </a>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Soy mayor de 18 años</button>
+                </div>
+            </div>
+            </div>
+        </div>
         <!-- Slider -->
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -153,39 +155,36 @@
               <span class="visually-hidden">Next</span>
             </button>
           </div>
-    </header>
-    <main>
-        <!-- <a href="admin.html">Admin</a> -->
         <!--==================== grid ====================-->
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="image/grid-img1.png" alt="copas de champagne" class="gallery-img" loading="lazy">
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="image/grid-img1.png" alt="copas de champagne" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="image/grid-img2.png" alt="cocktail copas" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="image/grid-img3.png" alt="absolut botellas" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="image/grid-img4.jpg" alt="exihidor con botellas" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="image/grid-img5.png" alt="botellas splash" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="image/grid-img6.jpg" alt="corchos" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="image/grid-img7.jpg" alt="jackdaniels" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="image/grid-img8.png" alt="uvas" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="image/grid-img9.png" alt="botellas" class="gallery-img" loading="lazy">
+            </div>
         </div>
-        <div class="gallery-item">
-            <img src="image/grid-img2.png" alt="cocktail copas" class="gallery-img" loading="lazy">
-        </div>
-        <div class="gallery-item">
-            <img src="image/grid-img3.png" alt="absolut botellas" class="gallery-img" loading="lazy">
-        </div>
-        <div class="gallery-item">
-            <img src="image/grid-img4.jpg" alt="exihidor con botellas" class="gallery-img" loading="lazy">
-        </div>
-        <div class="gallery-item">
-            <img src="image/grid-img5.png" alt="botellas splash" class="gallery-img" loading="lazy">
-        </div>
-        <div class="gallery-item">
-            <img src="image/grid-img6.jpg" alt="corchos" class="gallery-img" loading="lazy">
-        </div>
-        <div class="gallery-item">
-            <img src="image/grid-img7.jpg" alt="jackdaniels" class="gallery-img" loading="lazy">
-        </div>
-        <div class="gallery-item">
-            <img src="image/grid-img8.png" alt="uvas" class="gallery-img" loading="lazy">
-        </div>
-        <div class="gallery-item">
-            <img src="image/grid-img9.png" alt="botellas" class="gallery-img" loading="lazy">
-        </div>
-    </div>
     </main>
     <footer class="bg-dark text-light py-5 mt-5">
         <div class="container">
@@ -210,9 +209,9 @@
                         <div class="d-md-flex flex-md-row align-items-md-center">
                             <span class="d-md-inline-block mr-md-2  d-none d-md-block">DRINKING</span>
                             <div class="logo d-flex flex-column align-items-center justify-content-center">
-                                <p class="letterLogo-footer" href="Index.html">
+                                <a href="index.html">
                                     <img src="image/Logo-Drink-House.png" alt="Logo" class="img-logo-footer mx-auto d-block"/>
-                                </p>
+                                </a>
                                 <p class="d-flex flex-column justify-content-center align-items-center">&copy;Todos los derechos reservados</p>
                             </div>
                             <span class="d-md-inline-block ml-md-2  d-none d-md-block">HOUSE</span>
