@@ -66,6 +66,14 @@
     font-size: 10px;
 }
 
+.letterLogo-footer {
+    font-size: 30px;
+}
+.img-logo-footer {
+    width: 150px;
+    height: 150px;
+}
+
 .img-sidebar {
     width: 35px;
     height: 35px;
@@ -142,7 +150,6 @@
 	border-color: #e4c590;
 	box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.075), 0 0 30px #e4c590;
 }
-
 
 /* grid*/
 .gallery-container{
@@ -281,5 +288,192 @@
 .custom-btn-error404:hover {
     background-color:  rgba(197, 72, 72, 0.955);
     color: whitesmoke;
+}
 
+.contact-us {
+    margin: 0;
+    padding: 0;
+}
+
+.card-us {
+    position: relative;
+    width: 300px;
+    height: 300px; 
+    margin: 20px;       
+    border-radius: 50%;
+    justify-content: flex-start;    
+    transition: 0.5s;
+    transition-delay: 0.5s;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;    
+}
+
+.card-us:hover {
+    width: 450px;
+    border-radius: 10px;
+    transition-delay: 0.5s;
+}
+
+.card-us .circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;    
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-us .circle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    clip-path: circle(100px at center);
+    transition: 0.5s;
+}
+
+.card-us:hover .circle::before {
+    clip-path: circle(300px at center);
+}
+
+.card-us .circle .logo {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.card-us:hover .circle .logo {
+    transform: scale(0);
+    transition-delay: 0s;
+}
+
+.content {
+    position: relative;
+    width: 70%;
+    left: 20%;
+    padding: 20px 20px 20px 40px;
+    opacity: 0;
+    transition: 0.5s;
+    visibility: hidden;
+}
+
+.card-us:hover .content {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.5s;
+}
+
+.content h3 {
+    color: #fdfdfd;    
+    font-size: 2em;
+    line-height: 1em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.content p {
+    color: #fdfdfd;
+}
+
+.content a {
+    position: relative;
+    color: #fdfdfd;    
+    margin-top: 10px;    
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 25px;
+    display: inline-block;
+    text-decoration: none;    
+    cursor: pointer;
+}
+
+.content a:hover {
+    font-size: 35px;
+    color: #e4c590;
+}
+
+.card-us .product_img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    height: 120px;
+    transition: 0.5s;
+    transition-delay: 0s;   
+}
+
+.card-us:hover .product_img {
+    left: 80%;
+    transform: translate(-50%, -50%) scale(1);
+    transition-delay: 0.5s;
+}
+
+@media screen and (max-width:854px),
+       screen and (min-width: 1044px) and (max-width: 1193px) {
+    .card-us {
+        width: auto;
+        max-width: 300px;
+        align-items: flex-start;
+        margin: 0;
+        padding: 0;
+    }
+    .card-us:hover {
+        height: 400px;
+        width: auto;
+    }
+    .card-us:hover .product_img {
+        top: initial;
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, 0%)scale(1);
+        height: 90px;
+    }  
+    .card-us .content {
+        width: 100%;        
+        left: 0;
+        padding:15px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .card-us {
+        width: auto;
+        max-width: 250px;
+        align-items: flex-start;
+    }
+    .card-us:hover {
+        height: 350px;
+        width: auto;
+    }
+    .card-us:hover .product_img {
+        top: initial;
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, 0%)scale(1);
+        height: auto;            
+    }
+
+    .product_img {                      
+        height: 0px;
+        width: 0px;
+    }
+    .card-us .content {
+        width: 100%;        
+        left: 0;
+        padding:20px;
+        text-align: center;        
+    }
 }
