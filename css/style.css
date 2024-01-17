@@ -152,3 +152,27 @@
     background-color:  rgba(197, 72, 72, 0.955);
     color: whitesmoke;
 }
+
+.custom-btn-buynow {
+    background-color: #fca211e2;
+    color: whitesmoke;
+}
+
+.custom-btn-buynow:hover {
+    background-color:  #8d5d11e2;
+    color: whitesmoke;
+}
+
+.custom-btn-cart {
+    background-color: rgba(136, 28, 28, 0.955);
+    color: whitesmoke;
+}
+
+.custom-btn-cart:hover {
+    background-color:  rgba(197, 72, 72, 0.955);
+    color: whitesmoke;
+}
+
+.infotext {
+    color: grey;
+}
