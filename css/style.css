@@ -145,6 +145,7 @@
 
 .custom-btn-error404 {
     background-color: rgba(136, 28, 28, 0.955);
+    color: whitesmoke;
 }
 
 .custom-btn-error404:hover {
