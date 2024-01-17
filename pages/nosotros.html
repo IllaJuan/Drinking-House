@@ -16,29 +16,9 @@
 </head>
 
 <body>
-    <!-- Modal+18 -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" >
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title" id="staticBackdropLabel">Advertencia</h1>
-        </div>
-        <div class="modal-body">
-          La página a la que va ingresar tiene productos de venta prohibida a menores de 18 años.
-          La misma no se hace responsable de quienes ingresen y/o compren los productos de la misma.
-        </div>
-        <div class="modal-footer">
-          <a target="_self" href="https://www.google.com.ar">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No soy mayor de 18 años</button>
-          </a>
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Soy mayor de 18 años</button>
-        </div>
-      </div>
-    </div>
-  </div>
-    <header>
+    <header class="fixed-top position-sticky">
         <!-- Navbar -->
-        <nav class="navcolor navbar-dark navbar navbar-expand-lg text-primary fixed-top">
+        <nav class="navcolor navbar-dark navbar navbar-expand-lg text-primary">
             <div class="container">
                 <!-- Logo -->
                 <div class="logo">
@@ -68,7 +48,7 @@
                                 <a class="nav-link active hover-link" aria-current="page" href="/index.html">Inicio</a>
                             </li>
                             <li class="nav-item dropdown mx-2">
-                                <a class="nav-link dropdown-toggle hover-link" href="#" data-bs-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle hover-link" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     Categorias
                                 </a>
@@ -81,11 +61,11 @@
                                     <li>
                                         <hr class="dropdown-divider hr-bg" />
                                     </li>
-                                    <li><a class="dropdown-item item-bg" href="#">Destilados</a></li>
+                                    <li><a class="dropdown-item item-bg" href="#">Spirits</a></li>
                                     <li>
                                         <hr class="dropdown-divider hr-bg" />
                                     </li>
-                                    <li><a class="dropdown-item item-bg" href="#">Combos</a></li>
+                                    <li><a class="dropdown-item item-bg" href="#">Aperitivos</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item mx-2">
@@ -112,13 +92,13 @@
                     </div>
                 </div>
             </div>
-        </nav>        
+        </nav>
     </header>
-    <main class="mx-0 px-0">
-        <section class="container-fluid">
-            <h1 class="display-2 text-center my-5 pt-5">Sobre Nosotros</h1>
+    <main class="d-flex justify-content-center">
+        <section class="container-xxl">
+            <h1 class="display-1 text-center my-5">Sobre Nosotros</h1>
             <hr />
-            <h4 class="p-3">Somos estudiantes de programación en Rolling Code. Pertenecemos al grupo N°1 de la comisión 80i. Para este segundo proyecto elegimos hacer un ecommerce sobre venta de bebidas alcohólicas llamada <b>Drinking House</b>.</h4>
+            <h4 class="p-3 text-center">Somos estudiantes de programación en Rolling Code. Pertenecemos al grupo N°1 de la comisión 80i. Para este segundo proyecto elegimos hacer un ecommerce sobre venta de bebidas alcohólicas llamada <b>Drinking House</b>.</h4>
             <article class="d-flex row justify-content-center contact-us">
                 <div class="card-us">
                     <div class="circle">
@@ -211,9 +191,9 @@
                         <div class="d-md-flex flex-md-row align-items-md-center">
                             <span class="d-md-inline-block mr-md-2  d-none d-md-block">DRINKING</span>
                             <div class="logo d-flex flex-column align-items-center justify-content-center">
-                                <p class="letterLogo-footer" href="/index.html">
+                                <a href="/index.html">
                                     <img src="/image/Logo-Drink-House.png" alt="Logo" class="img-logo-footer mx-auto d-block"/>
-                                </p>
+                                </a>
                                 <p class="d-flex flex-column justify-content-center align-items-center">&copy;Todos los derechos reservados</p>
                             </div>
                             <span class="d-md-inline-block ml-md-2  d-none d-md-block">HOUSE</span>

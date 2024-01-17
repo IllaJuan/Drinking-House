@@ -66,6 +66,14 @@
     font-size: 10px;
 }
 
+.letterLogo-footer {
+    font-size: 30px;
+}
+.img-logo-footer {
+    width: 150px;
+    height: 150px;
+}
+
 .img-sidebar {
     width: 35px;
     height: 35px;
@@ -282,6 +290,11 @@
     color: whitesmoke;
 }
 
+.contact-us {
+    margin: 0;
+    padding: 0;
+}
+
 .card-us {
     position: relative;
     width: 300px;
@@ -407,8 +420,8 @@
     transition-delay: 0.5s;
 }
 
-@media screen and (min-width:1385px),
-       screen and (max-width:854px) {
+@media screen and (max-width:854px),
+       screen and (min-width: 1044px) and (max-width: 1193px) {
     .card-us {
         width: auto;
         max-width: 300px;
