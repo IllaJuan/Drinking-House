@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/admin_style.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap.min.js"></script>
     <title>Drinking House</title>
 </head>
 <body>
@@ -94,13 +95,13 @@
         <div class="d-flex justify-content-between mt-4">
             <h1>Administración de Productos</h1>
             <div>
-                <button class="custom-green-button m-2 p-2" type="button" onclick="mostrarFormulario()"><i class="fa-solid fa-plus"></i>  Agregar</button>
+                <button class="custom-green-button m-2 p-2" type="button"><i class="fa-solid fa-plus"></i>  Agregar</button>
             </div>
         </div>
         <hr>
         <section id="formulario-admin" class="bg-light my-5 p-5 border border-secondary-subtle rounded-4 d-none">
             <h3 class="mb-3 text-center fs-3">Agregar Producto</h3>
-            <form id="formulario-productos">
+            <form>
                 <div class="my-3 d-none">
                     <label class="d-block mb-1 fw-bolder" for="codigo">Código Asignado:</label>
                     <input type="text" id="codigo" class="form-control p-2 border rounded border-secondary fs-6" disabled>
@@ -132,22 +133,20 @@
                     <input type="text" id="urlImagen" class="form-control p-2 border rounded border-secondary fs-6" placeholder="Ingrese la dirección de la imagen" minlength="5" required>
                 </div>
                 <div class="d-flex justify-content-evenly flex-column flex-sm-row">
-                    <button class="btn btn-primary mb-2 mb-sm-0">Guardar</button>  <!-- salta una modal confirmando que se ha guardado correctamente -->
+                    <button id="botonGuardarProducto" class="btn btn-primary mb-2 mb-sm-0 botonEditarProducto">Guardar</button>  <!-- salta una modal confirmando que se ha guardado correctamente -->
+                    <button id="botonGuardarEdicion" class="btn btn-primary mb-2 mb-sm-0 d-none botonEditarProducto">Guardar los cambios</button>
                     <a href="/admin.html" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </section>
         <div class="text-end">
-            <button type="button" class="mostrar-checkboxButtonProductos btn btn-primary m-2 d-none" onclick="atrasEliminarProductos()">Atrás</button> 
-            <button type="button" class="mostrar-checkboxButtonProductos btn btn-danger m-2 d-none" onclick="confirmarEliminarProductos()">Eliminar</button> 
-            <button type="button" class="boton-eliminar-producto btn btn-danger m-2" onclick="eliminarProductos()">Eliminar Productos</button> 
+            <button type="button" class="btn btn-danger m-2" onclick="eliminarProductos()">Eliminar Productos</button> 
         </div>
         <article class="mt-3">
             <div class="table-responsive">
                 <table class="table">
                     <thead class="table-secondary">
                         <tr class="text-center">
-                            <th scope="col"></th>
                             <th scope="col">Código</th>
                             <th scope="col">Categoría</th>
                             <th scope="col">Nombre</th>
@@ -225,11 +224,10 @@
     </main>
     <footer></footer>
     
-    <script src="js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-        <script type="module" src="js/crud_admin.js"></script>
         <script src="js/admin_producto&usuario.js"></script>
+        <script type="module" src="js/crud_admin.js"></script>
 </body>
 </html>

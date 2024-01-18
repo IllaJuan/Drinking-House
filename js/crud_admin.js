@@ -4,20 +4,37 @@ import {
     validarNombre,
     validarPrecio,
     validarUrlImagen,
-    arrayProductos
 } from "./validacion_producto.js";
 
-let formulario = document.getElementById("formulario-productos");
+let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
+
+// let formulario = document.getElementById("formulario-productos");
 let inputCategorias = document.getElementById("categoria");
 let inputNombre = document.getElementById("nombre");
 let inputDescripcion = document.getElementById("descripcion");
 let inputPrecio = document.getElementById("precio");
 let inputUrlImagen = document.getElementById("urlImagen");
-let cuerpoTabla = document.querySelector("#tabla");
 let inputCodigo;
 
-formulario.addEventListener("submit",crearProducto);
+let cuerpoTabla = document.getElementById("tabla");
 
+let botonAgregar = document.querySelector(".custom-green-button");
+let formularioAdmin = document.getElementById("formulario-admin");
+
+let botonEditarProducto = document.querySelectorAll(".botonEditarProducto");
+let botonGuardarEdicion = document.getElementById("botonGuardarEdicion");
+let botonGuardarProducto = document.getElementById("botonGuardarProducto");
+
+
+botonGuardarProducto.addEventListener("click", () => {
+    crearProducto();
+});
+botonAgregar.addEventListener("click", () => {
+    mostrarFormulario();
+});
+botonGuardarEdicion.addEventListener("click", () => {
+    guardarCambios();
+});
 inputNombre.addEventListener("blur", () => {
     validarNombre(inputNombre);
 });
@@ -31,7 +48,8 @@ inputUrlImagen.addEventListener("blur", () => {
     validarUrlImagen(inputUrlImagen);
 });
 
-mostrarTablaProductos()
+
+mostrarTablaProductos();
 
 function crearProducto() {
     if (
@@ -40,9 +58,11 @@ function crearProducto() {
     validarPrecio(inputPrecio) &&
     validarUrlImagen(inputUrlImagen)
     ) {
-        inputCodigo = generarCodigo(inputNombre);
+        inputCodigo = generarCodigo(inputNombre,arrayProductos);
 
         const producto = {
+            check: false,
+            id: arrayProductos.length + 1,
             codigo: inputCodigo,
             categoria: inputCategorias.value,
             nombre: inputNombre.value, 
@@ -59,15 +79,15 @@ function crearProducto() {
         mostrarTablaProductos();
         // mostrarCardsProductos();
     } else {
-        // <=== MOSTRAR modal advirtiendo que hay un error y que no se ha podido crear el producto
+        // MODAL advirtiendo que hay un error y que no se ha podido crear el producto
     }
 } 
+
 
 function mostrarTablaProductos() {
     arrayProductos.map((elemento) => {
         let fila = document.createElement("tr");
-        let columnas = `    
-                        <td><input type="checkbox" class="mostrar-checkboxButtonProductos checkbox-productos d-none mx-2"></td>
+        let columnas = ` 
                         <th scope="row">${elemento.codigo}</th>
                         <td>${elemento.categoria}</td>
                         <td>${elemento.nombre}</td>
@@ -75,15 +95,64 @@ function mostrarTablaProductos() {
                         <td>$${elemento.precio}</td>
                         <td><a href="${elemento.urlImagen}" target="_blank" title="Ver Imagen">${elemento.urlImagen}</a></td>
                         <td>
-                            <a href="" title="Editar Producto"><i class="icono-eliminar-editar fa-solid fa-pen me-3 custom-blue"></i></a>
-                            <a href="" title="Borrar Producto"><i class="icono-eliminar-editar fa-solid fa-trash-can custom-red"></i></a>
+                            <i class="fa-solid fa-pen me-3 custom-blue" title="Editar Producto" onclick="editarInfoProducto(${elemento.id})"></i>
+                            <i class="fa-solid fa-trash-can custom-red" title="Borrar Producto" onclick="borrarProducto(${elemento.id})"></i>
                         </td>`;
         fila.innerHTML = columnas;
         cuerpoTabla.append(fila);
-    }) 
+    });
 }
-  
 
-function mostrarCardsProductos() {
+
+window.editarInfoProducto = function (idProducto) {
+    let indexProducto = arrayProductos.findIndex(
+        (elemento) => elemento.id === idProducto
+    );      
     
+    inputCategorias.value = arrayProductos[indexProducto].categoria;
+    inputNombre.value = arrayProductos[indexProducto].nombre;
+    inputDescripcion.value = arrayProductos[indexProducto].descripcion;
+    inputPrecio.value = arrayProductos[indexProducto].precio;
+    inputUrlImagen.value = arrayProductos[indexProducto].urlImagen;
+    
+    mostrarFormulario();
+    botonEditarProducto.forEach(elemento => {
+        elemento.classList.toggle("d-none")
+    });
+}
+function mostrarFormulario() {
+    formularioAdmin.classList.remove("d-none");
+}
+window.guardarCambios = function () {
+    if (
+        validarNombre(inputNombre) &&
+        validarDescripcion(inputDescripcion) &&
+        validarPrecio(inputPrecio) &&
+        validarUrlImagen(inputUrlImagen)
+        ) {
+            alert("Se editó el elemento")   // <==== BORRAR
+            arrayProductos[indexProducto].categoria = inputCategorias.value,
+            arrayProductos[indexProducto].nombre = inputNombre.value, 
+            arrayProductos[indexProducto].descripcion = inputDescripcion.value, 
+            arrayProductos[indexProducto].precio = inputPrecio.value, 
+            arrayProductos[indexProducto].urlImagen = inputUrlImagen.value   
+        } else {
+            alert("No se editó el elemento")     // <==== BORRAR
+            // MODAL DE ERROR AL EDITAR PRODUCTO
+        }
+}
+
+
+window.borrarProducto = function (idProducto) {
+
+    // MODAL PREGUNTANDO SI ESTÁ SEGURO DE ELIMINAR EL PRODUCTO DE LA TABLA
+    arrayProductos = arrayProductos.filter(
+        (elemento) => elemento.id !== idProducto
+    );
+
+    guardarLocalStorage();
+    mostrarTablaProductos();
+}
+function guardarLocalStorage() {
+    localStorage.setItem("productos", JSON.stringify(arrayProductos));
 }

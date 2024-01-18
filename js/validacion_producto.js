@@ -1,6 +1,4 @@
-export let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
-
-export function generarCodigo(inputNombre) {
+export function generarCodigo(inputNombre,arrayProductos) {
     let codigoProducto;
     let codigoDeBarras;
     let indiceProducto;

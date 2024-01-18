@@ -18,10 +18,12 @@ html {
 
 .custom-blue {
     color: #1877f2;
+    cursor: pointer;
 }
 
 .custom-red {
     color: #ff0000;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 576px) {

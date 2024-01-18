@@ -7,12 +7,10 @@ let botonEliminarUsuario = document.querySelector(".boton-eliminar");
 // Variables para los productos
 let mostrarCheckboxButtonProductos = document.querySelectorAll(".mostrar-checkboxButtonProductos");
 let iconoEliminarEditar = document.querySelectorAll(".icono-eliminar-editar");
-let checkboxProductos = document.querySelectorAll(".checkbox-productos");
 let botonEliminarProducto = document.querySelector(".boton-eliminar-producto");
 
-let productosParaBorrar = [];
 
-let formularioAdmin = document.querySelector("#formulario-admin");
+// let formularioAdmin = document.querySelector("#formulario-admin");
 
 function removerElemento(array) {
     array.forEach(function(elemento) {
@@ -28,24 +26,22 @@ function agregarElemento(array) {
 
 
 function eliminarProductos() {
-    removerElemento(mostrarCheckboxButtonProductos);
-    agregarElemento(iconoEliminarEditar);
-    botonEliminarProducto.classList.add("d-none");
+    
 }
 
-// CONTINUAR LUEGO DE TERMINAR LA CREACIÓN DEL PRODUCTO
-// function confirmarEliminarProductos() {
-//     productosParaBorrar = checkboxUsuarios.filter((elemento) =>
-//         elemento.checked === true
-//     );
 
-//     if (productosParaBorrar.length > 0) {
-//         productosParaBorrar.forEach(function(elemento) {
-//             localStorage.removeItem(elemento);
-//         });
-//     }
+function confirmarEliminarProductos() {
+    productosParaBorrar = checkboxUsuarios.filter((elemento) =>
+        elemento.checked === true
+    );
 
-// }
+    if (productosParaBorrar.length > 0) {
+        productosParaBorrar.forEach(function(elemento) {
+            localStorage.removeItem(elemento);
+        });
+    }
+
+}
 
 function atrasEliminarProductos() {
     agregarElemento(mostrarCheckboxButtonProductos);
@@ -79,6 +75,7 @@ function atrasEliminarUsuarios() {
     });
 }
 
-function mostrarFormulario() {
-    formularioAdmin.classList.remove("d-none");
-}
+// function mostrarFormulario() {
+//     formularioAdmin.classList.remove("d-none");
+// }
+
