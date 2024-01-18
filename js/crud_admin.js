@@ -8,7 +8,8 @@ import {
 
 let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
 
-// let formulario = document.getElementById("formulario-productos");
+let indexProducto;
+
 let inputCategorias = document.getElementById("categoria");
 let inputNombre = document.getElementById("nombre");
 let inputDescripcion = document.getElementById("descripcion");
@@ -96,7 +97,7 @@ function mostrarTablaProductos() {
                         <td><a href="${elemento.urlImagen}" target="_blank" title="Ver Imagen">${elemento.urlImagen}</a></td>
                         <td>
                             <i class="fa-solid fa-pen me-3 custom-blue" title="Editar Producto" onclick="editarInfoProducto(${elemento.id})"></i>
-                            <i class="fa-solid fa-trash-can custom-red" title="Borrar Producto" onclick="borrarProducto(${elemento.id})"></i>
+                            <a href="" title="Borrar Producto" onclick="borrarProducto(${elemento.id})"><i class="fa-solid fa-trash-can custom-red"></i></a>
                         </td>`;
         fila.innerHTML = columnas;
         cuerpoTabla.append(fila);
@@ -104,10 +105,12 @@ function mostrarTablaProductos() {
 }
 
 
-window.editarInfoProducto = function (idProducto) {
-    let indexProducto = arrayProductos.findIndex(
-        (elemento) => elemento.id === idProducto
-    );      
+window.editarInfoProducto = function (idProduct) {
+    indexProducto = arrayProductos.findIndex(
+        function (elemento) {
+        return elemento.id === idProduct;
+    }
+    );     
     
     inputCategorias.value = arrayProductos[indexProducto].categoria;
     inputNombre.value = arrayProductos[indexProducto].nombre;
@@ -130,12 +133,14 @@ window.guardarCambios = function () {
         validarPrecio(inputPrecio) &&
         validarUrlImagen(inputUrlImagen)
         ) {
-            alert("Se editó el elemento")   // <==== BORRAR
             arrayProductos[indexProducto].categoria = inputCategorias.value,
             arrayProductos[indexProducto].nombre = inputNombre.value, 
             arrayProductos[indexProducto].descripcion = inputDescripcion.value, 
             arrayProductos[indexProducto].precio = inputPrecio.value, 
             arrayProductos[indexProducto].urlImagen = inputUrlImagen.value   
+
+            guardarLocalStorage();
+            mostrarTablaProductos();
         } else {
             alert("No se editó el elemento")     // <==== BORRAR
             // MODAL DE ERROR AL EDITAR PRODUCTO
@@ -144,7 +149,6 @@ window.guardarCambios = function () {
 
 
 window.borrarProducto = function (idProducto) {
-
     // MODAL PREGUNTANDO SI ESTÁ SEGURO DE ELIMINAR EL PRODUCTO DE LA TABLA
     arrayProductos = arrayProductos.filter(
         (elemento) => elemento.id !== idProducto
@@ -153,6 +157,7 @@ window.borrarProducto = function (idProducto) {
     guardarLocalStorage();
     mostrarTablaProductos();
 }
+
 function guardarLocalStorage() {
     localStorage.setItem("productos", JSON.stringify(arrayProductos));
 }
