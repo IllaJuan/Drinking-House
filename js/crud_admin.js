@@ -34,9 +34,9 @@ let cuerpoTabla = document.getElementById("tabla");
 let botonAgregar = document.querySelector(".custom-green-button");
 let formularioAdmin = document.getElementById("formulario-admin");
 
-let botonEditarProducto = document.querySelectorAll(".botonEditarProducto");
-let botonGuardarEdicion = document.getElementById("botonGuardarEdicion");
-let botonGuardarProducto = document.getElementById("botonGuardarProducto");
+let botonEditarProducto = document.querySelectorAll(".boton-editar-producto");
+let botonGuardarEdicion = document.getElementById("boton-guardar-edicion");
+let botonGuardarProducto = document.getElementById("boton-guardar-producto");
 
 
 botonGuardarProducto.addEventListener("click", function (e) {
@@ -64,6 +64,7 @@ inputUrlImagen.addEventListener("blur", () => {
 
 
 mostrarTablaProductos();
+mostrarCardsProductos();
 
 function crearProducto(e) {
     e.preventDefault();
