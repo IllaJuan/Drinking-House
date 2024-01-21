@@ -1,3 +1,7 @@
+/* 
+    Funciones que validan los datos ingresados a través del formulario de los productos
+*/
+
 export function generarCodigo(inputNombre,arrayProductos) {
     let codigoProducto;
     let codigoDeBarras;
@@ -36,13 +40,27 @@ export function generarCodigo(inputNombre,arrayProductos) {
     }
 }
 
+export function validarCategoria(categoria) {
+    if (
+    categoria.value === "vino" || 
+    categoria.value === "cerveza" ||
+    categoria.value === "spirits" ||
+    categoria.value === "aperitivos"
+    ) {
+        categoria.className = "form-control is-valid";
+        return true;
+    }
+    categoria.className = "form-control is-invalid";
+    return false; 
+}
+
 export function validarNombre(nombre) {
     if (nombre.value.trim().length >= 2 && nombre.value.trim().length <= 100) {
         nombre.className = "form-control is-valid";
         return true;
     }
     nombre.className = "form-control is-invalid";
-    return false;   // Mostrar mensaje que diga que ingrese de manera corecta este campo
+    return false; 
 }
 
 export function validarDescripcion(descripcion) {
@@ -55,7 +73,7 @@ export function validarDescripcion(descripcion) {
 }
 
 export function validarPrecio(precio) {
-    let regExPrecio = /^[0-9]+(?:,[0-9]+)?$/;
+    let regExPrecio = /^[0-9]+(\.[0-9]+)?$/;
 
     if (
     precio.value.trim().length >= 1 && 
@@ -68,9 +86,12 @@ export function validarPrecio(precio) {
     precio.className = "form-control is-invalid";
     return false;
 }
+export function formatoPrecio(precio) {
+    return parseFloat(precio.value).toLocaleString('es-AR',{ minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 
 export function validarUrlImagen(urlImagen) {
-    let regExUrl = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
+    let regExUrl = /^(https?|ftp):\/\/[^\s\/$.?#].[^\s]*\.(jpg|jpeg|png|gif|webp|bmp|svg|tiff)$/i;
 
     if (
     urlImagen.value.trim().length >= 5 &&

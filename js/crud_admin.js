@@ -1,21 +1,33 @@
 import {
     generarCodigo,
-    validarDescripcion,
+    validarCategoria,
     validarNombre,
+    validarDescripcion,
     validarPrecio,
     validarUrlImagen,
-} from "./validacion_producto.js";
+    formatoPrecio
+} from "./validar_producto.js";
+
+import {
+    guardarLocalStorage,
+    limpiarFormulario,
+    mostrarOcultarFormulario,
+    mostrarOcultarBotonForm
+} from "./hellpers.js";
 
 let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
 
 let indexProducto;
 
+let form = document.getElementById("form");
 let inputCategorias = document.getElementById("categoria");
 let inputNombre = document.getElementById("nombre");
 let inputDescripcion = document.getElementById("descripcion");
 let inputPrecio = document.getElementById("precio");
 let inputUrlImagen = document.getElementById("urlImagen");
 let inputCodigo;
+let inputId;
+let precio;
 
 let cuerpoTabla = document.getElementById("tabla");
 
@@ -27,15 +39,16 @@ let botonGuardarEdicion = document.getElementById("botonGuardarEdicion");
 let botonGuardarProducto = document.getElementById("botonGuardarProducto");
 
 
-botonGuardarProducto.addEventListener("click", () => {
-    crearProducto();
+botonGuardarProducto.addEventListener("click", function (e) {
+    crearProducto(e);
 });
 botonAgregar.addEventListener("click", () => {
-    mostrarFormulario();
+    mostrarOcultarFormulario(formularioAdmin);
 });
-botonGuardarEdicion.addEventListener("click", () => {
-    guardarCambios();
+botonGuardarEdicion.addEventListener("click", function (e) {
+    guardarCambios(e);
 });
+
 inputNombre.addEventListener("blur", () => {
     validarNombre(inputNombre);
 });
@@ -52,23 +65,27 @@ inputUrlImagen.addEventListener("blur", () => {
 
 mostrarTablaProductos();
 
-function crearProducto() {
+function crearProducto(e) {
+    e.preventDefault();
+
     if (
+    validarCategoria(inputCategorias) &&
     validarNombre(inputNombre) &&
     validarDescripcion(inputDescripcion) &&
     validarPrecio(inputPrecio) &&
     validarUrlImagen(inputUrlImagen)
     ) {
+        precio = formatoPrecio(inputPrecio);
         inputCodigo = generarCodigo(inputNombre,arrayProductos);
+        (arrayProductos.length > 0) ? inputId = arrayProductos[arrayProductos.length - 1].id + 1 : inputId = 1;
 
         const producto = {
-            check: false,
-            id: arrayProductos.length + 1,
+            id: inputId,
             codigo: inputCodigo,
             categoria: inputCategorias.value,
             nombre: inputNombre.value, 
             descripcion: inputDescripcion.value, 
-            precio: inputPrecio.value, 
+            precio: precio, 
             urlImagen: inputUrlImagen.value
         };
 
@@ -77,33 +94,44 @@ function crearProducto() {
         localStorage.setItem("productos", JSON.stringify(arrayProductos));
         localStorage.getItem("productos");   // <=== no es necesario
 
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Producto guardado correctamente",
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+        limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen);
+        mostrarOcultarFormulario(formularioAdmin);
         mostrarTablaProductos();
-        // mostrarCardsProductos();
     } else {
-        // MODAL advirtiendo que hay un error y que no se ha podido crear el producto
+        Swal.fire({
+            icon: "error",
+            title: "No se guardó el producto",
+            text: "Verifique los campos y vuelva a intentarlo"
+        });
     }
 } 
 
-
 function mostrarTablaProductos() {
-    arrayProductos.map((elemento) => {
-        let fila = document.createElement("tr");
-        let columnas = ` 
-                        <th scope="row">${elemento.codigo}</th>
-                        <td>${elemento.categoria}</td>
-                        <td>${elemento.nombre}</td>
-                        <td>${elemento.descripcion}</td>
-                        <td>$${elemento.precio}</td>
-                        <td><a href="${elemento.urlImagen}" target="_blank" title="Ver Imagen">${elemento.urlImagen}</a></td>
-                        <td>
-                            <i class="fa-solid fa-pen me-3 custom-blue" title="Editar Producto" onclick="editarInfoProducto(${elemento.id})"></i>
-                            <a href="" title="Borrar Producto" onclick="borrarProducto(${elemento.id})"><i class="fa-solid fa-trash-can custom-red"></i></a>
-                        </td>`;
-        fila.innerHTML = columnas;
-        cuerpoTabla.append(fila);
+    cuerpoTabla.innerHTML = "";
+    arrayProductos.forEach((elemento) => {
+        cuerpoTabla.innerHTML += ` 
+            <tr>
+                <th scope="row">${elemento.codigo}</th>
+                <td>${elemento.categoria}</td>
+                <td>${elemento.nombre}</td>
+                <td>${elemento.descripcion}</td>
+                <td>$${elemento.precio}</td>
+                <td><a href="${elemento.urlImagen}" target="_blank" title="Ver Imagen">${elemento.urlImagen}</a></td>
+                <td>
+                    <i class="fa-solid fa-pen me-3 custom-blue" title="Editar Producto" onclick="editarInfoProducto(${elemento.id})"></i>
+                    <i class="fa-solid fa-trash-can custom-red" title="Borrar Producto" onclick="borrarProducto(${elemento.id})"></i>
+                </td>
+            </tr>`;
     });
 }
-
 
 window.editarInfoProducto = function (idProduct) {
     indexProducto = arrayProductos.findIndex(
@@ -118,46 +146,78 @@ window.editarInfoProducto = function (idProduct) {
     inputPrecio.value = arrayProductos[indexProducto].precio;
     inputUrlImagen.value = arrayProductos[indexProducto].urlImagen;
     
-    mostrarFormulario();
-    botonEditarProducto.forEach(elemento => {
-        elemento.classList.toggle("d-none")
-    });
+    mostrarOcultarFormulario(formularioAdmin);
+    mostrarOcultarBotonForm(botonEditarProducto);
 }
-function mostrarFormulario() {
-    formularioAdmin.classList.remove("d-none");
-}
-window.guardarCambios = function () {
+window.guardarCambios = function (e) {
+    e.preventDefault();
+
     if (
+        validarCategoria(inputCategorias) &&
         validarNombre(inputNombre) &&
         validarDescripcion(inputDescripcion) &&
         validarPrecio(inputPrecio) &&
         validarUrlImagen(inputUrlImagen)
         ) {
+            precio = formatoPrecio(inputPrecio);
+
             arrayProductos[indexProducto].categoria = inputCategorias.value,
             arrayProductos[indexProducto].nombre = inputNombre.value, 
             arrayProductos[indexProducto].descripcion = inputDescripcion.value, 
-            arrayProductos[indexProducto].precio = inputPrecio.value, 
+            arrayProductos[indexProducto].precio = precio, 
             arrayProductos[indexProducto].urlImagen = inputUrlImagen.value   
 
-            guardarLocalStorage();
+            Swal.fire({
+                icon: "success",
+                text: "¡Cambios guardados correctamente!",
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen);
+            mostrarOcultarFormulario(formularioAdmin);
+            mostrarOcultarBotonForm(botonEditarProducto);
+            guardarLocalStorage(arrayProductos);
             mostrarTablaProductos();
         } else {
-            alert("No se editó el elemento")     // <==== BORRAR
-            // MODAL DE ERROR AL EDITAR PRODUCTO
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "No se pudieron guardar los cambios :(",
+                footer: '<p>¡Verifique que haya ingresado bien todos los campos!</p>',
+                showConfirmButton: false,
+                timer: 4000
+            });
         }
 }
 
-
 window.borrarProducto = function (idProducto) {
-    // MODAL PREGUNTANDO SI ESTÁ SEGURO DE ELIMINAR EL PRODUCTO DE LA TABLA
-    arrayProductos = arrayProductos.filter(
-        (elemento) => elemento.id !== idProducto
-    );
+    Swal.fire({        
+        icon: "warning",
+        iconColor: "#ffc107",
+        title: "¿Estás seguro?",
+        text: "¡La acción no se puede revertir!",
+        showCancelButton: true,
+        focusCancel: true,
+        confirmButtonColor: "#dc3545",
+        cancelButtonColor: "#0d6efd",
+        confirmButtonText: "Borrar producto",
+        cancelButtonText: "Volver"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            arrayProductos = arrayProductos.filter(
+                (elemento) => elemento.id !== idProducto
+            );
+            Swal.fire({
+                icon: "success",
+                text: "¡El producto se eliminó correctamente!",
+                showConfirmButton: false,
+                timer: 2000
+            });
 
-    guardarLocalStorage();
-    mostrarTablaProductos();
-}
-
-function guardarLocalStorage() {
-    localStorage.setItem("productos", JSON.stringify(arrayProductos));
+            limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen);
+            guardarLocalStorage(arrayProductos);
+            mostrarTablaProductos();
+        }
+    });
 }

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/admin_style.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap.min.js"></script>
+    <script src="libraries/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <title>Drinking House</title>
 </head>
 <body>
@@ -91,21 +92,18 @@
             </div>
         </nav>
     </header>
-    <main class="container py-4">
+    <main class="container-xl py-4">
         <div class="d-flex justify-content-between mt-4">
             <h1>Administración de Productos</h1>
             <div>
-                <button class="custom-green-button m-2 p-2" type="button"><i class="fa-solid fa-plus"></i>  Agregar</button>
+                <button type="button" class="m-2 p-2 custom-green-button "><i class="d-none d-md-inline fa-solid fa-plus"></i>  Agregar</button>
             </div>
         </div>
         <hr>
-        <section id="formulario-admin" class="bg-light my-5 p-5 border border-secondary-subtle rounded-4 d-none">
-            <h3 class="mb-3 text-center fs-3">Agregar Producto</h3>
-            <form>
-                <div class="my-3 d-none">
-                    <label class="d-block mb-1 fw-bolder" for="codigo">Código Asignado:</label>
-                    <input type="text" id="codigo" class="form-control p-2 border rounded border-secondary fs-6" disabled>
-                </div>
+        <!-- Formulario para cargar productos -->
+        <article id="formulario-admin" class="d-none bg-light my-5 p-5 border border-secondary-subtle rounded-4">
+            <h3 class="fs-3 mb-3 text-center">Agregar Producto</h3>
+            <form id="form">
                 <div>
                     <label class="d-block mb-1 fw-bolder" for="categoria" class="mb-1">Categoría:</label>
                     <select id="categoria" class="form-control p-2 border rounded border-secondary fs-6" required>
@@ -126,23 +124,21 @@
                 </div>
                 <div class="my-3">
                     <label class="d-block mb-1 fw-bolder" for="precio">Precio:</label>
-                    <input type="text" id="precio" class="form-control p-2 border rounded border-secondary fs-6" placeholder='Ingrese el precio (utilice , antes de los decimales)' minlength="1" maxlength="20" required>
+                    <input type="text" id="precio" class="form-control p-2 border rounded border-secondary fs-6" placeholder='Ingrese el precio (utilice . antes de los decimales)' minlength="1" maxlength="20" required>
                 </div>
                 <div class="mb-5">
                     <label class="d-block mb-1 fw-bolder" for="urlImagen">URL de la imagen:</label>
-                    <input type="text" id="urlImagen" class="form-control p-2 border rounded border-secondary fs-6" placeholder="Ingrese la dirección de la imagen" minlength="5" required>
+                    <input type="text" id="urlImagen" class="form-control p-2 border rounded border-secondary fs-6" placeholder="Ingrese la dirección de la imagen" minlength="5" maxlength="400" required>
                 </div>
                 <div class="d-flex justify-content-evenly flex-column flex-sm-row">
                     <button id="botonGuardarProducto" class="btn btn-primary mb-2 mb-sm-0 botonEditarProducto">Guardar</button>  <!-- salta una modal confirmando que se ha guardado correctamente -->
-                    <button id="botonGuardarEdicion" class="btn btn-primary mb-2 mb-sm-0 d-none botonEditarProducto">Guardar los cambios</button>
+                    <button id="botonGuardarEdicion" class="d-none btn btn-primary mb-2 mb-sm-0 botonEditarProducto">Guardar los cambios</button>
                     <a href="/admin.html" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
-        </section>
-        <!-- <div class="text-end">
-            <button type="button" class="btn btn-danger m-2" onclick="eliminarProductos()">Eliminar Productos</button> 
-        </div> -->
-        <article class="mt-3">
+        </article>
+        <!-- Tabla Productos -->
+        <article class="container-lg mt-3 px-1">
             <div class="table-responsive">
                 <table class="table">
                     <thead class="table-secondary">
@@ -153,22 +149,17 @@
                             <th scope="col">Descripción</th>
                             <th scope="col">Precio</th>
                             <th scope="col">URL de la imagen</th>
-                            <th scope="col" class="icono-eliminar-editar">Opciones</th>
-                            <th scope="col" class="mostrar-checkboxButtonProductos d-none"></th>
+                            <th scope="col">Opciones</th>
                         </tr>
                     </thead>
-                    <tbody class="text-center" id="tabla">
+                    <tbody id="tabla" class="text-center">
                     </tbody>
                 </table>
             </div>
         </article>
         <h1 class="mt-5">Administración de Usuarios</h1>
         <hr>
-        <div class="text-end">
-            <button type="button" class="mostrar-checkboxButton btn btn-primary m-2 d-none" onclick="atrasEliminarUsuarios()">Atrás</button> 
-            <button type="button" class="mostrar-checkboxButton btn btn-danger m-2 d-none" onclick="confirmarEliminarUsuarios()">Eliminar</button> 
-            <button type="button" class="boton-eliminar btn btn-danger m-2" onclick="eliminarUsuarios()">Eliminar usuarios</button> 
-        </div>
+        <!-- Tabla Usuarios -->
         <article class="mt-3">
             <div class="table-responsive">
                 <table class="table">
@@ -227,7 +218,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-        <script src="js/admin_producto&usuario.js"></script>
         <script type="module" src="js/crud_admin.js"></script>
 </body>
 </html>
