@@ -64,7 +64,6 @@ inputUrlImagen.addEventListener("blur", () => {
 
 
 mostrarTablaProductos();
-mostrarCardsProductos();
 
 function crearProducto(e) {
     e.preventDefault();
