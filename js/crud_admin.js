@@ -12,8 +12,29 @@ import {
     guardarLocalStorage,
     limpiarFormulario,
     mostrarOcultarFormulario,
-    mostrarOcultarBotonForm
+    mostrarOcultarBotonForm,
+    guardarLocalStorageUsers
 } from "./hellpers.js";
+
+import { 
+    validarNombreUsuario,
+    validarEmail,
+    validarClave
+} from "./validar_usuario";
+
+let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let cuerpoTablaUsuarios = document.getElementById("tabla-usuarios");
+let agregarAdministrador = document.getElementById("agregar-admin");
+
+let inputNombreAdmin = document.getElementById("nombre-admin");
+let inputEmailAdmin = document.getElementById("email-admin");
+let inputClaveAdmin = document.getElementById("clave-admin");
+let idUsuarioAdmin;
+
+agregarAdministrador.addEventListener("click", () => {
+    agregarAdmin();
+});
+
 
 let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
 
@@ -64,6 +85,7 @@ inputUrlImagen.addEventListener("blur", () => {
 
 
 mostrarTablaProductos();
+mostrarTablaUsuarios();
 
 function crearProducto(e) {
     e.preventDefault();
@@ -218,6 +240,122 @@ window.borrarProducto = function (idProducto) {
             limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen);
             guardarLocalStorage(arrayProductos);
             mostrarTablaProductos();
+        }
+    });
+}
+
+
+
+//   Área de "Usuarios"
+
+
+function agregarAdmin() {
+    if (arrayUsuarios.length !== 0) {
+        if (
+        validarEmail(inputEmailAdmin,arrayUsuarios) &&
+        validarEmail(inputEmailAdmin,arrayUsuarios) !== 1 &&
+        validarClave(inputClaveAdmin) &&
+        validarNombreUsuario(inputNombreAdmin)
+        ) {
+            (arrayUsuarios.length > 0) ? idUsuarioAdmin = arrayUsuarios[arrayUsuarios.length - 1].id + 1 : idUsuarioAdmin = 1;
+            
+            let admin = {
+                id: idUsuarioAdmin,
+                nombre: inputNombreAdmin.value,
+                email: inputEmailAdmin.value,
+                clave: inputClaveAdmin.value,
+                rol: "admin"
+            }
+
+            arrayUsuarios.push(admin);
+
+            localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
+            localStorage.getItem("usuarios");
+
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Se ha registrado correctamente",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+        } else if (validarEmail(inputEmailAdmin) === 1) {
+            Swal.fire({
+                icon: "error",
+                text: "Ya existe un administrador con este correo electrónico",
+                showConfirmButton: false,
+                timer: 4000
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "No se registró el administrador",
+                text: "Verifique los campos y vuelva a intentarlo",
+                showConfirmButton: false,
+                timer: 4000
+            });
+        }
+    } else {
+        let pepito = {
+            id: 1,
+            nombre: "Pepito",
+            email: "pepito@gmail.com",
+            clave: "@Pepito2024",
+            rol: "admin"
+        }
+    
+        arrayUsuarios.push(pepito);
+    
+        localStorage.setItem("usuarios",JSON.stringify(arrayUsuarios));
+        localStorage.getItem("usuarios");
+    }
+    
+}
+
+function mostrarTablaUsuarios() {
+    cuerpoTablaUsuarios.innerHTML = "";
+    arrayUsuarios.forEach((elemento) => {
+        cuerpoTablaUsuarios.innerHTML += `
+            <tr>
+                <th scope="row">${elemento.id}</th>
+                <td>${elemento.nombre}</td>
+                <td>${elemento.email}</td>
+                <td>$${elemento.clave}</td>
+                <td>$${elemento.rol}</td>
+                <td>
+                    <i class="fa-solid fa-trash-can custom-red" title="Borrar Usuario" onclick="borrarUsuario(${elemento.id})"></i>
+                </td>
+            </tr>`;
+    });
+}
+
+window.borrarUsuario = function (idUsuario) {
+    Swal.fire({        
+        icon: "warning",
+        iconColor: "#ffc107",
+        title: "¿Estás seguro?",
+        text: "¡La acción no se puede revertir!",
+        showCancelButton: true,
+        focusCancel: true,
+        confirmButtonColor: "#dc3545",
+        cancelButtonColor: "#0d6efd",
+        confirmButtonText: "Eliminar Usuario",
+        cancelButtonText: "Volver"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            arrayUsuarios = arrayUsuarios.filter(
+                (elemento) => elemento.id !== idUsuario
+            );
+            Swal.fire({
+                icon: "success",
+                text: "¡El usuario se eliminó correctamente!",
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            guardarLocalStorageUsers(arrayUsuarios);
+            mostrarTablaUsuarios();
         }
     });
 }

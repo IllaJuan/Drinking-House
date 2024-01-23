@@ -94,10 +94,10 @@
         </nav>
     </header>
     <main class="container py-4">
-        <div class="d-flex justify-content-between mt-4">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between mt-4">
             <h1>Administración de Productos</h1>
             <div>
-                <button type="button" class="m-2 p-2 custom-green-button "><i class="d-none d-md-inline fa-solid fa-plus"></i>  Agregar</button>
+                <button type="button" class="m-2 p-2 custom-green-button"><i class="d-sm-none d-md-inline fa-solid fa-plus"></i>  Agregar</button>
             </div>
         </div>
         <hr>
@@ -158,10 +158,15 @@
                 </table>
             </div>
         </article>
-        <h1 class="mt-5">Administración de Usuarios</h1>
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between mt-5">
+            <h1>Administración de Usuarios</h1>
+            <div>
+                <button id="agregar-admin" class="Btn m-2 p-2"></button>
+            </div>
+        </div>
         <hr>
         <!-- Tabla Usuarios -->
-        <article class="mt-3">
+        <article class="container-lg mt-3 px-1">
             <div class="table-responsive">
                 <table class="table">
                     <thead class="table-secondary">
@@ -175,40 +180,7 @@
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">
-                        <tr>
-                            <td><input type="checkbox" class="mostrar-checkboxButton checkbox-usuarios d-none" id=""></td>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>mark@gmail.com</td>
-                            <td>ihbiyvygtctx56667</td>
-                            <td>Admin</td>
-                            <td>
-                                <a href="" title="Eliminar Usuario"><i class="icono-eliminar fa-solid fa-trash-can custom-red"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" class="mostrar-checkboxButton checkbox-usuarios d-none" id=""></td>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>jacob@gmail.com</td>
-                            <td>uyyuuyr443322</td>
-                            <td>Usuario</td>
-                            <td>
-                                <a href="" title="Eliminar Usuario"><i class="icono-eliminar fa-solid fa-trash-can custom-red"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" class="mostrar-checkboxButton checkbox-usuarios d-none" id=""></td>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>larry@gmail.com</td>
-                            <td>76756455343gfgfvg</td>
-                            <td>Admin</td>
-                            <td>
-                                <a href="" title="Eliminar Usuario"><i class="icono-eliminar fa-solid fa-trash-can custom-red"></i></a>
-                            </td>
-                        </tr>
+                    <tbody id="tabla-usuarios" class="text-center">
                     </tbody>
                 </table>
             </div>

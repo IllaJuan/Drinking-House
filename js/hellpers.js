@@ -1,6 +1,8 @@
 /* 
-    Funciones de los productos 
+    Funciones de la página de "Administración"
 */ 
+
+//   Área de "productos" 
 
 export function guardarLocalStorage(arrayProductos) {
     localStorage.setItem("productos", JSON.stringify(arrayProductos));
@@ -26,6 +28,8 @@ export function mostrarOcultarBotonForm(botonEditarProducto) {
 }
 
 
-/* 
-    Funciones de los usuarios 
-*/ 
+//   Área de "usuarios" 
+
+export function guardarLocalStorageUsers(array) {
+    localStorage.setItem("usuarios", JSON.stringify(array));
+}
