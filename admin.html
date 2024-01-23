@@ -114,22 +114,37 @@
                         <option value="spirits">Spirits</option>
                         <option value="aperitivos">Aperitivos</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Debe elegir una categoría
+                    </div>
                 </div>
                 <div class="my-3">
                     <label class="d-block mb-1 fw-bolder" for="nombre">Nombre:</label>
                     <input type="text" id="nombre" class="form-control p-2 border rounded border-secondary fs-6" placeholder="Ingrese el nombre del producto" minlength="2" maxlength="100" required>
+                    <div class="invalid-feedback">
+                        Debe ingresar el nombre del producto
+                    </div>
                 </div>
                 <div>
                     <label class="d-block mb-1 fw-bolder" for="descripcion">Descripción:</label>
                     <textarea id="descripcion" class="form-control p-2 border rounded border-secondary fs-6 custom-textarea" placeholder="Ingrese la descripción del producto" minlength="5" maxlength="100" cols="30" rows="2" required></textarea>
+                    <div class="invalid-feedback">
+                        Debe ingresar una descripción del producto (más de 5 caracteres)
+                    </div>
                 </div>
                 <div class="my-3">
                     <label class="d-block mb-1 fw-bolder" for="precio">Precio:</label>
                     <input type="text" id="precio" class="form-control p-2 border rounded border-secondary fs-6" placeholder='Ingrese el precio (utilice . antes de los decimales)' minlength="1" maxlength="20" required>
+                    <div class="invalid-feedback">
+                        Debe ingresar el precio en el formato indicado
+                    </div>
                 </div>
                 <div class="mb-5">
                     <label class="d-block mb-1 fw-bolder" for="urlImagen">URL de la imagen:</label>
                     <input type="text" id="urlImagen" class="form-control p-2 border rounded border-secondary fs-6" placeholder="Ingrese la dirección de la imagen" minlength="5" maxlength="400" required>
+                    <div class="invalid-feedback">
+                        Debe ingresar una dirección compatible con la URL de una imagen
+                    </div>
                 </div>
                 <div class="d-flex justify-content-evenly flex-column flex-sm-row">
                     <button id="boton-guardar-producto" class="btn btn-primary mb-2 mb-sm-0 boton-editar-producto">Guardar</button>

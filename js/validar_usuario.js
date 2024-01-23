@@ -27,7 +27,7 @@ export function validarEmail(email,arrayUsuarios) {
     regExEmail.test(email.value)
     ) {
         existeUsuario = arrayUsuarios.some(
-            (elemento) => elemento["id"].includes(email.value) === true
+            (elemento) => elemento["email"].includes(email.value) === true
         );
 
         if (existeUsuario) {
