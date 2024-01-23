@@ -283,6 +283,7 @@
   
 .custom-btn-error404 {
     background-color: rgba(136, 28, 28, 0.955);
+    color: whitesmoke;
 }
 
 .custom-btn-error404:hover {
@@ -476,4 +477,13 @@
         padding:20px;
         text-align: center;        
     }
+}
+
+.custom-container-error404 {
+    width: 100%;
+}
+
+.custom-error-img {
+    width: 50%;
+    height: 60vh;
 }
