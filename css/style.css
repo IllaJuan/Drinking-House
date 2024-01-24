@@ -74,6 +74,13 @@
     height: 150px;
 }
 
+@media screen and (max-width: 450px) {
+    .img-logo-footer {
+        width: 90px;
+        height: 90px;
+    }
+}
+
 .img-sidebar {
     width: 35px;
     height: 35px;
@@ -485,6 +492,30 @@
     }
 }
 
+.custom-btn-buynow {
+    background-color: #fca211e2;
+    color: whitesmoke;
+}
+
+.custom-btn-buynow:hover {
+    background-color:  #8d5d11e2;
+    color: whitesmoke;
+}
+
+.custom-btn-cart {
+    background-color: rgba(136, 28, 28, 0.955);
+    color: whitesmoke;
+}
+
+.custom-btn-cart:hover {
+    background-color:  rgba(197, 72, 72, 0.955);
+    color: whitesmoke;
+}
+
+.infotext {
+    color: grey;
+}
+
 .userLog {
     text-decoration: none;
     color: #222;
@@ -501,13 +532,13 @@
     background: #db4a39;
     color: #fff;
     border-radius: 4cqh;
-  }
+ }
 
   .facebook:hover {
     background: #41579a;
     color: #fff;
     border-radius: 4cqh;
-  }
+ }
 
  .modalLogIn {
     background: #222222c2;    

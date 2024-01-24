@@ -45,7 +45,7 @@ if (window.location.href.includes("index.html")) {
                         <p class="card-text my-0">${elemento.descripcion}</p>
                         <a href=""><i class="ri-heart-line heart-card"></i></a>
                         <div class="text-center mt-2">
-                            <a class="btn button-card" href="index.html" role="button">Ver Producto</a> 
+                            <a class="btn button-card" href="/pages/descripcion_producto.html"" role="button">Ver Producto</a> 
                         </div>                        
                     </div>
                 </div>`;

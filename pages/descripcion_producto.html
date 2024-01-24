@@ -16,9 +16,9 @@
 </head>
 
 <body>
-    <header class="fixed-top position-sticky">
+    <header>
         <!-- Navbar -->
-        <nav class="navcolor navbar-dark navbar navbar-expand-lg text-primary">
+        <nav class="navcolor navbar-dark navbar navbar-expand-lg text-primary fixed-top">
             <div class="container">
                 <!-- Logo -->
                 <div class="logo">
@@ -48,7 +48,7 @@
                                 <a class="nav-link active hover-link" aria-current="page" href="/index.html">Inicio</a>
                             </li>
                             <li class="nav-item dropdown mx-2">
-                                <a class="nav-link dropdown-toggle hover-link" data-bs-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle hover-link" href="#" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     Categorias
                                 </a>
@@ -61,11 +61,11 @@
                                     <li>
                                         <hr class="dropdown-divider hr-bg" />
                                     </li>
-                                    <li><a class="dropdown-item item-bg" href="#">Spirits</a></li>
+                                    <li><a class="dropdown-item item-bg" href="#">Destilados</a></li>
                                     <li>
                                         <hr class="dropdown-divider hr-bg" />
                                     </li>
-                                    <li><a class="dropdown-item item-bg" href="#">Aperitivos</a></li>
+                                    <li><a class="dropdown-item item-bg" href="#">Combos</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item mx-2">
@@ -94,79 +94,108 @@
             </div>
         </nav>
     </header>
-    <main class="d-flex justify-content-center">
-        <section class="container-xxl">
-            <h1 class="display-1 text-center my-5">Sobre Nosotros</h1>
-            <hr />
-            <h4 class="p-3 text-center">Somos estudiantes de programación en Rolling Code. Pertenecemos al grupo N°1 de la comisión 80i. Para este segundo proyecto elegimos hacer un ecommerce sobre venta de bebidas alcohólicas llamada <b>Drinking House</b>.</h4>
-            <article class="d-flex row justify-content-center contact-us">
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Juan Illa-DrinkingHouse.jpeg" alt="logo sprite" class="logo">
-                    </div>
-                    <div class="content">
-                        <h3>Juan Illa</h3>
-                        <p>Estudio la carrera "Tecnicatura Universitaria en Desarrollo de Software". Soy parte de la Unidad de Vinculación Tecnológica de la Univ. de Ezeiza.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
+    <main>
+        <!-- <a href="admin.html">Admin</a> -->
+        <div class="container my-5 py-5">
+            <div class="row row-cols-1 row-cols-md-2 lg-2 xl-2 sm-1">
+                <div class="col">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="/index.html">Inicio</a></li>
+                          <li class="breadcrumb-item"><a href="#">Categorias</a></li>
+                          <li class="breadcrumb-item"><a href="#">Destilados</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Jack Daniels</li>
+                        </ol>
+                      </nav>
+                    <img src="/image/jackdaniels.jpg" alt="Jack Daniels Whiskey" class="img-fluid">
                 </div>
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Marvel Surriable-DrinkingHouse.jpeg" alt="logo sprite" class="logo">
+                <div class="col align-items-center">
+                    <h3>Jack Daniels Whiskey</h3>
+                    <h2>$22.500</h2>
+                    <p>Stock disponible: 20</p>
+                    <p>Código: ............</p>
+                    <div class="d-grid gap-3 col-8">
+                        <button class="btn custom-btn-buynow btn-sm" type="button">Comprar ahora</button>
+                        <button class="btn btn-secondary btn-sm" type="button">Agregar al carrito</button>
                     </div>
-                    <div class="content">
-                        <h3>Marvel Surriable</h3>
-                        <p>Soy de Jujuy. Estudio programación Full Stack en Rolling Code. Me gustan los juegos de mesa. Hincha de River Plate.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 order-md-1 my-2">
+                                <h5>Compartir</h5>
+                            </div>
+                            <div class="col-md-6 order-md-2 my-2">
+                                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
+                                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                                <a href="#"><i class="fa-brands fa-square-whatsapp"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
                 </div>
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Julio Botta.jpeg" alt="logo sprite" class="logo">
+            </div>
+        </div>
+        <section class="container">
+            <h2>Características del producto/Información Adiconal</h2>
+            <div class="col my-2">
+                <p class="infotext">Marca: Jack Daniels</p>
+                <p class="infotext">Volúmen neto: 750ml</p>
+                <p class="infotext">Graduación alcohólica: 40%</p>
+                <p class="infotext">Incluye estuche: No</p>
+                <p class="infotext">Tipo de envase: Botella de vidrio</p>
+                <p class="infotext">Origen: USA</p>
+            </div>
+        </section>
+        <section class="container">
+            <h2>Descripción</h2>
+            <div class="container justify-content">
+                <p class="infotext">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat incidunt temporibus illum et soluta facere dolore, magnam, mollitia aut magni exercitationem! Dicta eveniet vero corrupti, fugiat officia amet fuga praesentium exercitationem ratione blanditiis consequatur debitis aspernatur autem expedita saepe! Delectus quibusdam pariatur illo velit architecto fugit nihil facilis assumenda minima!</p>
+            </div>
+        </section>
+        <section class="container">
+            <h4>Productos relacionados</h4>
+            <div class="row row-cols-1 row-cols-md-4 lg-4 xl-4 sm-2">
+                <div class="col">
+                    <div class="card my-2 " style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Smirnoff</h5>
+                          <p class="card-text">$ XXX</p>
+                          <a href="#" class="btn btn-primary btn-sm">Ver producto</a>
+                        </div>
                     </div>
-                    <div class="content">
-                        <h3>Julio Botta</h3>
-                        <p>Soy estudiante de Ingeniería Civil en UTN-FRT y programación FullStack en Rolling Code Academy.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
                 </div>
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Luciana Lencina.jpeg" alt="logo sprite" class="logo">
+                <div class="col">
+                    <div class="card my-2 " style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Johny Walker</h5>
+                          <p class="card-text">$ XXX</p>
+                          <a href="#" class="btn btn-primary btn-sm">Ver producto</a>
+                        </div>
                     </div>
-                    <div class="content">
-                        <h3>Luciana Lencina</h3>
-                        <p>Soy estudiante de Ingeniería Biomédica y porgramación Full Stack en Rolling Code.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
                 </div>
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Jeremias Armendia.jpeg" alt="logo sprite" class="logo">
+                <div class="col">
+                    <div class="card my-2 " style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Jagger</h5>
+                          <p class="card-text">$ XXX</p>
+                          <a href="#" class="btn btn-primary btn-sm">Ver producto</a>
+                        </div>
                     </div>
-                    <div class="content">
-                        <h3>Jeremías Armendia</h3>
-                        <p>Soy de Concepcion. Trabajo como administrativo en el Ingenio La Corona y estudio Programación en Rolling Code.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
                 </div>
-            </article>
-        </section>        
+                <div class="col">
+                    <div class="card my-2" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Hennessy</h5>
+                          <p class="card-text">$ XXX</p>
+                          <a href="#" class="btn btn-primary btn-sm">Ver producto</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </section>
     </main>
     <footer class="bg-dark text-light py-5 mt-5">
         <div class="container">
@@ -191,9 +220,9 @@
                         <div class="d-md-flex flex-md-row align-items-md-center">
                             <span class="d-md-inline-block mr-md-2  d-none d-md-block">DRINKING</span>
                             <div class="logo d-flex flex-column align-items-center justify-content-center">
-                                <a href="/index.html">
+                                <p class="letterLogo-footer" href="/index.html">
                                     <img src="/image/Logo-Drink-House.png" alt="Logo" class="img-logo-footer mx-auto d-block"/>
-                                </a>
+                                </p>
                                 <p class="d-flex flex-column justify-content-center align-items-center">&copy;Todos los derechos reservados</p>
                             </div>
                             <span class="d-md-inline-block ml-md-2  d-none d-md-block">HOUSE</span>
@@ -234,6 +263,7 @@
 			</div>
     </footer>
 
+    <script src="https://kit.fontawesome.com/81581fb069.js"crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
