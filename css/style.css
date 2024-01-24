@@ -479,7 +479,6 @@
 .custom-btn-error404 {
     background-color: rgba(136, 28, 28, 0.955);
     color: whitesmoke;
-    color: whitesmoke;
 }
 
 .custom-btn-error404:hover {
@@ -516,6 +515,7 @@
 .infotext {
     color: grey;
 }
+
 .userLog {
     text-decoration: none;
     color: #222;
@@ -531,20 +531,20 @@
 .googleBtn:hover {
     background: #db4a39;
     color: #fff;
-    border-radius: 3cqh;    
-}
+    border-radius: 4cqh;
+ }
 
-.facebook:hover {
+  .facebook:hover {
     background: #41579a;
     color: #fff;
-    border-radius: 3cqh;
-}
+    border-radius: 4cqh;
+ }
 
-.modalLogIn {
+ .modalLogIn {
     background: #222222c2;    
-}
+ }
 
-.modal-img {
+ .modal-img {
     width: 50px;
     padding-right: 10px;    
-}
+ }
