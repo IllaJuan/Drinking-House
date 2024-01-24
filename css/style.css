@@ -516,3 +516,9 @@
 .infotext {
     color: grey;
 }
+
+.modal18-bg {
+    background: #222222c2;
+    color: #fdfdfd;
+    border: 3px solid #e4c590;
+}
