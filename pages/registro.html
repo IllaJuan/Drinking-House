@@ -85,7 +85,7 @@
                             </a>
                         </div>
                         <div>
-                            <a href="/pages/login.html" class="heart">
+                            <a href="#" class="heart">
                                 <i class="ri-user-3-line"></i>
                             </a>
                         </div>
@@ -94,78 +94,115 @@
             </div>
         </nav>
     </header>
-    <main class="d-flex justify-content-center">
-        <section class="container-xxl">
-            <h1 class="display-1 text-center my-5">Sobre Nosotros</h1>
-            <hr />
-            <h4 class="p-3 text-center">Somos estudiantes de programación en Rolling Code. Pertenecemos al grupo N°1 de la comisión 80i. Para este segundo proyecto elegimos hacer un ecommerce sobre venta de bebidas alcohólicas llamada <b>Drinking House</b>.</h4>
-            <article class="d-flex row justify-content-center contact-us">
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Juan Illa-DrinkingHouse.jpeg" alt="logo sprite" class="logo">
-                    </div>
-                    <div class="content">
-                        <h3>Juan Illa</h3>
-                        <p>Estudio la carrera "Tecnicatura Universitaria en Desarrollo de Software". Soy parte de la Unidad de Vinculación Tecnológica de la Univ. de Ezeiza.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
+    <main>
+        <section class="border border-1 shadow m-lg-5 m-md-4 m-sm-0 px-lg-0 p-sm-0">
+            <div>
+                <img src="/image/imagen drinks.jpg" alt="imagen bebidas" class="w-100">
+            </div>
+            <h1 class="text-center mt-1 pt-5 fs-1">Registrarme</h1>            
+            <div class="d-flex justify-content-evenly pt-4">
+                <div>
+                    <a href="/pages/login.html" class="userLog"><h4 class="text-center">Iniciar Sesión</h4></a>
                 </div>
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Marvel Surriable-DrinkingHouse.jpeg" alt="logo sprite" class="logo">
-                    </div>
-                    <div class="content">
-                        <h3>Marvel Surriable</h3>
-                        <p>Soy de Jujuy. Estudio programación Full Stack en Rolling Code. Me gustan los juegos de mesa. Hincha de River Plate.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
+                <div>
+                    <a href="/pages/registro.html" class="userLog"><h4 class="text-center">Registrarme</h4><hr class="title-login"></a>
                 </div>
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Julio Botta.jpeg" alt="logo sprite" class="logo">
-                    </div>
-                    <div class="content">
-                        <h3>Julio Botta</h3>
-                        <p>Soy estudiante de Ingeniería Civil en UTN-FRT y programación FullStack en Rolling Code Academy.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
-                </div>
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Luciana Lencina.jpeg" alt="logo sprite" class="logo">
-                    </div>
-                    <div class="content">
-                        <h3>Luciana Lencina</h3>
-                        <p>Soy estudiante de Ingeniería Biomédica y porgramación Full Stack en Rolling Code.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
-                </div>
-                <div class="card-us">
-                    <div class="circle">
-                        <img src="/image/Jeremias Armendia.jpeg" alt="logo sprite" class="logo">
-                    </div>
-                    <div class="content">
-                        <h3>Jeremías Armendia</h3>
-                        <p>Soy de Concepcion. Trabajo como administrativo en el Ingenio La Corona y estudio Programación en Rolling Code.</p>                        
-                        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
-                        <a href="https://github.com/"><i class="ri-github-fill"></i></a>
-                        <a href="https://www.facebook.com/"><i class="ri-facebook-circle-fill"></i></a>
-                    </div>
-                    <img src="/image/rollingcode.png" alt="Logo RollingCode" class="product_img">
-                </div>
-            </article>
+            </div>
+                <div class="d-flex justify-content-center">
+                    <form class="w-50">
+                        <div>
+                          <label for="validationServer01" class="form-label pt-5 fs-5"
+                            >Nombre y Apellido</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control shadow"
+                            id="validationServer01"
+                            placeholder="Ariel Ortega"
+                            minlength="8"
+                            maxlength="30"
+                            required
+                          />
+                        </div>                        
+                        <div>
+                          <label for="exampleInputEmail1" class="form-label pt-4 fs-5"
+                            >Email
+                          </label>
+                          <input
+                            type="email"
+                            class="form-control shadow"
+                            id="exampleInputEmail1"
+                            required
+                            placeholder="example@email.com"
+                            minlength="8"
+                            maxlength="25"
+                          />
+                        </div>                                          
+                        <div>
+                          <label for="validationServer06" class="form-label pt-4 fs-5"
+                            >Contraseña</label
+                          >
+                          <input
+                            type="password"
+                            class="form-control shadow"
+                            id="validationServer06"
+                            placeholder="*********"
+                            aria-describedby="validationServer06Feedback"
+                            minlength="8"
+                            maxlength="15"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label for="validationServer07" class="form-label pt-4 fs-5"
+                            >Repetir Contraseña</label
+                          >
+                          <input
+                            type="password"
+                            class="form-control shadow"
+                            id="validationServer07"
+                            placeholder="*********"
+                            aria-describedby="validationServer07Feedback"
+                            minlength="8"
+                            maxlength="15"
+                            required
+                          />
+                        </div>
+                        <div class="py-4">
+                          <p>Mínimo 8 caracteres</p>
+                        </div>
+                        <div class="col-12">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="invalidCheck3"
+                              aria-describedby="invalidCheck3Feedback"
+                              required
+                            />
+                            <label class="form-check-label" for="invalidCheck3">
+                              Estoy de acuerdo con los términos y condiciones.
+                            </label>
+                          </div>
+                        </div>
+                        <div class="mb-4 py-4 text-center">                          
+                          <button
+                            type="submit"
+                            class="btn facebook mx-2 border-primary fs-5"
+                          >
+                            Registrarme
+                          </button>
+                          <button
+                            type="button"
+                            class="btn googleBtn mx-2 border-danger fs-5"
+                            data-bs-dismiss="modal"
+                          >
+                            Cerrar
+                          </button>
+                        </div>
+                      </form>
+                </div>                          
         </section>        
     </main>
     <footer class="bg-dark text-light py-5 mt-5">
