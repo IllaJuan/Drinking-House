@@ -280,16 +280,6 @@
         grid-row-start: span 1;
     }
 }
-  
-.custom-btn-error404 {
-    background-color: rgba(136, 28, 28, 0.955);
-    color: whitesmoke;
-}
-
-.custom-btn-error404:hover {
-    background-color:  rgba(197, 72, 72, 0.955);
-    color: whitesmoke;
-}
 
 .contact-us {
     margin: 0;
@@ -479,11 +469,18 @@
     }
 }
 
-.custom-container-error404 {
-    width: 100%;
+.custom-btn-error404 {
+    background-color: rgba(136, 28, 28, 0.955);
+    color: whitesmoke;
 }
 
-.custom-error-img {
-    width: 50%;
-    height: 60vh;
+.custom-btn-error404:hover {
+    background-color:  rgba(197, 72, 72, 0.955);
+    color: whitesmoke;
+}
+
+@media screen and (min-width: 576px) {
+    .custom-img-error404 {
+        max-width: 600px;
+    }
 }
