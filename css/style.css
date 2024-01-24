@@ -74,6 +74,13 @@
     height: 150px;
 }
 
+@media screen and (max-width: 450px) {
+    .img-logo-footer {
+        width: 90px;
+        height: 90px;
+    }
+}
+
 .img-sidebar {
     width: 35px;
     height: 35px;
