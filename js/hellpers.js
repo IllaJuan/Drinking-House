@@ -1,6 +1,8 @@
 /* 
-    Funciones de los productos 
+    Funciones de la página de "Administración"
 */ 
+
+//   Área de "productos" 
 
 export function guardarLocalStorage(arrayProductos) {
     localStorage.setItem("productos", JSON.stringify(arrayProductos));
@@ -26,6 +28,25 @@ export function mostrarOcultarBotonForm(botonEditarProducto) {
 }
 
 
-/* 
-    Funciones de los usuarios 
-*/ 
+//   Área de "usuarios" 
+
+export function guardarLocalStorageUsers(array) {
+    localStorage.setItem("usuarios", JSON.stringify(array));
+}
+
+export function primeraMayuscula(usuario) {
+    return usuario.value.charAt(0).toUpperCase() + usuario.value.slice(1);
+}
+
+export function rol() {
+    let rol = "usuario";
+    if (window.location.href.includes("/pages/registro.html")) {
+        return rol;
+    }
+    rol = "admin";
+    return rol;
+}
+
+export function verificarRol(sesion) {
+    return sesion.rol === "admin";
+}

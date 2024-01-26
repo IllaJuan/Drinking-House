@@ -18,6 +18,30 @@ document.addEventListener('scroll' , () => {
     }
 });
 
+/* 
+    Código para que se cargue un administrador por defecto
+*/
+let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let pepitoExiste = arrayUsuarios.some(
+    elemento => elemento["email"] === "pepito@gmail.com" && elemento["rol"] === "admin"
+)
+
+if (arrayUsuarios.length === 0 || !pepitoExiste) {    
+    const pepito = {
+        id: 1,
+        nombre: "Pepito",
+        apellido: "Pérez",
+        email: "pepito@gmail.com",
+        clave: "@Pepito2024",
+        rol: "admin"
+    }
+
+    arrayUsuarios.push(pepito);
+
+    localStorage.setItem("usuarios",JSON.stringify(arrayUsuarios));
+    localStorage.getItem("usuarios");
+}
+
 
 if (window.location.href.includes("index.html")) {
 /* 
@@ -41,8 +65,8 @@ if (window.location.href.includes("index.html")) {
                     <img src="${elemento.urlImagen}" class="card-img-top my-2 tamaño-imagen-card" alt="${elemento.nombre}">                   
                     <hr class="my-0">
                     <div class="card-body">
-                        <h4 class="card-title">$${elemento.precio}</h4>
-                        <p class="card-text my-0">${elemento.descripcion}</p>
+                        <h4 class="card-title">${elemento.nombre}</h4>
+                        <p class="card-text my-0">$${elemento.precio}</p>
                         <a href=""><i class="ri-heart-line heart-card"></i></a>
                         <div class="text-center mt-2">
                             <a class="btn button-card" href="/pages/descripcion_producto.html"" role="button">Ver Producto</a> 

@@ -8,6 +8,9 @@
     <meta name="description" content="Segundo proyecto del grupo 1 en Rolling Code.">
     <meta name="keywords" content="segundo proyecto rolling code, grupo 1 rolling code">
     <link rel="icon" type="image/png" href="/image/Logo-Drink-House.png">
+    <link rel="stylesheet" href="/libraries/fontawesome/css/all.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/libraries/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -74,20 +77,25 @@
                             <li class="nav-item mx-2">
                                 <a class="nav-link hover-link" href="/pages/nosotros.html">Nosotros</a>
                             </li>
-                            <li class="nav-item mx-2">
+                            <li id="ocultar-admin" class="nav-item d-none mx-2">
                                 <a class="nav-link hover-link" href="/admin.html">Administración</a>
                             </li>
                         </ul>
                         <!-- Login -->
                         <div>
-                            <a href="#" class="heart mx-4">
+                            <a href="#" class="heart mx-2" title="Favoritos">
                                 <i class="ri-heart-line"></i>
                             </a>
                         </div>
-                        <div>
-                            <a href="#" class="heart">
+                        <div id="ocultar-inicio-sesion" class="d-none">
+                            <a href="#" class="heart mx-2" title="Iniciar Sesión">
                                 <i class="ri-user-3-line"></i>
                             </a>
+                        </div>
+                        <div id="ocultar-boton" class="d-none">
+                          <a href="/index.html" id="cerrar-sesion" class="heart mx-2" title="Cerrar Sesión" onclick="cerrarSesion()">
+                              <i class="ri-logout-box-r-line"></i>
+                          </a>
                         </div>
                     </div>
                 </div>
@@ -109,96 +117,118 @@
                 </div>
             </div>
                 <div class="d-flex justify-content-center">
-                    <form class="w-50">
+                    <form id="form-registro" class="w-50">
                         <div>
-                          <label for="validationServer01" class="form-label pt-5 fs-5"
-                            >Nombre y Apellido</label
-                          >
+                          <label for="nombre-usuario" class="form-label pt-5 fs-5"
+                            >Nombre</label>
                           <input
                             type="text"
                             class="form-control shadow"
-                            id="validationServer01"
-                            placeholder="Ariel Ortega"
-                            minlength="8"
+                            id="nombre-usuario"
+                            placeholder="EJ: Ariel"
+                            minlength="2"
                             maxlength="30"
                             required
                           />
-                        </div>                        
+                          <div class="invalid-feedback">
+                            Debe ingresar su nombre
+                          </div>
+                        </div>
                         <div>
-                          <label for="exampleInputEmail1" class="form-label pt-4 fs-5"
+                          <label for="apellido-usuario" class="form-label pt-4 fs-5"
+                            >Apellido</label>
+                          <input
+                            type="text"
+                            class="form-control shadow"
+                            id="apellido-usuario"
+                            placeholder="EJ: Ortega"
+                            minlength="2"
+                            maxlength="30"
+                            required
+                          />
+                          <div class="invalid-feedback">
+                            Debe ingresar su apellido
+                          </div>
+                        </div>                            
+                        <div>
+                          <label for="email" class="form-label pt-4 fs-5"
                             >Email
                           </label>
                           <input
                             type="email"
                             class="form-control shadow"
-                            id="exampleInputEmail1"
-                            required
-                            placeholder="example@email.com"
+                            id="email"
+                            placeholder="EJ: ortega@gmail.com"
                             minlength="8"
-                            maxlength="25"
+                            maxlength="40"
+                            required
                           />
+                          <div class="invalid-feedback">
+                            Debe ingresar una dirección de email válida
+                          </div>
                         </div>                                          
                         <div>
-                          <label for="validationServer06" class="form-label pt-4 fs-5"
-                            >Contraseña</label
-                          >
+                          <label for="clave" class="form-label pt-4 fs-5"
+                            >Contraseña</label>
                           <input
                             type="password"
                             class="form-control shadow"
-                            id="validationServer06"
-                            placeholder="*********"
+                            id="clave"
                             aria-describedby="validationServer06Feedback"
                             minlength="8"
-                            maxlength="15"
+                            maxlength="16"
                             required
                           />
+                          <div id="emailHelp" class="form-text">La clave debe tener mínimo de 8 caracteres: una mayúscula, una minúscula y un caracter especial</div>
                         </div>
                         <div>
-                          <label for="validationServer07" class="form-label pt-4 fs-5"
-                            >Repetir Contraseña</label
-                          >
+                          <label for="repetir-clave" class="form-label pt-4 fs-5"
+                            >Repetir Contraseña</label>
                           <input
                             type="password"
                             class="form-control shadow"
-                            id="validationServer07"
-                            placeholder="*********"
+                            id="repetir-clave"
                             aria-describedby="validationServer07Feedback"
                             minlength="8"
-                            maxlength="15"
+                            maxlength="16"
                             required
-                          />
+                            />
+                          <div class="invalid-feedback">
+                            Las contraseñas deben ser iguales
+                          </div>
                         </div>
-                        <div class="py-4">
-                          <p>Mínimo 8 caracteres</p>
-                        </div>
-                        <div class="col-12">
+                        <div class="col-12 pt-4">
                           <div class="form-check">
                             <input
                               class="form-check-input"
                               type="checkbox"
-                              value=""
-                              id="invalidCheck3"
+                              id="aceptar-terminos"
                               aria-describedby="invalidCheck3Feedback"
                               required
                             />
-                            <label class="form-check-label" for="invalidCheck3">
+                            <label class="form-check-label" for="aceptar-terminos">
                               Estoy de acuerdo con los términos y condiciones.
                             </label>
+                            <div class="invalid-feedback">
+                              Para poder registrarse debe aceptar los terminos y condiciones 
+                            </div>
                           </div>
                         </div>
                         <div class="mb-4 py-4 text-center">                          
                           <button
-                            type="submit"
+                            id="registrarme"
                             class="btn facebook mx-2 border-primary fs-5"
                           >
                             Registrarme
                           </button>
                           <button
                             type="button"
-                            class="btn googleBtn mx-2 border-danger fs-5"
+                            id="boton-cerrar"
+                            class="btn googleBtn mx-2 border-danger fs-5 my-2 my-sm-0"
                             data-bs-dismiss="modal"
+                            onclick="limpiarFormulario()"
                           >
-                            Cerrar
+                            Borrar todo
                           </button>
                         </div>
                       </form>
@@ -275,6 +305,8 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
+    <script type="module" src="/js/carga_usuarios.js"></script>
+    <script type="module" src="/js/sesion_admin.js"></script>
 </body>
 
 </html>

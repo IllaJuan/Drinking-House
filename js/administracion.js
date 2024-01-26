@@ -12,8 +12,11 @@ import {
     guardarLocalStorage,
     limpiarFormulario,
     mostrarOcultarFormulario,
-    mostrarOcultarBotonForm
+    mostrarOcultarBotonForm,
 } from "./hellpers.js";
+
+let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let cuerpoTablaUsuarios = document.getElementById("tabla-usuarios");
 
 let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
 
@@ -64,6 +67,7 @@ inputUrlImagen.addEventListener("blur", () => {
 
 
 mostrarTablaProductos();
+mostrarTablaUsuarios();
 
 function crearProducto(e) {
     e.preventDefault();
@@ -92,7 +96,7 @@ function crearProducto(e) {
         arrayProductos.push(producto);
 
         localStorage.setItem("productos", JSON.stringify(arrayProductos));
-        localStorage.getItem("productos");   // <=== no es necesario
+        localStorage.getItem("productos"); 
 
         Swal.fire({
             position: "center",
@@ -109,7 +113,9 @@ function crearProducto(e) {
         Swal.fire({
             icon: "error",
             title: "No se guardó el producto",
-            text: "Verifique los campos y vuelva a intentarlo"
+            text: "Verifique los campos y vuelva a intentarlo",
+            showConfirmButton: false,
+            timer: 2500
         });
     }
 } 
@@ -218,6 +224,63 @@ window.borrarProducto = function (idProducto) {
             limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen);
             guardarLocalStorage(arrayProductos);
             mostrarTablaProductos();
+        }
+    });
+}
+
+
+
+//   Área de "Usuarios"
+
+function mostrarTablaUsuarios() {
+    cuerpoTablaUsuarios.innerHTML = "";
+    arrayUsuarios.forEach((elemento) => {
+        cuerpoTablaUsuarios.innerHTML += `
+            <tr>
+                <td></td>
+                <th scope="row">${elemento.id}</th>
+                <td>${elemento.nombre}</td>
+                <td>${elemento.apellido}</td>
+                <td>${elemento.email}</td>
+                <td>${elemento.clave}</td>
+                <td>${elemento.rol}</td>
+                <td>
+                    <i class="fa-solid fa-trash-can custom-red" title="Borrar Usuario" onclick="borrarUsuario(${elemento.id})"></i>
+                </td>
+            </tr>`;
+    });
+}
+
+window.borrarUsuario = function (idUsuario) {
+    Swal.fire({        
+        icon: "warning",
+        iconColor: "#ffc107",
+        title: "¿Estás seguro?",
+        text: "¡La acción no se puede revertir!",
+        showCancelButton: true,
+        focusCancel: true,
+        confirmButtonColor: "#dc3545",
+        cancelButtonColor: "#0d6efd",
+        confirmButtonText: "Eliminar Usuario",
+        cancelButtonText: "Volver"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            arrayUsuarios = arrayUsuarios.filter(
+                (elemento) => elemento.id !== idUsuario
+            );
+            Swal.fire({
+                icon: "success",
+                text: "¡El usuario se eliminó correctamente!",
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
+            mostrarTablaUsuarios();
+            
+            setTimeout(function() {
+                location.reload();
+            }, 2000);
         }
     });
 }

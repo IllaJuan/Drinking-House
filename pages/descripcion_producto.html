@@ -74,19 +74,24 @@
                             <li class="nav-item mx-2">
                                 <a class="nav-link hover-link" href="/pages/nosotros.html">Nosotros</a>
                             </li>
-                            <li class="nav-item mx-2">
+                            <li id="ocultar-admin" class="nav-item d-none mx-2">
                                 <a class="nav-link hover-link" href="/admin.html">Administración</a>
                             </li>
                         </ul>
                         <!-- Login -->
                         <div>
-                            <a href="#" class="heart mx-4">
+                            <a href="#" class="heart mx-2" title="Favoritos">
                                 <i class="ri-heart-line"></i>
                             </a>
                         </div>
-                        <div>
-                            <a href="/pages/login.html" class="heart">
+                        <div id="ocultar-inicio-sesion" class="d-none">
+                            <a href="/pages/login.html" class="heart mx-2" title="Iniciar Sesión">
                                 <i class="ri-user-3-line"></i>
+                            </a>
+                        </div>
+                        <div id="ocultar-boton" class="d-none">
+                            <a href="/index.html" id="cerrar-sesion" class="heart mx-2" title="Cerrar Sesión" onclick="cerrarSesion()">
+                                <i class="ri-logout-box-r-line"></i>
                             </a>
                         </div>
                     </div>
@@ -268,6 +273,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
+    <script type="module" src="/js/sesion_admin.js"></script>
 </body>
 
 </html>

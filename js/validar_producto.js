@@ -1,5 +1,5 @@
 /* 
-    Funciones que validan los datos ingresados a través del formulario de los productos
+    Funciones que validan los datos ingresados a través del formulario para "agregar productos" en la página de "admin.html"
 */
 
 export function generarCodigo(inputNombre,arrayProductos) {
