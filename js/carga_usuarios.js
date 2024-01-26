@@ -25,7 +25,6 @@ let idUsuario;
 
 let botonRegistrarme = document.getElementById("registrarme");
 let botonCerrar = document.getElementById("boton-cerrar");
-let botonIniciarSesion = document.getElementById("inicio-sesion");
 
 
 botonRegistrarme.addEventListener("click", (e) => {
@@ -34,9 +33,7 @@ botonRegistrarme.addEventListener("click", (e) => {
 botonCerrar.addEventListener("click", () => {
     limpiarFormulario();
 });
-// botonIniciarSesion.addEventListener("click", () => {
-//     inicioSesion();
-// });
+
 
 inputNombreUsuario.addEventListener("blur", () => {
     validarNombreUsuario(inputNombreUsuario);
@@ -69,6 +66,7 @@ function crearUsuario(e) {
             apellido: primeraMayuscula(inputApellidoUsuario),
             email: inputEmail.value,
             clave: inputClave.value,
+            favoritos: [],
             rol: rol()
         }
 

@@ -46,3 +46,7 @@ export function rol() {
     rol = "admin";
     return rol;
 }
+
+export function verificarRol(sesion) {
+    return sesion.rol === "admin";
+}

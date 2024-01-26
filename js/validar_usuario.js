@@ -109,3 +109,22 @@ export function checkboxTerminos(terminos) {
     terminos.className = "form-check-input is-invalid";
     return false;
 }
+
+export function validarUsuario(email,clave) {
+    let usuarioExiste = false;
+
+    usuarioExiste = arrayUsuarios.some(
+        (elemento) => elemento["email"] === email.value && email.value !== "" && elemento["clave"] === clave.value && clave.value !== ""
+    );
+    
+    return usuarioExiste;
+}
+
+export function verificarInput(input) {
+    if (input.value !== "") {
+        input.className = "form-control";
+        return true;
+    }
+    input.className = "form-control is-invalid";
+    return false;
+}
