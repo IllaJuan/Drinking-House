@@ -13,7 +13,6 @@ import {
     limpiarFormulario,
     mostrarOcultarFormulario,
     mostrarOcultarBotonForm,
-    guardarLocalStorageUsers
 } from "./hellpers.js";
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -233,7 +232,7 @@ window.borrarProducto = function (idProducto) {
 
 //   Área de "Usuarios"
 
-export function mostrarTablaUsuarios() {
+function mostrarTablaUsuarios() {
     cuerpoTablaUsuarios.innerHTML = "";
     arrayUsuarios.forEach((elemento) => {
         cuerpoTablaUsuarios.innerHTML += `
@@ -276,8 +275,12 @@ window.borrarUsuario = function (idUsuario) {
                 timer: 2000
             });
 
-            guardarLocalStorageUsers(arrayUsuarios);
+            localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
             mostrarTablaUsuarios();
+            
+            setTimeout(function() {
+                location.reload();
+            }, 2000);
         }
     });
 }
