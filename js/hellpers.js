@@ -37,3 +37,12 @@ export function guardarLocalStorageUsers(array) {
 export function primeraMayuscula(usuario) {
     return usuario.value.charAt(0).toUpperCase() + usuario.value.slice(1);
 }
+
+export function rol() {
+    let rol = "usuario";
+    if (window.location.href.includes("/pages/registro.html")) {
+        return rol;
+    }
+    rol = "admin";
+    return rol;
+}

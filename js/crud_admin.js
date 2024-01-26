@@ -8,12 +8,6 @@ import {
     formatoPrecio
 } from "./validar_producto.js";
 
-import { 
-    validarNombreUsuario,
-    validarEmail,
-    validarClave
-} from "./validar_usuario.js";
-
 import {
     guardarLocalStorage,
     limpiarFormulario,
@@ -24,17 +18,6 @@ import {
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 let cuerpoTablaUsuarios = document.getElementById("tabla-usuarios");
-let agregarAdministrador = document.getElementById("agregar-admin");
-
-let inputNombreAdmin = document.getElementById("nombre-admin");
-let inputEmailAdmin = document.getElementById("email-admin");
-let inputClaveAdmin = document.getElementById("clave-admin");
-let idUsuarioAdmin;
-
-agregarAdministrador.addEventListener("click", () => {
-    agregarAdmin();
-});
-
 
 let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
 
@@ -250,56 +233,7 @@ window.borrarProducto = function (idProducto) {
 
 //   Área de "Usuarios"
 
-
-function agregarAdmin() {
-    if (
-    validarEmail(inputEmailAdmin,arrayUsuarios) &&
-    validarEmail(inputEmailAdmin,arrayUsuarios) !== 1 &&
-    validarClave(inputClaveAdmin) &&
-    validarNombreUsuario(inputNombreAdmin)
-    ) {
-        (arrayUsuarios.length > 0) ? idUsuarioAdmin = arrayUsuarios[arrayUsuarios.length - 1].id + 1 : idUsuarioAdmin = 1;
-        
-        const admin = {
-            id: idUsuarioAdmin,
-            nombre: inputNombreAdmin.value,
-            email: inputEmailAdmin.value,
-            clave: inputClaveAdmin.value,
-            rol: "admin"
-        }
-
-        arrayUsuarios.push(admin);
-
-        localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
-        localStorage.getItem("usuarios");
-
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Se ha registrado correctamente",
-            showConfirmButton: false,
-            timer: 1500
-        });
-
-    } else if (validarEmail(inputEmailAdmin) === 1) {
-        Swal.fire({
-            icon: "error",
-            text: "Ya existe un administrador con este correo electrónico",
-            showConfirmButton: false,
-            timer: 4000
-        });
-    } else {
-        Swal.fire({
-            icon: "error",
-            title: "No se registró el administrador",
-            text: "Verifique los campos y vuelva a intentarlo",
-            showConfirmButton: false,
-            timer: 4000
-        });
-    }   
-}
-
-function mostrarTablaUsuarios() {
+export function mostrarTablaUsuarios() {
     cuerpoTablaUsuarios.innerHTML = "";
     arrayUsuarios.forEach((elemento) => {
         cuerpoTablaUsuarios.innerHTML += `

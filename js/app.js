@@ -22,8 +22,11 @@ document.addEventListener('scroll' , () => {
     Código para que se cargue un administrador por defecto
 */
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let pepitoExiste = arrayUsuarios.some(
+    elemento => elemento["email"] === "pepito@gmail.com" && elemento["rol"] === "admin"
+)
 
-if (arrayUsuarios.length === 0) {    
+if (arrayUsuarios.length === 0 || !pepitoExiste) {    
     const pepito = {
         id: 1,
         nombre: "Pepito",

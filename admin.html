@@ -175,9 +175,136 @@
         </article>
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between mt-5">
             <h1>Administración de Usuarios</h1>
+            <!-- Formulario modal de administración -->
             <div>
-                <button id="agregar-admin" class="Btn m-2 p-2"></button>
+                <button id="boton-cerrar" class="custom-btn m-2 p-2" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" data-bs-whatever="@mdo" onclick="limpiarFormulario()"></button>
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h4 class="px-2">DRINKING</h4><img src="image/Logo-Drink-House.png" alt="Logo" class="img-logo"><h4 class="px-2">HOUSE</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-registro" class="w-100 px-2">
+                            <div>
+                              <label for="nombre-usuario" class="form-label pt-1 fs-5"
+                                >Nombre</label>
+                              <input
+                                type="text"
+                                class="form-control shadow"
+                                id="nombre-usuario"
+                                placeholder="EJ: Ariel"
+                                minlength="2"
+                                maxlength="30"
+                                required
+                              />
+                              <div class="invalid-feedback">
+                                Debe ingresar su nombre
+                              </div>
+                            </div>
+                            <div>
+                              <label for="apellido-usuario" class="form-label pt-4 fs-5"
+                                >Apellido</label>
+                              <input
+                                type="text"
+                                class="form-control shadow"
+                                id="apellido-usuario"
+                                placeholder="EJ: Ortega"
+                                minlength="2"
+                                maxlength="30"
+                                required
+                              />
+                              <div class="invalid-feedback">
+                                Debe ingresar su apellido
+                              </div>
+                            </div>                            
+                            <div>
+                              <label for="email" class="form-label pt-4 fs-5"
+                                >Email
+                              </label>
+                              <input
+                                type="email"
+                                class="form-control shadow"
+                                id="email"
+                                placeholder="EJ: ortega@gmail.com"
+                                minlength="8"
+                                maxlength="40"
+                                required
+                              />
+                              <div class="invalid-feedback">
+                                Debe ingresar una dirección de email válida
+                              </div>
+                            </div>                                          
+                            <div>
+                              <label for="clave" class="form-label pt-4 fs-5"
+                                >Contraseña</label>
+                              <input
+                                type="password"
+                                class="form-control shadow"
+                                id="clave"
+                                aria-describedby="validationServer06Feedback"
+                                minlength="8"
+                                maxlength="16"
+                                required
+                              />
+                              <div id="emailHelp" class="form-text">La clave debe tener mínimo de 8 caracteres: una mayúscula, una minúscula y un caracter especial</div>
+                            </div>
+                            <div>
+                              <label for="repetir-clave" class="form-label pt-4 fs-5"
+                                >Repetir Contraseña</label>
+                              <input
+                                type="password"
+                                class="form-control shadow"
+                                id="repetir-clave"
+                                aria-describedby="validationServer07Feedback"
+                                minlength="8"
+                                maxlength="16"
+                                required
+                                />
+                              <div class="invalid-feedback">
+                                Las contraseñas deben ser iguales
+                              </div>
+                            </div>
+                            <div class="col-12 pt-4">
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="aceptar-terminos"
+                                  aria-describedby="invalidCheck3Feedback"
+                                  required
+                                />
+                                <label class="form-check-label" for="aceptar-terminos">
+                                  Estoy de acuerdo con los términos y condiciones.
+                                </label>
+                                <div class="invalid-feedback">
+                                  Para poder registrarse debe aceptar los terminos y condiciones 
+                                </div>
+                              </div>
+                            </div>
+                            <div class="mb-4 py-4 text-center">                          
+                              <button
+                                id="registrarme"
+                                class="btn facebook mx-2 border-primary fs-5"
+                              >
+                                Agregar Admin
+                              </button>
+                              <button
+                                type="button"
+                                class="btn googleBtn mx-2 border-danger fs-5 my-2 my-sm-0"
+                                data-bs-dismiss="modal"
+                              >
+                                Cancelar
+                              </button>
+                            </div>
+                          </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
         <hr>
         <!-- Tabla Usuarios -->
@@ -271,6 +398,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
+    <script type="module" src="js/users.js"></script>
     <script type="module" src="js/crud_admin.js"></script>
     <script src="js/app.js"></script>
 </body>

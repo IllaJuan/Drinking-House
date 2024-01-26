@@ -92,7 +92,7 @@
     Estilos del botón de "Administración de Usuarios"
 */
 
-.Btn {
+.custom-btn {
     width: 140px;
     height: 40px;
     border: none;
@@ -110,7 +110,7 @@
     overflow: hidden;
   }
   
-  .Btn::before {
+.custom-btn::before {
     position: absolute;
     content: "Agregar Admin";
     color: #ffd277;
@@ -123,18 +123,18 @@
     transition-duration: 1s;
     background-color: rgba(0, 0, 0, 0.842);
     background-size: 200%;
-  }
+}
   
-  .Btn:hover {
+.custom-btn:hover {
     background-position: right;
     transition-duration: 1s;
-  }
+}
   
-  .Btn:hover::before {
+.custom-btn:hover::before {
     background-position: right;
     transition-duration: 1s;
-  }
+}
   
-  .Btn:active {
+.custom-btn:active {
     transform: scale(0.95);
-  }
+}

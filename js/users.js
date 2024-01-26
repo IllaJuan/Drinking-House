@@ -7,7 +7,10 @@ import {
     compararClaves
 } from "./validar_usuario.js";
 
-import { primeraMayuscula } from "./hellpers.js";
+import { 
+    primeraMayuscula,
+    rol
+} from "./hellpers.js";
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
@@ -66,7 +69,7 @@ function crearUsuario(e) {
             apellido: primeraMayuscula(inputApellidoUsuario),
             email: inputEmail.value,
             clave: inputClave.value,
-            rol: "usuario"
+            rol: rol()
         }
 
         arrayUsuarios.push(usuario);
@@ -82,7 +85,13 @@ function crearUsuario(e) {
             timer: 1500
         });
 
-        limpiarFormulario();
+        limpiarFormulario(); 
+        
+        if (window.location.href.includes("/admin.html")) {
+            setTimeout(function() {
+                location.reload();
+            }, 1500);
+        }
 
     } else if (validacion === 2) {
         Swal.fire({
