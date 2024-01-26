@@ -1,41 +1,69 @@
 import { 
+    validarTodoRegistro,
     validarNombreUsuario,
+    validarApellido,
     validarEmail,
-    validarClave
-} from "./validar_usuario";
+    validarClave,
+    compararClaves
+} from "./validar_usuario.js";
 
+import { primeraMayuscula } from "./hellpers.js";
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
+let formRegistro = document.getElementById("form-registro");
 let inputNombreUsuario = document.getElementById("nombre-usuario");
+let inputApellidoUsuario = document.getElementById("apellido-usuario");
 let inputEmail = document.getElementById("email");
 let inputClave = document.getElementById("clave");
+let inputRepetirClave = document.getElementById("repetir-clave");
+let aceptarTerminos = document.getElementById("aceptar-terminos");
 let idUsuario;
 
-let botonSuscribir = document.getElementById("suscribirse");
+let botonRegistrarme = document.getElementById("registrarme");
+let botonCerrar = document.getElementById("boton-cerrar");
 let botonIniciarSesion = document.getElementById("inicio-sesion");
 
 
-botonSuscribir.addEventListener("click", () => {
-    crearUsuario();
+botonRegistrarme.addEventListener("click", (e) => {
+    crearUsuario(e);
 });
-botonIniciarSesion.addEventListener("click", () => {
-    inicioSesion();
+botonCerrar.addEventListener("click", () => {
+    limpiarFormulario();
+});
+// botonIniciarSesion.addEventListener("click", () => {
+//     inicioSesion();
+// });
+
+inputNombreUsuario.addEventListener("blur", () => {
+    validarNombreUsuario(inputNombreUsuario);
+});
+inputApellidoUsuario.addEventListener("blur", () => {
+    validarApellido(inputApellidoUsuario);
+});
+inputEmail.addEventListener("blur", () => {
+    validarEmail(inputEmail);
+});
+inputClave.addEventListener("blur", () => {
+    validarClave(inputClave);
+});
+inputRepetirClave.addEventListener("blur", () => {
+    compararClaves(clave,inputRepetirClave);
 });
 
 
-function crearUsuario() {
-    if (
-        validarEmail(inputEmail,arrayUsuarios) &&
-        validarEmail(inputEmail,arrayUsuarios) !== 1 &&
-        validarClave(inputClave) &&
-        validarNombreUsuario(inputNombreUsuario)
-        ) {
+function crearUsuario(e) {
+    e.preventDefault();
+
+    let validacion = validarTodoRegistro(inputNombreUsuario,inputApellidoUsuario,inputEmail,inputClave,inputRepetirClave,aceptarTerminos);
+
+    if (validacion && validacion !== 2) {
         (arrayUsuarios.length > 0) ? idUsuario = arrayUsuarios[arrayUsuarios.length - 1].id + 1 : idUsuario = 1;
          
         let usuario = {
             id: idUsuario,
-            nombre: inputNombreUsuario.value,
+            nombre: primeraMayuscula(inputNombreUsuario),
+            apellido: primeraMayuscula(inputApellidoUsuario),
             email: inputEmail.value,
             clave: inputClave.value,
             rol: "usuario"
@@ -54,8 +82,9 @@ function crearUsuario() {
             timer: 1500
         });
 
+        limpiarFormulario();
 
-    } else if (validarEmail(inputEmail) === 1) {
+    } else if (validacion === 2) {
         Swal.fire({
             icon: "error",
             text: "Ya existe un usuario con este correo electrónico",
@@ -68,11 +97,20 @@ function crearUsuario() {
             title: "No se registró el usuario",
             text: "Verifique los campos y vuelva a intentarlo",
             showConfirmButton: false,
-            timer: 4000
+            timer: 3000
         });
     }
 }
 
 function inicioSesion() {
     
+}
+
+function limpiarFormulario() {
+    formRegistro.reset();
+    inputNombreUsuario.className = "form-control";
+    inputApellidoUsuario.className = "form-control";
+    inputEmail.className = "form-control";
+    inputClave.className = "form-control";
+    inputRepetirClave.className = "form-control";
 }

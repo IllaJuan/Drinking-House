@@ -27,6 +27,7 @@ if (arrayUsuarios.length === 0) {
     const pepito = {
         id: 1,
         nombre: "Pepito",
+        apellido: "Pérez",
         email: "pepito@gmail.com",
         clave: "@Pepito2024",
         rol: "admin"

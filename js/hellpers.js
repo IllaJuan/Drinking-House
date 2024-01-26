@@ -33,3 +33,7 @@ export function mostrarOcultarBotonForm(botonEditarProducto) {
 export function guardarLocalStorageUsers(array) {
     localStorage.setItem("usuarios", JSON.stringify(array));
 }
+
+export function primeraMayuscula(usuario) {
+    return usuario.value.charAt(0).toUpperCase() + usuario.value.slice(1);
+}
