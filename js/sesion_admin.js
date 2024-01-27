@@ -24,6 +24,13 @@ function eliminarSesion() {
     window.location.replace("/index.html");
 }
 
+if (
+    window.location.href.includes("/admin.html") && 
+    (sesion === undefined || !verificarRol(sesion))
+    ) {
+        window.location.replace("/index.html");
+}
+
 if (sesion !== undefined) {
     if (verificarRol(sesion)) {
         ocultarAdministracion.classList.remove("d-none");
