@@ -171,6 +171,34 @@
     height: 100%;
     object-fit: cover; /* para que la imgen no se deforme*/
 }
+
+.scrollFadeAnimation{
+    view-timeline-name: --scrollFade;
+    view-timeline-axis: block;
+    animation-timeline: --scrollFade;
+    animation-name: show;
+    animation-range: entry 10% cover 50%;
+    animation-fill-mode: both;
+}
+@keyframes scroll-review {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-17vw * ));
+    }
+}
+@keyframes show{
+    from {
+        opacity: 0;
+        scale: 25%;
+    }
+    to {
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
 .gallery-item:nth-child(1){
     grid-column-start: span 2;
     grid-row-start: span 3;
