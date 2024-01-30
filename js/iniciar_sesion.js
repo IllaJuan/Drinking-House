@@ -35,7 +35,7 @@ function inicio_sesion(e) {
         sesion = {
             email: arrayUsuarios[indiceUsuario].email,
             clave: arrayUsuarios[indiceUsuario].clave,
-            favoritos: arrayUsuarios[indiceUsuario].favoritos,
+            favoritos: arrayUsuarios[indiceUsuario].favoritos || [],
             rol: arrayUsuarios[indiceUsuario].rol
         };
         
