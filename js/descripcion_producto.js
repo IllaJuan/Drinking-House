@@ -1,13 +1,13 @@
-let DetallesdeProducto = document.getElementById('DetallesdeProducto');
+let detallesDeProducto = document.getElementById('detallesDeProducto');
 
 function crearDetalledeProducto () {
     const arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
-    DetallesdeProducto.innerHTML = "";
+    detallesDeProducto.innerHTML = "";
    
     arrayProductos.forEach(elemento => {
         findIndex
     });() => {
-        DetallesdeProducto.innerHTML += `<div class="row row-cols-1 row-cols-md-2 lg-2 xl-2 sm-1">
+        detallesDeProducto.innerHTML += `<div class="row row-cols-1 row-cols-md-2 lg-2 xl-2 sm-1">
         <div class="col">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
