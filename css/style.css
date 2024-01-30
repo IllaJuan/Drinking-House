@@ -143,6 +143,7 @@
 	box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.075), 0 0 30px #e4c590;
 }
 
+
 /* grid*/
 .gallery-container{
     display: grid;
@@ -299,4 +300,13 @@
         grid-column-start: span 2;
         grid-row-start: span 1;
     }
+  
+.custom-btn-error404 {
+    background-color: rgba(136, 28, 28, 0.955);
+}
+
+.custom-btn-error404:hover {
+    background-color:  rgba(197, 72, 72, 0.955);
+    color: whitesmoke;
+
 }
