@@ -52,4 +52,3 @@ if (window.location.href.includes("index.html")) {
         });
     }
     mostrarCardsProductos();
-}
