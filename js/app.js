@@ -1,5 +1,4 @@
 import { ocultarFavoritos } from "./favoritos.js";
-import { mostrarCardsProductos } from "./hellpers.js";
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
@@ -59,8 +58,6 @@ if (window.location.href.includes("index.html")) {
 /* 
     Código para que carguen las cards de los productos en la página principal
 */      
-   mostrarCardsProductos();
-   ocultarFavoritos();
+    
 }
-
 ocultarFavoritos();
