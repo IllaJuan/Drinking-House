@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
     <script src="js/bootstrap.min.js"></script>
+    <script defer type="module" src="js/app.js"></script>
     <script src="libraries/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="css/admin_style.css">
@@ -47,27 +48,6 @@
                             <li class="nav-item mx-2">
                                 <a class="nav-link active hover-link" aria-current="page" href="index.html">Inicio</a>
                             </li>
-                            <li class="nav-item dropdown mx-2">
-                                <a class="nav-link dropdown-toggle hover-link" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Categorias
-                                </a>
-                                <ul class="dropdown-menu menu-bg my-2">
-                                    <li><a class="dropdown-item item-bg" href="#">Vinos</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider hr-bg" />
-                                    </li>
-                                    <li><a class="dropdown-item item-bg" href="#">Cervezas</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider hr-bg" />
-                                    </li>
-                                    <li><a class="dropdown-item item-bg" href="#">Spirits</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider hr-bg" />
-                                    </li>
-                                    <li><a class="dropdown-item item-bg" href="#">Aperitivos</a></li>
-                                </ul>
-                            </li>
                             <li class="nav-item mx-2">
                                 <a class="nav-link hover-link" href="pages/contacto.html">Contacto</a>
                             </li>
@@ -79,7 +59,7 @@
                             </li>
                         </ul>
                         <!-- Login -->
-                        <div>
+                        <div class="corazon-favoritos">
                             <a href="#" class="heart mx-2" title="Favoritos">
                                 <i class="ri-heart-line"></i>
                             </a>
@@ -155,7 +135,7 @@
                 <div class="d-flex justify-content-evenly flex-column flex-sm-row">
                     <button id="boton-guardar-producto" class="custom-button-save mb-2 mb-sm-0 boton-editar-producto">Guardar</button>
                     <button id="boton-guardar-edicion" class="d-none custom-button-save mb-2 mb-sm-0 boton-editar-producto">Guardar los cambios</button>
-                    <a href="/admin.html" class="custom-button-cancel">Cancelar</a>
+                    <a href="/admin.html" class="custom-button-cancel text-center">Cancelar</a>
                 </div>
             </form>
         </article>
@@ -406,6 +386,5 @@
     <script type="module" src="js/administracion.js"></script>
     <script type="module" src="js/carga_usuarios.js"></script>
     <script type="module" src="js/sesion_admin.js"></script>
-    <script src="js/app.js"></script>
 </body>
 </html>
