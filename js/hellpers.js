@@ -27,11 +27,10 @@ export function mostrarOcultarBotonForm(botonEditarProducto) {
     });
 }
 
-export function mostrarCardsProductos() {
+export function mostrarCardsProductos(productos) {
     let cardProductos = document.getElementById("card-productos");
-    let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
     cardProductos.innerHTML = "";
-    arrayProductos.forEach((elemento) => {
+    productos.forEach((elemento) => {
         cardProductos.innerHTML += `
             <div class="card col-sm-12 col-md-4 col-lg-3 my-3 mx-2" style="width: 18rem;">
                 <img src="${elemento.urlImagen}" class="card-img-top my-2 tamaño-imagen-card" alt="${elemento.nombre}">                   
