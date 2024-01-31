@@ -1,11 +1,10 @@
+import { mostrarFavoritos } from "./hellpers.js";
+
 let sesion = JSON.parse(sessionStorage.getItem("sesion")) || undefined;
 
-
-if (sesion !== undefined) {
+if (window.location.href.includes("/pages/favoritos.html")) {
     if (sesion.favoritos.length > 0) {
-        mostrarCardsProductos();
-    } else {
-        // Mostrar imagen o mensaje que indique que todavia no hay favoritos
+        mostrarFavoritos();
     }
 }
 
@@ -22,3 +21,4 @@ export function ocultarFavoritos() {
         });
     }
 }
+

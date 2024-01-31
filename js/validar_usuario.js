@@ -8,7 +8,7 @@ export function idUsuario() {
     let id;
 
     if (arrayUsuarios.length > 0) {
-        if (arrayUsuarios[arrayUsuarios.length - 1].id === 1) {
+        if (arrayUsuarios[arrayUsuarios.length - 1].id === 1 && arrayUsuarios.length > 1) {
             id = arrayUsuarios[arrayUsuarios.length - 2].id + 1;
             return id;
         }

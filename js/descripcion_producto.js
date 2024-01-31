@@ -24,7 +24,6 @@ function mostrarDescripcion() {
             <p>Código: ${producto[0].codigo}</p>
             <div class="d-grid gap-3 col-8">
                 <a class="btn custom-btn-buynow btn-sm" type="button" href="/pages/error404.html">Comprar ahora</a>
-                <button class="btn btn-secondary btn-sm" type="button">Agregar a Favoritos</button>
             </div>
             <div class="container">
                 <div class="row">
@@ -48,12 +47,9 @@ function mostrarDescripcion() {
 
 
 function sugerecias(productoMostrado) {
-    console.log(productoMostrado);
     let arraySugerencias = arrayProductos.filter(
         (elemento) => elemento.id !== productoMostrado[0].id && elemento.categoria === productoMostrado[0].categoria
     );
-
-    console.log(arraySugerencias.length);
 
     cuerpoSugerencias.innerHTML = "";
     arraySugerencias.forEach((elemento) => {

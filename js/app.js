@@ -54,10 +54,5 @@ if (window.location.href.includes("index.html")) {
     let myModal = document.getElementById('staticBackdrop');
     let modal = bootstrap.Modal.getOrCreateInstance(myModal);
     modal.show();
-
-/* 
-    Código para que carguen las cards de los productos en la página principal
-*/      
-    
 }
 ocultarFavoritos();

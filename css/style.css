@@ -185,7 +185,7 @@
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-17vw * ));
+        transform: translateX(calc(-17vw * 7));
     }
 }
 @keyframes show{
@@ -582,3 +582,17 @@
     width: 50px;
     padding-right: 10px;    
  }
+
+ .custom-imagen-alto {
+    height: 230px; 
+}
+
+.custom-card-width {
+    max-width: 540px;
+}
+
+@media screen and (max-width: 767px) {
+    .custom-card-width {
+        max-width: 300px;
+    }
+}
