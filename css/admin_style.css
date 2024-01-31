@@ -103,10 +103,12 @@
 
 .heart-card {
     position: absolute;
+    cursor: pointer;
     top: 10px;
     right: 20px;
     font-size: 30px;
     color: #c1892f;
+    transition: all 0.3s ease;
 }
 
 .heart-card:hover {

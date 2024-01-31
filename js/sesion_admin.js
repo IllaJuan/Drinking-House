@@ -13,14 +13,17 @@ cerrarSesion.addEventListener("click", () => {
 });
 
 function eliminarSesion() {
+    sesion = JSON.parse(sessionStorage.getItem("sesion"));
 
     indiceUsuario = arrayUsuarios.findIndex(
         (elemento) => elemento.email === sesion.email
     );
-
+    // guarda los favoritos del sesionStorage en el usuario que está en el localStorage
     arrayUsuarios[indiceUsuario].favoritos = sesion.favoritos;
 
+    localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
     sessionStorage.removeItem("sesion");
+
     window.location.replace("/index.html");
 }
 
