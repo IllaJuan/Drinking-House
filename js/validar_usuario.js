@@ -4,6 +4,18 @@
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
+export function idUsuario() {
+    let id;
+
+    if (arrayUsuarios.length > 0) {
+        if (arrayUsuarios[arrayUsuarios.length - 1].id === 1) {
+            id = arrayUsuarios[arrayUsuarios.length - 2].id + 1;
+            return id;
+        }
+        id = arrayUsuarios[arrayUsuarios.length - 1].id + 1;
+        return id;
+    }
+}
 
 export function validarTodoRegistro(nombre,apellido,email,clave,repeticionClave,terminos) {
     if (

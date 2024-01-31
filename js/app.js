@@ -1,3 +1,8 @@
+import { ocultarFavoritos } from "./favoritos.js";
+import { mostrarCardsProductos } from "./hellpers.js";
+
+let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
 /* 
     Código para que cambie el color del navbar cuando se haga scroll
 */
@@ -18,10 +23,10 @@ document.addEventListener('scroll' , () => {
     }
 });
 
+
 /* 
     Código para que se cargue un administrador por defecto
 */
-let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 let pepitoExiste = arrayUsuarios.some(
     elemento => elemento["email"] === "pepito@gmail.com" && elemento["rol"] === "admin"
 )
@@ -33,6 +38,7 @@ if (arrayUsuarios.length === 0 || !pepitoExiste) {
         apellido: "Pérez",
         email: "pepito@gmail.com",
         clave: "@Pepito2024",
+        favoritos: [],
         rol: "admin"
     }
 
@@ -41,7 +47,6 @@ if (arrayUsuarios.length === 0 || !pepitoExiste) {
     localStorage.setItem("usuarios",JSON.stringify(arrayUsuarios));
     localStorage.getItem("usuarios");
 }
-
 
 if (window.location.href.includes("index.html")) {
 /* 
@@ -53,27 +58,9 @@ if (window.location.href.includes("index.html")) {
 
 /* 
     Código para que carguen las cards de los productos en la página principal
-*/
-    let cardProductos = document.getElementById("card-productos");
-
-    function mostrarCardsProductos() {
-        let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
-        cardProductos.innerHTML = "";
-        arrayProductos.forEach((elemento) => {
-            cardProductos.innerHTML += `
-                <div class="card col-sm-12 col-md-4 col-lg-3 my-3 mx-2" style="width: 18rem;">
-                    <img src="${elemento.urlImagen}" class="card-img-top my-2 tamaño-imagen-card" alt="${elemento.nombre}">                   
-                    <hr class="my-0">
-                    <div class="card-body">
-                        <h4 class="card-title">${elemento.nombre}</h4>
-                        <p class="card-text my-0">$${elemento.precio}</p>
-                        <a href=""><i class="ri-heart-line heart-card"></i></a>
-                        <div class="text-center mt-2">
-                            <a class="btn button-card" href="/pages/descripcion_producto.html"" role="button">Ver Producto</a> 
-                        </div>                        
-                    </div>
-                </div>`;
-        });
-    }
-    mostrarCardsProductos();
+*/      
+   mostrarCardsProductos();
+   ocultarFavoritos();
 }
+
+ocultarFavoritos();

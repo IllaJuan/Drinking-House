@@ -1,4 +1,5 @@
 import { 
+    idUsuario,
     validarTodoRegistro,
     validarNombreUsuario,
     validarApellido,
@@ -12,7 +13,10 @@ import {
     rol
 } from "./hellpers.js";
 
+
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let sesion = JSON.parse(sessionStorage.getItem("sesion")) || undefined;
+let cuerpoTablaUsuarios = document.getElementById("tabla-usuarios");
 
 let formRegistro = document.getElementById("form-registro");
 let inputNombreUsuario = document.getElementById("nombre-usuario");
@@ -21,7 +25,6 @@ let inputEmail = document.getElementById("email");
 let inputClave = document.getElementById("clave");
 let inputRepetirClave = document.getElementById("repetir-clave");
 let aceptarTerminos = document.getElementById("aceptar-terminos");
-let idUsuario;
 
 let botonRegistrarme = document.getElementById("registrarme");
 let botonCerrar = document.getElementById("boton-cerrar");
@@ -58,10 +61,9 @@ function crearUsuario(e) {
     let validacion = validarTodoRegistro(inputNombreUsuario,inputApellidoUsuario,inputEmail,inputClave,inputRepetirClave,aceptarTerminos);
 
     if (validacion && validacion !== 2) {
-        (arrayUsuarios.length > 0) ? idUsuario = arrayUsuarios[arrayUsuarios.length - 1].id + 1 : idUsuario = 1;
-         
+                 
         let usuario = {
-            id: idUsuario,
+            id: idUsuario(),
             nombre: primeraMayuscula(inputNombreUsuario),
             apellido: primeraMayuscula(inputApellidoUsuario),
             email: inputEmail.value,
@@ -109,8 +111,70 @@ function crearUsuario(e) {
     }
 }
 
-function inicioSesion() {
-    
+export function mostrarTablaUsuarios() {
+    cuerpoTablaUsuarios.innerHTML = "";
+    arrayUsuarios.forEach((elemento) => {
+        cuerpoTablaUsuarios.innerHTML += `
+            <tr>
+                <td></td>
+                <th scope="row">${elemento.id}</th>
+                <td>${elemento.nombre}</td>
+                <td>${elemento.apellido}</td>
+                <td>${elemento.email}</td>
+                <td>${elemento.clave}</td>
+                <td>${elemento.rol}</td>
+                <td>
+                    <i class="fa-solid fa-trash-can custom-red" title="Borrar Usuario" onclick="borrarUsuario(${elemento.id})"></i>
+                </td>
+            </tr>`;
+    });
+}
+
+window.borrarUsuario = function (idUsuario) {
+    Swal.fire({        
+        icon: "warning",
+        iconColor: "#ffc107",
+        title: "¿Estás seguro?",
+        text: "¡La acción no se puede revertir!",
+        showCancelButton: true,
+        focusCancel: true,
+        confirmButtonColor: "#dc3545",
+        cancelButtonColor: "#0d6efd",
+        confirmButtonText: "Eliminar Usuario",
+        cancelButtonText: "Volver"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            arrayUsuarios = arrayUsuarios.filter(
+                (elemento) => elemento.id !== idUsuario
+            );
+            Swal.fire({
+                icon: "success",
+                text: "¡El usuario se eliminó correctamente!",
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
+            mostrarTablaUsuarios();
+            
+            let indiceUsuario = arrayUsuarios.findIndex(
+                (elemento) => elemento.email === sesion.email
+            );
+            console.log("1");
+            if (sesion !== undefined && indiceUsuario !== -1) {
+            console.log("2");
+                arrayUsuarios[indiceUsuario].favoritos = sesion.favoritos;
+            
+                sessionStorage.removeItem("sesion");
+                window.location.replace("/index.html");
+            } else {
+            console.log("3");
+                setTimeout(function() {
+                    location.reload();
+                }, 2000);
+            }
+        }
+    });
 }
 
 function limpiarFormulario() {
