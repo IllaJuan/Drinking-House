@@ -77,3 +77,58 @@ if (window.location.href.includes("index.html")) {
     }
     mostrarCardsProductos();
 }
+
+/* BUSCADOR */
+document.addEventListener("DOMContentLoaded", function () {
+    // Muestra todos los productos al cargar la página
+    mostrarCardsProductos(JSON.parse(localStorage.getItem("productos")) || []);
+});
+
+function realizarBusqueda() {
+    let inputBusqueda = document.getElementById("search-btn");
+    filtrarProductos(inputBusqueda.value);
+}
+
+function buscarConEnter(event) {
+    if (event.key === "Enter") {
+        realizarBusqueda();
+    }
+}
+
+function filtrarProductos(busqueda) {
+    let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
+    let categoriasFiltradas = [];
+
+    if (busqueda.trim() === "") {
+        // si la busqueda esta vaica, mostrar todos los productos
+        categoriasFiltradas = arrayProductos;
+    } else {
+        // filtrado por categorias
+        categoriasFiltradas = arrayProductos.filter(producto => {
+            return producto.categoria.toLowerCase().includes(busqueda.toLowerCase());
+        });
+    }
+
+    mostrarCardsBusqueda(categoriasFiltradas);
+}
+
+function mostrarCardsBusqueda(productos) {
+    let cardProductos = document.getElementById("card-productos");
+    cardProductos.innerHTML = "";
+
+    productos.forEach(elemento => {
+        cardProductos.innerHTML += `
+            <div class="card col-sm-12 col-md-4 col-lg-3 my-3 mx-2" style="width: 18rem;">
+                <img src="${elemento.urlImagen}" class="card-img-top my-2 tamaño-imagen-card" alt="${elemento.nombre}">                   
+                <hr class="my-0">
+                <div class="card-body">
+                    <h4 class="card-title">$${elemento.precio}</h4>
+                    <p class="card-text my-0">${elemento.descripcion}</p>
+                    <a href=""><i class="ri-heart-line heart-card"></i></a>
+                    <div class="text-center mt-2">
+                        <a class="btn button-card" href="index.html" role="button">Ver Producto</a> 
+                    </div>                        
+                </div>
+            </div>`;
+    });
+}
