@@ -1,7 +1,5 @@
-import { 
-    mostrarCardsProductos,
-    ocultarFavoritos
-} from "./favoritos.js";
+import { ocultarFavoritos } from "./favoritos.js";
+import { mostrarCardsProductos } from "./hellpers.js";
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 

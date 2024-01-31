@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/image/Logo-Drink-House.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin_style.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/bootstrap.min.js"></script>
     <title>Drinking House</title>
@@ -100,87 +101,20 @@
         </nav>
     </header>
     <main>
-        <div class="container my-5 py-5" id="DetallesdeProducto">
+        <div class="container mt-5 mb-2 py-5" id="detallesDeProducto">
             <h1 class="display-4 text-center">Detalles del producto</h1>
             <hr />
-            <div class="row row-cols-1 row-cols-md-2 lg-2 xl-2 sm-1 mt-5">
-                <div class="col">
-                    <img src="/image/jackdaniels.jpg" alt="Jack Daniels Whiskey" class="img-fluid">
-                </div>
-                <div class="col align-items-center ">
-                    <h3>Jack Daniels Whiskey</h3>
-                    <h2>$22.500</h2>
-                    <p>Stock disponible: 20</p>
-                    <p>Código: ............</p>
-                    <div class="d-grid gap-3 col-8">
-                        <button class="btn custom-btn-buynow btn-sm" type="button">Comprar ahora</button>
-                        <button class="btn btn-secondary btn-sm" type="button">Agregar a Favoritos</button>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6 order-md-1 my-2">
-                                <h5>Compartir</h5>
-                            </div>
-                            <div class="col-md-6 order-md-2 my-2">
-                                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                                <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
-                                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
-                                <a href="#"><i class="fa-brands fa-square-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="datos-producto" class="row row-cols-1 row-cols-md-2 lg-2 xl-2 sm-1 mt-5">
             </div>
             <section class="container">
                 <h2>Descripción</h2>
-                <div class="container justify-content">
-                    <p class="infotext">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat incidunt temporibus illum et soluta facere dolore, magnam, mollitia aut magni exercitationem! Dicta eveniet vero corrupti, fugiat officia amet fuga praesentium exercitationem ratione blanditiis consequatur debitis aspernatur autem expedita saepe! Delectus quibusdam pariatur illo velit architecto fugit nihil facilis assumenda minima!</p>
+                <div id="descripcion-producto" class="container justify-content">
                 </div>
             </section>
         </div>
-        <section class="container">
-            <h4>Productos relacionados</h4>
-            <div class="row row-cols-1 row-cols-md-4 lg-4 xl-4 sm-2">
-                <div class="col">
-                    <div class="card my-2 " style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Smirnoff</h5>
-                          <p class="card-text">$ XXX</p>
-                          <a href="#" class="btn btn-primary btn-sm">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card my-2 " style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Johny Walker</h5>
-                          <p class="card-text">$ XXX</p>
-                          <a href="#" class="btn btn-primary btn-sm">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card my-2 " style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Jagger</h5>
-                          <p class="card-text">$ XXX</p>
-                          <a href="#" class="btn btn-primary btn-sm">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card my-2" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Hennessy</h5>
-                          <p class="card-text">$ XXX</p>
-                          <a href="#" class="btn btn-primary btn-sm">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
+        <section class="container-md">
+            <h3>Productos relacionados</h3>
+            <div id="cuerpo-sugerencias" class="row d-flex justify-content-start">
             </div>
         </section>
     </main>
@@ -256,7 +190,7 @@
         crossorigin="anonymous"></script>
     <script type="module" src="/js/app.js"></script>
     <script type="module" src="/js/sesion_admin.js"></script>
-    <!-- <script type="module" src="/js/descripcion_producto.js"></script> -->
+    <script src="/js/descripcion_producto.js"></script>
 </body>
 
 </html>
