@@ -25,14 +25,14 @@ function eliminarSesion() {
     sessionStorage.removeItem("sesion");
     sessionStorage.removeItem("modal");
 
-    window.location.replace("/index.html");
+    window.location.replace("https://drinking-house.netlify.app");
 }
 
 if (
-    window.location.href.includes("/admin.html") && 
+    window.location.href.includes("https://drinking-house.netlify.app/admin") && 
     (sesion === undefined || !verificarRol(sesion))
     ) {
-        window.location.replace("/index.html");
+        window.location.replace("https://drinking-house.netlify.app");
 }
 
 if (sesion !== undefined) {

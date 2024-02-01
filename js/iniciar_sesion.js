@@ -44,7 +44,7 @@ function inicio_sesion(e) {
         sessionStorage.setItem("modal", "true");
         sessionStorage.getItem("modal");
 
-        window.location.replace("/index.html");
+        window.location.replace("https://drinking-house.netlify.app");
     } else {
         Swal.fire({
             icon: "error",

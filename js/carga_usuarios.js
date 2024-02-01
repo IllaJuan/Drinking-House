@@ -87,7 +87,7 @@ function crearUsuario(e) {
 
         limpiarFormulario(); 
         
-        if (window.location.href.includes("/admin.html")) {
+        if (window.location.href.includes("/admin")) {
             setTimeout(function() {
                 location.reload();
             }, 1500);
@@ -160,15 +160,12 @@ window.borrarUsuario = function (idUsuario) {
             let indiceUsuario = arrayUsuarios.findIndex(
                 (elemento) => elemento.email === sesion.email
             );
-            console.log("1");
             if (sesion !== undefined && indiceUsuario !== -1) {
-            console.log("2");
                 arrayUsuarios[indiceUsuario].favoritos = sesion.favoritos;
             
                 sessionStorage.removeItem("sesion");
-                window.location.replace("/index.html");
+                window.location.replace("https://drinking-house.netlify.app");
             } else {
-            console.log("3");
                 setTimeout(function() {
                     location.reload();
                 }, 2000);
