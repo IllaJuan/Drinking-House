@@ -41,6 +41,8 @@ function inicio_sesion(e) {
         
         sessionStorage.setItem("sesion", JSON.stringify(sesion));
         sessionStorage.getItem("sesion");
+        sessionStorage.setItem("modal", "true");
+        sessionStorage.getItem("modal");
 
         window.location.replace("/index.html");
     } else {
