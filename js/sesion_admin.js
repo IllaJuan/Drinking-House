@@ -23,6 +23,7 @@ function eliminarSesion() {
 
     localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
     sessionStorage.removeItem("sesion");
+    sessionStorage.removeItem("modal");
 
     window.location.replace("/index.html");
 }

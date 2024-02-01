@@ -1,6 +1,8 @@
 import { ocultarFavoritos } from "./favoritos.js";
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let modal = JSON.parse(sessionStorage.getItem("modal")) || undefined;
+
 
 /* 
     Código para que cambie el color del navbar cuando se haga scroll
@@ -51,8 +53,10 @@ if (window.location.href.includes("index.html")) {
 /* 
     Código para que aparezca la ventana modal de la página principal preguntado si el que entra al sitio es +18
 */
-    let myModal = document.getElementById('staticBackdrop');
-    let modal = bootstrap.Modal.getOrCreateInstance(myModal);
-    modal.show();
+    if (modal === undefined) {
+        let myModal = document.getElementById('staticBackdrop');
+        let modal = bootstrap.Modal.getOrCreateInstance(myModal);
+        modal.show();
+    }
 }
 ocultarFavoritos();
