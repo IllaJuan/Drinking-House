@@ -185,7 +185,7 @@
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-17vw * ));
+        transform: translateX(calc(-17vw * 7);
     }
 }
 @keyframes show{
@@ -584,16 +584,23 @@
  }
 
  .slider-img {
-    width: 100%;
-    height: 90vh;
+    width: 100%;    
+    height:600px;
     object-fit: cover; 
     object-position: center; 
 }
 
-@media all and (max-width: 1366px) {
+@media screen and (min-width: 850px) {
     .slider-img {
-        height: auto;
-        width: 100vw;        
+        height: 350px;
+        object-fit: cover; 
+        object-position: center;
     }
 }
-
+@media screen and (min-width: 400px) {
+    .slider-img {
+        height: 200px;
+        object-fit: cover; 
+        object-position: center;
+    }
+}
