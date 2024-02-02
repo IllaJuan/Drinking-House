@@ -1,5 +1,6 @@
 import {
-    generarCodigo,
+    validarTodo,
+    validarStock,
     validarCategoria,
     validarNombre,
     validarDescripcion,
@@ -11,8 +12,7 @@ import {
 import {
     guardarLocalStorage,
     limpiarFormulario,
-    mostrarOcultarFormulario,
-    mostrarOcultarBotonForm,
+    mostrarOcultarFormulario
 } from "./hellpers.js";
 
 import { mostrarTablaUsuarios } from "./carga_usuarios.js";
@@ -24,19 +24,23 @@ let indexProducto;
 let form = document.getElementById("form");
 let inputCategorias = document.getElementById("categoria");
 let inputNombre = document.getElementById("nombre");
+let inputStock = document.getElementById("stock");
 let inputDescripcion = document.getElementById("descripcion");
 let inputPrecio = document.getElementById("precio");
 let inputUrlImagen = document.getElementById("urlImagen");
-let inputCodigo;
 let inputId;
 let precio;
 
 let cuerpoTabla = document.getElementById("tabla");
+let tituloFormulario = document.getElementById("titulo-formulario");
 
 let botonAgregar = document.querySelector(".custom-green-button");
 let formularioAdmin = document.getElementById("formulario-admin");
 
-let botonEditarProducto = document.querySelectorAll(".boton-editar-producto");
+let subir = document.getElementById("subir");
+let botonEditar = document.querySelector(".boton-editar");
+let botonGuardar = document.querySelector(".boton-guardar");
+let botonCancelar = document.getElementById("boton-cancelar");
 let botonGuardarEdicion = document.getElementById("boton-guardar-edicion");
 let botonGuardarProducto = document.getElementById("boton-guardar-producto");
 
@@ -45,14 +49,27 @@ botonGuardarProducto.addEventListener("click", function (e) {
     crearProducto(e);
 });
 botonAgregar.addEventListener("click", () => {
+    tituloFormulario.innerHTML = "Agregar Producto";
+    botonGuardar.classList.remove("d-none");
+    botonEditar.classList.add("d-none");
+    limpiarFormulario(form,inputCategorias,inputNombre,inputStock,inputDescripcion,inputPrecio,inputUrlImagen);
     mostrarOcultarFormulario(formularioAdmin);
 });
 botonGuardarEdicion.addEventListener("click", function (e) {
     guardarCambios(e);
 });
+botonCancelar.addEventListener("click", () => {
+    formularioAdmin.classList.add("d-none");
+});
 
+inputCategorias.addEventListener("blur", () => {
+    validarCategoria(inputCategorias);
+});
 inputNombre.addEventListener("blur", () => {
     validarNombre(inputNombre);
+});
+inputStock.addEventListener("blur", () => {
+    validarStock(inputStock);
 });
 inputDescripcion.addEventListener("blur", () => {
     validarDescripcion(inputDescripcion);
@@ -74,19 +91,19 @@ function crearProducto(e) {
     if (
     validarCategoria(inputCategorias) &&
     validarNombre(inputNombre) &&
+    validarStock(inputStock) &&
     validarDescripcion(inputDescripcion) &&
     validarPrecio(inputPrecio) &&
     validarUrlImagen(inputUrlImagen)
     ) {
         precio = formatoPrecio(inputPrecio);
-        inputCodigo = generarCodigo(inputNombre,arrayProductos);
         (arrayProductos.length > 0) ? inputId = arrayProductos[arrayProductos.length - 1].id + 1 : inputId = 1;
 
         const producto = {
             id: inputId,
-            codigo: inputCodigo,
             categoria: inputCategorias.value,
             nombre: inputNombre.value, 
+            stock: inputStock.value, 
             descripcion: inputDescripcion.value, 
             precio: precio, 
             urlImagen: inputUrlImagen.value
@@ -105,17 +122,12 @@ function crearProducto(e) {
             timer: 1500
         });
 
-        limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen);
+        limpiarFormulario(form,inputCategorias,inputNombre,inputStock,inputDescripcion,inputPrecio,inputUrlImagen);
         mostrarOcultarFormulario(formularioAdmin);
         mostrarTablaProductos();
+        window.scrollTo(0, 0);
     } else {
-        Swal.fire({
-            icon: "error",
-            title: "No se guardó el producto",
-            text: "Verifique los campos y vuelva a intentarlo",
-            showConfirmButton: false,
-            timer: 2500
-        });
+        validarTodo(inputCategorias,inputNombre,inputStock,inputDescripcion,inputPrecio,inputUrlImagen);
     }
 } 
 
@@ -124,9 +136,10 @@ function mostrarTablaProductos() {
     arrayProductos.forEach((elemento) => {
         cuerpoTabla.innerHTML += ` 
             <tr>
-                <th scope="row">${elemento.codigo}</th>
+                <th scope="row">${elemento.id}</th>
                 <td>${elemento.categoria}</td>
                 <td>${elemento.nombre}</td>
+                <td>${elemento.stock}</td>
                 <td>${elemento.descripcion}</td>
                 <td>$${elemento.precio}</td>
                 <td><a href="${elemento.urlImagen}" target="_blank" title="Ver Imagen">${elemento.urlImagen}</a></td>
@@ -139,20 +152,24 @@ function mostrarTablaProductos() {
 }
 
 window.editarInfoProducto = function (idProduct) {
+    tituloFormulario.innerHTML = "Editar Producto";
+    botonGuardar.classList.add("d-none");
+    botonEditar.classList.remove("d-none");
+
     indexProducto = arrayProductos.findIndex(
         function (elemento) {
         return elemento.id === idProduct;
-    }
-    );     
+    });     
     
     inputCategorias.value = arrayProductos[indexProducto].categoria;
     inputNombre.value = arrayProductos[indexProducto].nombre;
+    inputStock.value = arrayProductos[indexProducto].stock;
     inputDescripcion.value = arrayProductos[indexProducto].descripcion;
     inputPrecio.value = arrayProductos[indexProducto].precio;
     inputUrlImagen.value = arrayProductos[indexProducto].urlImagen;
     
-    mostrarOcultarFormulario(formularioAdmin);
-    mostrarOcultarBotonForm(botonEditarProducto);
+    formularioAdmin.classList.remove("d-none");
+    subir.scrollIntoView({ behavior: "smooth" });
 }
 window.guardarCambios = function (e) {
     e.preventDefault();
@@ -168,6 +185,7 @@ window.guardarCambios = function (e) {
 
             arrayProductos[indexProducto].categoria = inputCategorias.value,
             arrayProductos[indexProducto].nombre = inputNombre.value, 
+            arrayProductos[indexProducto].stock = inputStock.value, 
             arrayProductos[indexProducto].descripcion = inputDescripcion.value, 
             arrayProductos[indexProducto].precio = precio, 
             arrayProductos[indexProducto].urlImagen = inputUrlImagen.value   
@@ -179,24 +197,18 @@ window.guardarCambios = function (e) {
                 timer: 2000
             });
 
-            limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen);
+            limpiarFormulario(form,inputCategorias,inputNombre,inputStock,inputDescripcion,inputPrecio,inputUrlImagen);
             mostrarOcultarFormulario(formularioAdmin);
-            mostrarOcultarBotonForm(botonEditarProducto);
             guardarLocalStorage(arrayProductos);
             mostrarTablaProductos();
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "No se pudieron guardar los cambios :(",
-                footer: '<p>¡Verifique que haya ingresado bien todos los campos!</p>',
-                showConfirmButton: false,
-                timer: 4000
-            });
-        }
+            window.scrollTo(0, 0);
+    } else {
+        validarTodo(inputCategorias,inputNombre,inputStock,inputDescripcion,inputPrecio,inputUrlImagen);
+    }
 }
 
 window.borrarProducto = function (idProducto) {
+    formularioAdmin.classList.add("d-none");
     Swal.fire({        
         icon: "warning",
         iconColor: "#ffc107",
@@ -220,9 +232,10 @@ window.borrarProducto = function (idProducto) {
                 timer: 2000
             });
 
-            limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen);
+            limpiarFormulario(form,inputCategorias,inputNombre,inputStock,inputDescripcion,inputPrecio,inputUrlImagen);
             guardarLocalStorage(arrayProductos);
             mostrarTablaProductos();
+            window.scrollTo(0, 0);
         }
     });
 }

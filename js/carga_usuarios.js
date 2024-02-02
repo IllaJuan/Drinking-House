@@ -121,7 +121,6 @@ export function mostrarTablaUsuarios() {
                 <td>${elemento.nombre}</td>
                 <td>${elemento.apellido}</td>
                 <td>${elemento.email}</td>
-                <td>${elemento.clave}</td>
                 <td>${elemento.rol}</td>
                 <td>
                     <i class="fa-solid fa-trash-can custom-red" title="Borrar Usuario" onclick="borrarUsuario(${elemento.id})"></i>

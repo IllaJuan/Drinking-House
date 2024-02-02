@@ -2,42 +2,40 @@
     Funciones que validan los datos ingresados a través del formulario para "agregar productos" en la página de "admin.html"
 */
 
-export function generarCodigo(inputNombre,arrayProductos) {
-    let codigoProducto;
-    let codigoDeBarras;
-    let indiceProducto;
-    let existeCodigo = false;
+export function validarTodo(categoria,nombre,stock,descripcion,precio,urlImagen) {
+    // arreglo de booleanos
+    let arrayValidacion = [validarStock(stock),validarCategoria(categoria),validarNombre(nombre),validarDescripcion(descripcion),validarPrecio(precio),validarUrlImagen(urlImagen)];
 
-    /* Todos los productos que lleven el mismo nombre tendrán el mismo código de barra */
-    indiceProducto = arrayProductos.findIndex(
-        (elemento) => elemento.nombre === inputNombre.value
-    );
+    let arrayInputs = [stock,categoria,nombre,descripcion,precio,urlImagen];
+    let indicesVerdaderos = [];
+    let indicesFalsos = [];
 
-    if (indiceProducto !== -1) {
-        return arrayProductos[indiceProducto].codigo;
-    } else if (arrayProductos.length > 0) {
-        do {
-            codigoProducto = Math.floor(Math.random() * 100000);
-            codigoProducto = codigoProducto.toString();
-            codigoProducto = codigoProducto.padStart(5,"00000");
 
-            existeCodigo = arrayProductos.some(
-                (elemento) => elemento["codigo"].includes(codigoProducto) === true
-            );
-        } while (existeCodigo);
-        
-        codigoDeBarras = `7791234${codigoProducto}8`;
-
-        return codigoDeBarras;
-    } else {
-        codigoProducto = Math.floor(Math.random() * 100000);
-        codigoProducto = codigoProducto.toString();
-        codigoProducto = codigoProducto.padStart(5,"00000");
-
-        codigoDeBarras = `7791234${codigoProducto}8`;
-
-        return codigoDeBarras;
+    // guarda los índices de los input falsos
+    for (let i = 0; i < arrayValidacion.length; i++) {
+        if (arrayValidacion[i] === false) {
+            indicesFalsos.push(i);
+        } else {
+            indicesVerdaderos.push(i);
+        }
     }
+
+    // accede a cada input falso y añade una clase
+    for (let indice of indicesFalsos) {
+        arrayInputs[indice].className = "form-control is-invalid";
+    }
+    for (let indice of indicesVerdaderos) {
+        arrayInputs[indice].className = "form-control is-valid";
+    }
+}
+
+export function validarStock(stock) {
+    if (stock.value.trim().length > 0 && stock.value.trim().length <= 3 && !Number.isNaN(Number(stock.value))) {
+        stock.className = "form-control is-valid";
+        return true;
+    }
+    stock.className = "form-control is-invalid";
+    return false; 
 }
 
 export function validarCategoria(categoria) {
