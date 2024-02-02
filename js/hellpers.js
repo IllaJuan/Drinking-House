@@ -125,7 +125,7 @@ export function primeraMayuscula(usuario) {
 
 export function rol() {
     let rol = "usuario";
-    if (window.location.href.includes("https://drinking-house.netlify.app/pages/registro")) {
+    if (window.location.href.includes("/pages/registro.html")) {
         return rol;
     }
     rol = "admin";

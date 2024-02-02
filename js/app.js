@@ -49,7 +49,7 @@ if (arrayUsuarios.length === 0 || !pepitoExiste) {
     localStorage.getItem("usuarios");
 }
 
-if (window.location.href.includes("https://drinking-house.netlify.app")) {
+if (window.location.href.includes("index.html")) {
 /* 
     Código para que aparezca la ventana modal de la página principal preguntado si el que entra al sitio es +18
 */
