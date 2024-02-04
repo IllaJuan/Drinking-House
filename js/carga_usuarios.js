@@ -30,13 +30,13 @@ let aceptarTerminos = document.getElementById("aceptar-terminos");
 let usuarioRepetido = document.getElementById("usuario-repetido");
 
 let botonRegistrarme = document.getElementById("registrarme");
-let botonCerrar = document.getElementById("boton-cerrar");
+let agregarAdmin = document.getElementById("agregar-admin");
 
 
 botonRegistrarme.addEventListener("click", (e) => {
     crearUsuario(e);
 });
-botonCerrar.addEventListener("click", () => {
+agregarAdmin.addEventListener("click", () => {
     limpiarFormulario();
 });
 
@@ -166,4 +166,14 @@ function limpiarFormulario() {
     inputRepetirClave.className = "form-control shadow";
     aceptarTerminos.className = "form-check-input";
     inputRepetirClave.setAttribute("disabled","");
+}
+
+
+// solo al administrador "Pepito" le muestra el botón para agregar administradores
+if (window.location.href.includes("/admin.html")) {
+    if (sesion.email === 'pepito@gmail.com') {
+        agregarAdmin.classList.remove("d-none");
+    } else {
+        agregarAdmin.classList.add("d-none");
+    }
 }
