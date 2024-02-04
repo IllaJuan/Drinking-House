@@ -40,8 +40,8 @@ export function validarStock(stock) {
 
 export function validarCategoria(categoria) {
     if (
-    categoria.value === "vino" || 
-    categoria.value === "cerveza" ||
+    categoria.value === "vinos" || 
+    categoria.value === "cervezas" ||
     categoria.value === "spirits" ||
     categoria.value === "aperitivos"
     ) {

@@ -116,7 +116,7 @@ export function mostrarTablaUsuarios() {
                 <td>${elemento.email}</td>
                 <td>${elemento.rol}</td>
                 <td>
-                    <i class="fa-solid fa-trash-can custom-red" title="Borrar Usuario" onclick="borrarUsuario(${elemento.id})"></i>
+                    <i class="fa-solid fa-trash-can custom-red ${elemento.id === 1 ? 'd-none' : sesion.email !== 'pepito@gmail.com' && elemento.rol !== 'usuario' ? 'd-none' : ''}" title="Borrar Usuario" onclick="borrarUsuario(${elemento.id})"></i>
                 </td>
             </tr>`;
     });

@@ -57,6 +57,10 @@ if (window.location.href.includes("/admin.html") && sesion === undefined) {
     window.location.replace("/index.html");
 }
 
+if (window.location.href.includes("/pages/favoritos.html") && sesion === undefined) {
+    window.location.replace("/index.html");
+}
+
 if (window.location.href.includes("/index.html")) {
 /* 
     Código para que aparezca la ventana modal de la página principal preguntado si el que entra al sitio es +18

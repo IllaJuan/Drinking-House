@@ -152,6 +152,7 @@ function mostrarTablaProductos() {
 }
 
 window.editarInfoProducto = function (idProduct) {
+    limpiarFormulario(form,inputCategorias,inputNombre,inputStock,inputDescripcion,inputPrecio,inputUrlImagen);
     tituloFormulario.innerHTML = "Editar Producto";
     botonGuardar.classList.add("d-none");
     botonEditar.classList.remove("d-none");
