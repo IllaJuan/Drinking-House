@@ -47,6 +47,7 @@ window.agregarFavorito = function (idProducto) {
     let sesion = JSON.parse(sessionStorage.getItem("sesion"));
     let existeFavorito = false;
 
+    // evita la duplicación de favoritos
     existeFavorito = sesion.favoritos.some(elemento => elemento === idProducto);
 
     if (!existeFavorito) {        

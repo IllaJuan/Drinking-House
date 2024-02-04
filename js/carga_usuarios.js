@@ -1,11 +1,13 @@
 import { 
+    validarRegistro,
     idUsuario,
     validarTodoRegistro,
     validarNombreUsuario,
     validarApellido,
     validarEmail,
     validarClave,
-    compararClaves
+    compararClaves,
+    checkboxTerminos
 } from "./validar_usuario.js";
 
 import { 
@@ -25,6 +27,7 @@ let inputEmail = document.getElementById("email");
 let inputClave = document.getElementById("clave");
 let inputRepetirClave = document.getElementById("repetir-clave");
 let aceptarTerminos = document.getElementById("aceptar-terminos");
+let usuarioRepetido = document.getElementById("usuario-repetido");
 
 let botonRegistrarme = document.getElementById("registrarme");
 let botonCerrar = document.getElementById("boton-cerrar");
@@ -45,22 +48,25 @@ inputApellidoUsuario.addEventListener("blur", () => {
     validarApellido(inputApellidoUsuario);
 });
 inputEmail.addEventListener("blur", () => {
-    validarEmail(inputEmail);
+    validarEmail(inputEmail,usuarioRepetido);
 });
 inputClave.addEventListener("blur", () => {
-    validarClave(inputClave);
+    validarClave(inputClave,inputRepetirClave);
 });
 inputRepetirClave.addEventListener("blur", () => {
-    compararClaves(clave,inputRepetirClave);
+    compararClaves(inputClave,inputRepetirClave);
+});
+aceptarTerminos.addEventListener("change", function() {
+    checkboxTerminos(aceptarTerminos);
 });
 
 
 function crearUsuario(e) {
     e.preventDefault();
 
-    let validacion = validarTodoRegistro(inputNombreUsuario,inputApellidoUsuario,inputEmail,inputClave,inputRepetirClave,aceptarTerminos);
+    let validacion = validarTodoRegistro(inputNombreUsuario,inputApellidoUsuario,inputEmail,inputClave,inputRepetirClave,aceptarTerminos,usuarioRepetido);
 
-    if (validacion && validacion !== 2) {
+    if (validacion) {
                  
         let usuario = {
             id: idUsuario(),
@@ -93,21 +99,8 @@ function crearUsuario(e) {
             }, 1500);
         }
 
-    } else if (validacion === 2) {
-        Swal.fire({
-            icon: "error",
-            text: "Ya existe un usuario con este correo electrónico",
-            showConfirmButton: false,
-            timer: 4000
-        });
     } else {
-        Swal.fire({
-            icon: "error",
-            title: "No se registró el usuario",
-            text: "Verifique los campos y vuelva a intentarlo",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        validarRegistro(inputNombreUsuario,inputApellidoUsuario,inputEmail,inputClave,inputRepetirClave,aceptarTerminos,usuarioRepetido);
     }
 }
 
@@ -130,6 +123,7 @@ export function mostrarTablaUsuarios() {
 }
 
 window.borrarUsuario = function (idUsuario) {
+    sesion = JSON.parse(sessionStorage.getItem("sesion")) || undefined;
     Swal.fire({        
         icon: "warning",
         iconColor: "#ffc107",
@@ -156,28 +150,20 @@ window.borrarUsuario = function (idUsuario) {
             localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
             mostrarTablaUsuarios();
             
-            let indiceUsuario = arrayUsuarios.findIndex(
-                (elemento) => elemento.email === sesion.email
-            );
-            if (sesion !== undefined && indiceUsuario !== -1) {
-                arrayUsuarios[indiceUsuario].favoritos = sesion.favoritos;
-            
-                sessionStorage.removeItem("sesion");
-                window.location.replace("/index.html");
-            } else {
-                setTimeout(function() {
-                    location.reload();
-                }, 2000);
-            }
+            setTimeout(function() {
+                location.reload();
+            }, 2000);
         }
     });
 }
 
 function limpiarFormulario() {
     formRegistro.reset();
-    inputNombreUsuario.className = "form-control";
-    inputApellidoUsuario.className = "form-control";
-    inputEmail.className = "form-control";
-    inputClave.className = "form-control";
-    inputRepetirClave.className = "form-control";
+    inputNombreUsuario.className = "form-control shadow";
+    inputApellidoUsuario.className = "form-control shadow";
+    inputEmail.className = "form-control shadow";
+    inputClave.className = "form-control shadow";
+    inputRepetirClave.className = "form-control shadow";
+    aceptarTerminos.className = "form-check-input";
+    inputRepetirClave.setAttribute("disabled","");
 }
