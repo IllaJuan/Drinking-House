@@ -20,7 +20,6 @@ function filtrarProductos() {
     if (inputBuscado.value.trim() === "" && inputBuscadoMovil.value.trim() === "") {
         // si la busqueda esta vacia, mostrar todos los productos
         categoriasFiltradas = arrayProductos;
-        console.log(categoriasFiltradas);
     } else {
         // filtrado por categorias
         if (inputBuscado.value.trim() !== "") {

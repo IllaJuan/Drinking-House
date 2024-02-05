@@ -9,7 +9,6 @@
     <meta name="keywords" content="segundo proyecto rolling code, grupo 1 rolling code">
     <link rel="icon" type="image/png" href="/image/Logo-Drink-House.png">
     <link rel="stylesheet" href="/libraries/fontawesome/css/all.min.css">
-    <script src="/js/bootstrap.min.js"></script>
     <script src="/libraries/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -142,7 +141,7 @@
                             maxlength="40"
                             required
                           />
-                          <div class="invalid-feedback">
+                          <div id="usuario-repetido" class="invalid-feedback">
                             Debe ingresar una dirección de email válida
                           </div>
                         </div>                                          
@@ -170,24 +169,25 @@
                             aria-describedby="validationServer07Feedback"
                             minlength="8"
                             maxlength="16"
+                            disabled
                             required
                             />
                           <div class="invalid-feedback">
                             Las contraseñas deben ser iguales
                           </div>
                         </div>
-                        <div class="col-12 pt-4">
+                        <div class="col-12 mt-4">
                           <div class="form-check">
+                            <label class="form-check-label" for="aceptar-terminos">
+                              Estoy de acuerdo con los términos y condiciones.
+                            </label>
                             <input
-                              class="form-check-input"
+                              class="form-check-input me-0"
                               type="checkbox"
                               id="aceptar-terminos"
                               aria-describedby="invalidCheck3Feedback"
                               required
                             />
-                            <label class="form-check-label" for="aceptar-terminos">
-                              Estoy de acuerdo con los términos y condiciones.
-                            </label>
                             <div class="invalid-feedback">
                               Para poder registrarse debe aceptar los terminos y condiciones 
                             </div>
@@ -196,16 +196,14 @@
                         <div class="mb-4 py-4 text-center">                          
                           <button
                             id="registrarme"
-                            class="btn facebook mx-2 border-primary fs-5"
+                            class="btn facebook border-primary fs-5 me-sm-4"
                           >
                             Registrarme
                           </button>
                           <button
                             type="button"
-                            id="boton-cerrar"
-                            class="btn googleBtn mx-2 border-danger fs-5 my-2 my-sm-0"
-                            data-bs-dismiss="modal"
-                            onclick="limpiarFormulario()"
+                            id="agregar-admin"
+                            class="btn googleBtn border-danger fs-5 my-2 my-sm-0"
                           >
                             Borrar todo
                           </button>

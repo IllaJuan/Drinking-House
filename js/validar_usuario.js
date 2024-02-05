@@ -17,20 +17,50 @@ export function idUsuario() {
     }
 }
 
-export function validarTodoRegistro(nombre,apellido,email,clave,repeticionClave,terminos) {
+export function validarRegistro(nombre,apellido,email,clave,repeticionClave,terminos,usuarioRepetido) {
+    // arreglo de booleanos
+    let arrayValidacion = [validarNombreUsuario(nombre),validarApellido(apellido),validarEmail(email,usuarioRepetido),validarClave(clave,repeticionClave)];
+
+    let arrayInputs = [nombre,apellido,email,clave,repeticionClave];
+    let indicesVerdaderos = [];
+    let indicesFalsos = [];
+
+
+    // guarda los índices de los input falsos
+    for (let i = 0; i < arrayValidacion.length; i++) {
+        if (arrayValidacion[i] === false) {
+            indicesFalsos.push(i);
+        } else {
+            indicesVerdaderos.push(i);
+        }
+    }    
+
+    // accede a cada input falso y añade una clase
+    for (let indice of indicesFalsos) {
+        arrayInputs[indice].className = "form-control is-invalid";
+    }
+    for (let indice of indicesVerdaderos) {
+        arrayInputs[indice].className = "form-control is-valid";
+    }
+
+    if (checkboxTerminos(terminos) === false) {
+        terminos.className = "form-check-input is-invalid me-0";
+    } else {
+        terminos.className = "form-check-input me-0";
+    }
+}
+
+export function validarTodoRegistro(nombre,apellido,email,clave,repeticionClave,terminos,usuarioRepetido) {
     if (
         validarNombreUsuario(nombre) &&
         validarApellido(apellido) &&
-        validarEmail(email) &&
-        validarEmail(email) !== 2 &&
-        validarClave(clave) &&
+        validarEmail(email,usuarioRepetido) &&
+        validarClave(clave,repeticionClave) &&
         compararClaves(clave,repeticionClave) &&
         checkboxTerminos(terminos)
         ) { 
             return true;
-    } else if (validarEmail(email) === 2) {
-        return 2;
-    } else {
+    }  else {
         return false;
     }
 }
@@ -43,7 +73,7 @@ export function validarNombreUsuario(nombre) {
     nombre.value.trim().length <= 30 &&
     regExNombre.test(nombre.value)
     ) {
-        nombre.className = "form-control";
+        nombre.className = "form-control is-valid";
         return true;
     }
     nombre.className = "form-control is-invalid";
@@ -58,38 +88,44 @@ export function validarApellido(apellido) {
     apellido.value.trim().length <= 30 &&
     regExApellido.test(apellido.value)
     ) {
-        apellido.className = "form-control";
+        apellido.className = "form-control is-valid";
         return true;
     }
     apellido.className = "form-control is-invalid";
     return false; 
 }
 
-export function validarEmail(email) {
+export function validarEmail(email,usuarioRepetido) {
+    arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
     let regExEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let existeUsuario = false;
 
+    // verifica la existencia del usuario
     existeUsuario = arrayUsuarios.some(
-        (elemento) => elemento["email"].includes(email.value) === true && email.value !== ""
+        (elemento) => elemento["email"] === email.value && email.value !== ""
     );
 
     if (
     email.value.trim().length >= 10 &&
     email.value.trim().length <= 40 &&
-    regExEmail.test(email.value)
+    regExEmail.test(email.value) &&
+    !existeUsuario
     ) { 
-        if (existeUsuario) {
-            email.className = "form-control is-invalid"
-            return 2;
-        }
-        email.className = "form-control"
+        email.className = "form-control is-valid";
         return true;
     }
-    email.className = "form-control is-invalid"
+
+    if (existeUsuario) {
+        usuarioRepetido.innerHTML = "El correo ingresado ya está registrado";
+        email.className = "form-control is-invalid";
+        return false;
+    }
+    usuarioRepetido.innerHTML = "Debe ingresar una dirección de email válida";
+    email.className = "form-control is-invalid";
     return false;
 }
 
-export function validarClave(clave) {
+export function validarClave(clave,repeticionClave) {
     let regExClave = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
 
     if(
@@ -97,28 +133,32 @@ export function validarClave(clave) {
         clave.value.trim().length <= 16 &&
         regExClave.test(clave.value)
     ) {
-        clave.className = "form-control";
+        repeticionClave.removeAttribute("disabled");
+        clave.className = "form-control is-valid";
         return true;
     }
+    repeticionClave.setAttribute("disabled","");
+    repeticionClave.className = "form-control shadow";
+    repeticionClave.value = "";
     clave.className = "form-control is-invalid";
     return false;
 }
 
 export function compararClaves(clave,repeticionClave) {
-    if (clave.value === repeticionClave.value) {
-        repeticionClave.className = "form-control";
+    if (clave.value !== "" && clave.value === repeticionClave.value) {
+        repeticionClave.className = "form-control is-valid";
         return true;
-    }
+    } 
     repeticionClave.className = "form-control is-invalid";
     return false;
 }
 
 export function checkboxTerminos(terminos) {
     if (terminos.checked) {
-        terminos.className = "form-check-input";
+        terminos.className = "form-check-input me-0";
         return true;
     }
-    terminos.className = "form-check-input is-invalid";
+    terminos.className = "form-check-input is-invalid me-0";
     return false;
 }
 
@@ -132,11 +172,80 @@ export function validarUsuario(email,clave) {
     return usuarioExiste;
 }
 
-export function verificarInput(input) {
-    if (input.value !== "") {
-        input.className = "form-control";
+export function recuperarClave(email) {
+    let regExEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    let existeUsuario = false;
+
+    existeUsuario = arrayUsuarios.some(
+        (elemento) => elemento["email"] === email.value && email.value !== ""
+    );
+
+    if (
+        email.value.trim().length >= 10 &&
+        email.value.trim().length <= 40 &&
+        regExEmail.test(email.value) &&
+        existeUsuario
+    ) {
+        email.className = "form-control is-valid";
+        return true;
+    } else {
+        email.className = "form-control is-invalid";
+        return false;
+    }
+}
+
+export function verificarClaveInicioSesion(clave) {
+    if(clave.value.trim().length >= 8 && clave.value.trim().length <= 16) {
+        clave.className = "form-control shadow";
         return true;
     }
-    input.className = "form-control is-invalid";
+    clave.className = "form-control is-invalid";
     return false;
+}
+
+export function validarEmailInicioSesion(email,emailInicioSesion) {
+    arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    let regExEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (
+    email.value.trim().length >= 10 &&
+    email.value.trim().length <= 40 &&
+    regExEmail.test(email.value)
+    ) { 
+        email.className = "form-control shadow";
+        return true;
+    } else if (email.value.trim() === "") {
+        emailInicioSesion.innerHTML = "Debe ingresar su correo electrónico";
+        email.className = "form-control is-invalid";
+        return false;
+    }
+    
+    emailInicioSesion.innerHTML = "Debe ingresar un correo electrónico válido";
+    email.className = "form-control is-invalid";
+    return false;
+}
+
+export function validarInicioSesion(email,emailInicioSesion,clave) {
+    // arreglo de booleanos
+    let arrayValidacion = [validarEmailInicioSesion(email,emailInicioSesion),verificarClaveInicioSesion(clave)];
+
+    let arrayInputs = [email,clave];
+    let indiceVerdadero = [];
+    let indiceFalso = [];
+
+
+    for (let i = 0; i < arrayValidacion.length; i++) {
+        if (arrayValidacion[i] === false) {
+            indiceFalso.push(i);
+        } else {
+            indiceVerdadero.push(i);
+        }
+    }    
+
+    for (let indice of indiceFalso) {
+        arrayInputs[indice].className = "form-control is-invalid";
+    }
+    for (let indice of indiceVerdadero) {
+        arrayInputs[indice].className = "form-control shadow";
+    }
 }

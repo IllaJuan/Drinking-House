@@ -18,10 +18,11 @@ function mostrarDescripcion() {
         <div class="col text-center">
             <img src="${producto[0].urlImagen}" alt="${producto[0].nombre}" class="img-fluid tamaño-imagen-card">
         </div>
-        <div class="col align-items-center ">
-            <h3>${producto[0].nombre}</h3>
-            <h2>$ ${producto[0].precio}</h2>
-            <p>Código: ${producto[0].codigo}</p>
+        <div class="col align-items-center">
+            <h2>${producto[0].nombre}</h2>
+            <h3>$ ${producto[0].precio}</h3>
+            <p class="infotext mb-0 mt-2">Cantidad en stock: ${producto[0].stock}</p>
+            <p class="infotext mb-4">Categoría: ${producto[0].categoria}</p>
             <div class="d-grid gap-3 col-8">
                 <a class="btn custom-btn-buynow btn-sm" type="button" href="/pages/error404.html">Comprar ahora</a>
             </div>
