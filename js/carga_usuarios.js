@@ -164,7 +164,7 @@ function limpiarFormulario() {
     inputEmail.className = "form-control shadow";
     inputClave.className = "form-control shadow";
     inputRepetirClave.className = "form-control shadow";
-    aceptarTerminos.className = "form-check-input";
+    aceptarTerminos.className = "form-check-input me-0";
     inputRepetirClave.setAttribute("disabled","");
 }
 
