@@ -30,9 +30,9 @@ function filtrarProductos() {
             });
         } else {
             categoriasFiltradas = arrayProductos.filter(producto => {
-                const categoriaIncluida = producto.categoria.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
-                const nombreIncluido = producto.nombre.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
-                return categoriaIncluida || nombreIncluido;
+                let categoriaBuscada = producto.categoria.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
+                let nombreBuscado = producto.nombre.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
+                return categoriaBuscada || nombreBuscado;
             });
         }
     }
