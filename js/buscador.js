@@ -21,10 +21,12 @@ function filtrarProductos() {
         // si la busqueda esta vacia, mostrar todos los productos
         categoriasFiltradas = arrayProductos;
     } else {
-        // filtrado por categorias
+        // filtrado por categorias y nombre
         if (inputBuscado.value.trim() !== "") {
             categoriasFiltradas = arrayProductos.filter(producto => {
-                return producto.categoria.toLowerCase().includes(inputBuscado.value.toLowerCase());
+                const categoriaIncluida = producto.categoria.toLowerCase().includes(inputBuscado.value.toLowerCase());
+                const nombreIncluido = producto.nombre.toLowerCase().includes(inputBuscado.value.toLowerCase());
+        return categoriaIncluida || nombreIncluido;
             });
         } else {
             categoriasFiltradas = arrayProductos.filter(producto => {
