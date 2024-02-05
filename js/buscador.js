@@ -26,11 +26,13 @@ function filtrarProductos() {
             categoriasFiltradas = arrayProductos.filter(producto => {
                 const categoriaIncluida = producto.categoria.toLowerCase().includes(inputBuscado.value.toLowerCase());
                 const nombreIncluido = producto.nombre.toLowerCase().includes(inputBuscado.value.toLowerCase());
-        return categoriaIncluida || nombreIncluido;
+                return categoriaIncluida || nombreIncluido;
             });
         } else {
             categoriasFiltradas = arrayProductos.filter(producto => {
-                return producto.categoria.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
+                const categoriaIncluida = producto.categoria.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
+                const nombreIncluido = producto.nombre.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
+                return categoriaIncluida || nombreIncluido;
             });
         }
     }
