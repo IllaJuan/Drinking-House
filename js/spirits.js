@@ -3,12 +3,12 @@ let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
 let cuerpoSpirits = document.getElementById("contenedor-spirits");
 
 function categoriaVinos() {
-    const spiritss = arrayProductos.filter(
+    const arrayspirits = arrayProductos.filter(
         (elemento) => elemento.categoria === "spirits"
     );
 
-    cuerpoSugerencias.innerHTML = "";
-    arraySugerencias.forEach((elemento) => {
+    cuerpoSpirits.innerHTML = "";
+    arrayspirits.forEach((elemento) => {
         cuerpoSpirits.innerHTML += ` 
             <div class="col justify-content-center my-3">
                 <div class="card my-2 mx-auto mx-sm-0" style="width: 16rem;">
