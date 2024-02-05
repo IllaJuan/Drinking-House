@@ -23,6 +23,7 @@ export function mostrarOcultarFormulario(formularioAdmin) {
 }
 
 export function mostrarCardsProductos(productos) {
+    let sesion = JSON.parse(sessionStorage.getItem("sesion")) || undefined;
     let cardProductos = document.getElementById("card-productos");
     cardProductos.innerHTML = "";
     productos.forEach((elemento) => {
@@ -34,7 +35,8 @@ export function mostrarCardsProductos(productos) {
                     <h4 class="card-title">${elemento.nombre}</h4>
                     <p class="card-text my-0">$${elemento.precio}</p>
                     <a class="corazon-favoritos">
-                        <i class="ri-heart-line heart-card" onclick="agregarFavorito(${elemento.id})"></i>
+                        <i class="ri-heart-line heart-card corazonNoElegido ${(sesion !== undefined && sesion.favoritos.some(element => element === elemento.id)) ? 'd-none' : ''}" onclick="agregarFavorito(${elemento.id})"></i>
+                        <i class="ri-heart-fill heart-card corazonElegido ${(sesion !== undefined && sesion.favoritos.some(element => element === elemento.id)) ? '' : 'd-none'}" style="color:red;" onclick="agregarFavorito(${elemento.id})"></i>
                     </a>
                     <div class="text-center mt-2">
                         <a class="btn button-card" href="/pages/descripcion_producto.html" onclick="verProducto(${elemento.id})" role="button">Ver Producto</a> 
@@ -44,15 +46,32 @@ export function mostrarCardsProductos(productos) {
     });
 }
 window.agregarFavorito = function (idProducto) {
+    let arrayProductos = JSON.parse(localStorage.getItem("productos"));
+    let indiceProducto;
+    let corazonNoElegido = document.querySelectorAll('.corazonNoElegido');
+    let corazonElegido = document.querySelectorAll('.corazonElegido');
     let sesion = JSON.parse(sessionStorage.getItem("sesion"));
     let existeFavorito = false;
+
+    // identifica el índice en el que está el producto favorito
+    indiceProducto = arrayProductos.findIndex(elemento => elemento["id"] === idProducto);
 
     // evita la duplicación de favoritos
     existeFavorito = sesion.favoritos.some(elemento => elemento === idProducto);
 
-    if (!existeFavorito) {        
+    if (!existeFavorito) {   
+        corazonNoElegido[indiceProducto].classList.add("d-none");
+        corazonElegido[indiceProducto].classList.remove("d-none");
+        // guarda el producto en favoritos
         sesion.favoritos.push(idProducto);
         sessionStorage.setItem("sesion", JSON.stringify(sesion));
+    } else {
+        corazonNoElegido[indiceProducto].classList.remove("d-none");
+        corazonElegido[indiceProducto].classList.add("d-none");
+        // borra el producto de favoritos
+        sesion.favoritos = sesion.favoritos.filter(elemento => elemento !== idProducto);
+        sessionStorage.setItem("sesion", JSON.stringify(sesion));
+        sessionStorage.getItem("sesion");
     }
 }
 window.verProducto = function (idProducto) {
