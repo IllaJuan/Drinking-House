@@ -1,6 +1,8 @@
 import { ocultarFavoritos } from "./favoritos.js";
+import { verificarRol } from "./hellpers.js";
 
 let arrayUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let sesion = JSON.parse(sessionStorage.getItem("sesion")) || undefined;
 let modal = JSON.parse(sessionStorage.getItem("modal")) || undefined;
 
 
@@ -49,7 +51,17 @@ if (arrayUsuarios.length === 0 || !pepitoExiste) {
     localStorage.getItem("usuarios");
 }
 
-if (window.location.href.includes("https://drinking-house.netlify.app")) {
+if (window.location.href.includes("/admin.html") && sesion === undefined) {
+    window.location.replace("/index.html");
+} else if (window.location.href.includes("/admin.html") && sesion !== undefined && !verificarRol(sesion)) {
+    window.location.replace("/index.html");
+}
+
+if (window.location.href.includes("/pages/favoritos.html") && sesion === undefined) {
+    window.location.replace("/index.html");
+}
+
+if (window.location.href.includes("/index.html")) {
 /* 
     Código para que aparezca la ventana modal de la página principal preguntado si el que entra al sitio es +18
 */

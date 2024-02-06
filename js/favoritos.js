@@ -2,10 +2,12 @@ import { mostrarFavoritos } from "./hellpers.js";
 
 let sesion = JSON.parse(sessionStorage.getItem("sesion")) || undefined;
 
-if (window.location.href.includes("https://drinking-house.netlify.app/pages/favoritos")) {
+if (window.location.href.includes("/pages/favoritos.html") && sesion !== undefined) {
     if (sesion.favoritos.length > 0) {
         mostrarFavoritos();
     }
+} else if (window.location.href.includes("/pages/favoritos.html") && sesion === undefined) {
+    window.location.replace("/index.html");
 }
 
 export function ocultarFavoritos() {

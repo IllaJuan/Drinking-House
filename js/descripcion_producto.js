@@ -1,10 +1,11 @@
+import { mostrarCardsProductos } from "./hellpers.js";
+
 let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
 
 let descripcionProducto = document.getElementById("descripcion-producto");
 let datosProducto = document.getElementById("datos-producto");
 let detalleProducto = parseInt(localStorage.getItem("idDetalleProducto"));
 let producto = [];
-let cuerpoSugerencias = document.getElementById("cuerpo-sugerencias");
 
 
 mostrarDescripcion();
@@ -18,10 +19,11 @@ function mostrarDescripcion() {
         <div class="col text-center">
             <img src="${producto[0].urlImagen}" alt="${producto[0].nombre}" class="img-fluid tamaño-imagen-card">
         </div>
-        <div class="col align-items-center ">
-            <h3>${producto[0].nombre}</h3>
-            <h2>$ ${producto[0].precio}</h2>
-            <p>Código: ${producto[0].codigo}</p>
+        <div class="col align-items-center">
+            <h2>${producto[0].nombre}</h2>
+            <h3>$ ${producto[0].precio}</h3>
+            <p class="infotext mb-0 mt-2">Cantidad en stock: ${producto[0].stock}</p>
+            <p class="infotext mb-4">Categoría: ${producto[0].categoria}</p>
             <div class="d-grid gap-3 col-8">
                 <a class="btn custom-btn-buynow btn-sm" type="button" href="/pages/error404.html">Comprar ahora</a>
             </div>
@@ -51,23 +53,14 @@ function sugerecias(productoMostrado) {
         (elemento) => elemento.id !== productoMostrado[0].id && elemento.categoria === productoMostrado[0].categoria
     );
 
-    cuerpoSugerencias.innerHTML = "";
-    arraySugerencias.forEach((elemento) => {
-        cuerpoSugerencias.innerHTML += ` 
-            <div class="col justify-content-center my-3">
-                <div class="card my-2 mx-auto mx-sm-0" style="width: 16rem;">
-                    <img src="${elemento.urlImagen}" class="card-img-top tamaño-imagen-card" alt="${elemento.nombre}">
-                    <div class="card-body">
-                        <h5 class="card-title">${elemento.nombre}</h5>
-                        <p class="card-text">$ ${elemento.precio}</p>
-                        <div class="text-center">
-                            <a class="btn button-card btn-sm" href="/pages/descripcion_producto.html" onclick="verProducto(${elemento.id})">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-    });
-}
-window.verProducto = function (idProducto) {
-    localStorage.setItem("idDetalleProducto", idProducto);
+    let arrayFiltroProductos = JSON.parse(localStorage.getItem("filtroProductos")) || undefined;
+
+    if (arrayFiltroProductos !== undefined) {
+        localStorage.removeItem("filtroProductos");
+    }
+
+    localStorage.setItem("filtroProductos", JSON.stringify(arraySugerencias));
+    localStorage.getItem("filtroProductos");
+
+    mostrarCardsProductos(arraySugerencias);
 }

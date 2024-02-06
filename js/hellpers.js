@@ -8,10 +8,11 @@ export function guardarLocalStorage(arrayProductos) {
     localStorage.setItem("productos", JSON.stringify(arrayProductos));
 }
 
-export function limpiarFormulario(form,inputCategorias,inputNombre,inputDescripcion,inputPrecio,inputUrlImagen) {
+export function limpiarFormulario(form,inputCategorias,inputNombre,inputStock,inputDescripcion,inputPrecio,inputUrlImagen) {
     form.reset();
     inputCategorias.className = "form-control";
     inputNombre.className = "form-control";
+    inputStock.className = "form-control";
     inputDescripcion.className = "form-control";
     inputPrecio.className = "form-control";
     inputUrlImagen.className = "form-control";
@@ -21,13 +22,8 @@ export function mostrarOcultarFormulario(formularioAdmin) {
     formularioAdmin.classList.toggle("d-none");
 }
 
-export function mostrarOcultarBotonForm(botonEditarProducto) {
-    botonEditarProducto.forEach(elemento => {
-        elemento.classList.toggle("d-none")
-    });
-}
-
 export function mostrarCardsProductos(productos) {
+    let sesion = JSON.parse(sessionStorage.getItem("sesion")) || undefined;
     let cardProductos = document.getElementById("card-productos");
     cardProductos.innerHTML = "";
     productos.forEach((elemento) => {
@@ -39,7 +35,8 @@ export function mostrarCardsProductos(productos) {
                     <h4 class="card-title">${elemento.nombre}</h4>
                     <p class="card-text my-0">$${elemento.precio}</p>
                     <a class="corazon-favoritos">
-                        <i class="ri-heart-line heart-card" onclick="agregarFavorito(${elemento.id})"></i>
+                        <i class="ri-heart-line heart-card corazonNoElegido ${(sesion !== undefined && sesion.favoritos.some(element => element === elemento.id)) ? 'd-none' : ''}" onclick="agregarFavorito(${elemento.id})"></i>
+                        <i class="ri-heart-fill heart-card corazonElegido ${(sesion !== undefined && sesion.favoritos.some(element => element === elemento.id)) ? '' : 'd-none'}" style="color:red;" onclick="agregarFavorito(${elemento.id})"></i>
                     </a>
                     <div class="text-center mt-2">
                         <a class="btn button-card" href="/pages/descripcion_producto.html" onclick="verProducto(${elemento.id})" role="button">Ver Producto</a> 
@@ -49,14 +46,39 @@ export function mostrarCardsProductos(productos) {
     });
 }
 window.agregarFavorito = function (idProducto) {
+    let arrayProductos = JSON.parse(localStorage.getItem("productos"));
+    let arrayFiltroProductos = JSON.parse(localStorage.getItem("filtroProductos")) || undefined;
+    let indiceProducto;
+    let corazonNoElegido = document.querySelectorAll('.corazonNoElegido');
+    let corazonElegido = document.querySelectorAll('.corazonElegido');
     let sesion = JSON.parse(sessionStorage.getItem("sesion"));
     let existeFavorito = false;
 
+
+    if (arrayFiltroProductos !== undefined) {
+        // identifica el índice en el que está el producto favorito en los arreglos de los filtros (busqueda,categorías)
+        indiceProducto = arrayFiltroProductos.findIndex(elemento => elemento["id"] === idProducto);
+    } else {
+        // identifica el índice en el que está el producto favorito en la página principal
+        indiceProducto = arrayProductos.findIndex(elemento => elemento["id"] === idProducto);
+    }
+
+    // evita la duplicación de favoritos
     existeFavorito = sesion.favoritos.some(elemento => elemento === idProducto);
 
-    if (!existeFavorito) {        
+    if (!existeFavorito) {   
+        corazonNoElegido[indiceProducto].classList.add("d-none");
+        corazonElegido[indiceProducto].classList.remove("d-none");
+        // guarda el producto en favoritos
         sesion.favoritos.push(idProducto);
         sessionStorage.setItem("sesion", JSON.stringify(sesion));
+    } else {
+        corazonNoElegido[indiceProducto].classList.remove("d-none");
+        corazonElegido[indiceProducto].classList.add("d-none");
+        // borra el producto de favoritos
+        sesion.favoritos = sesion.favoritos.filter(elemento => elemento !== idProducto);
+        sessionStorage.setItem("sesion", JSON.stringify(sesion));
+        sessionStorage.getItem("sesion");
     }
 }
 window.verProducto = function (idProducto) {
@@ -125,7 +147,7 @@ export function primeraMayuscula(usuario) {
 
 export function rol() {
     let rol = "usuario";
-    if (window.location.href.includes("https://drinking-house.netlify.app/pages/registro")) {
+    if (window.location.href.includes("/pages/registro.html")) {
         return rol;
     }
     rol = "admin";
