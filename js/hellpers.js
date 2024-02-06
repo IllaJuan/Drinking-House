@@ -54,6 +54,10 @@ window.agregarFavorito = function (idProducto) {
     let sesion = JSON.parse(sessionStorage.getItem("sesion"));
     let existeFavorito = false;
 
+    if (arrayFiltroProductos !== undefined) {
+        localStorage.removeItem("filtroProductos");
+    }
+
 
     if (arrayFiltroProductos !== undefined) {
         // identifica el índice en el que está el producto favorito en los arreglos de los filtros (busqueda,categorías)
