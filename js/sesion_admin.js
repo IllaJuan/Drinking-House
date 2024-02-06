@@ -25,7 +25,7 @@ function eliminarSesion() {
     sessionStorage.removeItem("sesion");
     sessionStorage.removeItem("modal");
 
-    window.location.replace("/index");
+    window.location.replace("https://drinking-house.netlify.app/");
 }
 
 if (sesion !== undefined) {

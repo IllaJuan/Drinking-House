@@ -52,16 +52,16 @@ if (arrayUsuarios.length === 0 || !pepitoExiste) {
 }
 
 if (window.location.href.includes("/admin") && sesion === undefined) {
-    window.location.replace("/index");
+    window.location.replace("https://drinking-house.netlify.app/");
 } else if (window.location.href.includes("/admin") && sesion !== undefined && !verificarRol(sesion)) {
-    window.location.replace("/index");
+    window.location.replace("https://drinking-house.netlify.app/");
 }
 
 if (window.location.href.includes("/pages/favoritos") && sesion === undefined) {
-    window.location.replace("/index");
+    window.location.replace("https://drinking-house.netlify.app/");
 }
 
-if (window.location.href.includes("/index")) {
+if (window.location.href.includes("https://drinking-house.netlify.app/")) {
 /* 
     Código para que aparezca la ventana modal de la página principal preguntado si el que entra al sitio es +18
 */

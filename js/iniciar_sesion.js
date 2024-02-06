@@ -62,7 +62,7 @@ function inicio_sesion(e) {
         sessionStorage.setItem("modal", "true");
         sessionStorage.getItem("modal");
 
-        window.location.replace("/index");
+        window.location.replace("https://drinking-house.netlify.app/");
     } else {
         if (verificarClaveInicioSesion(claveIngresada) && validarEmailInicioSesion(emailIngresado,emailInicioSesion)) {
             Swal.fire({

@@ -7,7 +7,7 @@ if (window.location.href.includes("/pages/favoritos") && sesion !== undefined) {
         mostrarFavoritos();
     }
 } else if (window.location.href.includes("/pages/favoritos") && sesion === undefined) {
-    window.location.replace("/index");
+    window.location.replace("https://drinking-house.netlify.app/");
 }
 
 export function ocultarFavoritos() {
