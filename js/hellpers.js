@@ -47,14 +47,21 @@ export function mostrarCardsProductos(productos) {
 }
 window.agregarFavorito = function (idProducto) {
     let arrayProductos = JSON.parse(localStorage.getItem("productos"));
+    let arrayFiltroProductos = JSON.parse(localStorage.getItem("filtroProductos")) || undefined;
     let indiceProducto;
     let corazonNoElegido = document.querySelectorAll('.corazonNoElegido');
     let corazonElegido = document.querySelectorAll('.corazonElegido');
     let sesion = JSON.parse(sessionStorage.getItem("sesion"));
     let existeFavorito = false;
 
-    // identifica el índice en el que está el producto favorito
-    indiceProducto = arrayProductos.findIndex(elemento => elemento["id"] === idProducto);
+
+    if (arrayFiltroProductos !== undefined) {
+        // identifica el índice en el que está el producto favorito en los arreglos de los filtros (busqueda,categorías)
+        indiceProducto = arrayFiltroProductos.findIndex(elemento => elemento["id"] === idProducto);
+    } else {
+        // identifica el índice en el que está el producto favorito en la página principal
+        indiceProducto = arrayProductos.findIndex(elemento => elemento["id"] === idProducto);
+    }
 
     // evita la duplicación de favoritos
     existeFavorito = sesion.favoritos.some(elemento => elemento === idProducto);

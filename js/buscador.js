@@ -17,6 +17,12 @@ inputBusquedaMovil.addEventListener("click", () => {
 function filtrarProductos() {
     let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
     let categoriasFiltradas = [];
+    let arrayFiltroProductos = JSON.parse(localStorage.getItem("filtroProductos")) || undefined;
+
+    if (arrayFiltroProductos !== undefined) {
+        localStorage.removeItem("filtroProductos");
+    }
+    
     if (inputBuscado.value.trim() === "" && inputBuscadoMovil.value.trim() === "") {
         // si la busqueda esta vacia, mostrar todos los productos
         categoriasFiltradas = arrayProductos;
@@ -28,12 +34,16 @@ function filtrarProductos() {
                 const nombreIncluido = producto.nombre.toLowerCase().includes(inputBuscado.value.toLowerCase());
                 return categoriaIncluida || nombreIncluido;
             });
+            localStorage.setItem("filtroProductos", JSON.stringify(categoriasFiltradas));
+            localStorage.getItem("filtroProductos");
         } else {
             categoriasFiltradas = arrayProductos.filter(producto => {
                 let categoriaBuscada = producto.categoria.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
                 let nombreBuscado = producto.nombre.toLowerCase().includes(inputBuscadoMovil.value.toLowerCase());
                 return categoriaBuscada || nombreBuscado;
             });
+            localStorage.setItem("filtroProductos", JSON.stringify(categoriasFiltradas));
+            localStorage.getItem("filtroProductos");
         }
     }
 

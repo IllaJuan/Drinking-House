@@ -1,29 +1,22 @@
+import { mostrarCardsProductos } from "./hellpers.js";
+
 let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
+let arrayFiltroProductos = JSON.parse(localStorage.getItem("filtroProductos")) || undefined;
 
-let cuerpoSpirits = document.getElementById("contenedor-spirits");
+if (arrayFiltroProductos !== undefined) {
+    localStorage.removeItem("filtroProductos");
+}
 
-function categoriaVinos() {
-    const arrayspirits = arrayProductos.filter(
+
+function categoriaSpirits() {
+    let arrayspirits = arrayProductos.filter(
         (elemento) => elemento.categoria === "spirits"
     );
 
-    cuerpoSpirits.innerHTML = "";
-    arrayspirits.forEach((elemento) => {
-        cuerpoSpirits.innerHTML += ` 
-            <div class="col justify-content-center my-3">
-                <div class="card my-2 mx-auto mx-sm-0" style="width: 16rem;">
-                    <img src="${elemento.urlImagen}" class="card-img-top tamaño-imagen-card" alt="${elemento.nombre}">
-                    <div class="card-body">
-                        <h5 class="card-title">${elemento.nombre}</h5>
-                        <p class="card-text">$ ${elemento.precio}</p>
-                        <div class="text-center">
-                            <a class="btn button-card btn-sm" href="/pages/descripcion_producto.html" onclick="verProducto(${elemento.id})">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-    });
+    localStorage.setItem("filtroProductos", JSON.stringify(arrayspirits));
+    localStorage.getItem("filtroProductos");
+        
+    mostrarCardsProductos(arrayspirits);
 }
-window.verProducto = function (idProducto) {
-    localStorage.setItem("idDetalleProducto", idProducto);
-}
+
+categoriaSpirits();
