@@ -39,7 +39,7 @@ export function mostrarCardsProductos(productos) {
                         <i class="ri-heart-fill heart-card corazonElegido ${(sesion !== undefined && sesion.favoritos.some(element => element === elemento.id)) ? '' : 'd-none'}" style="color:red;" onclick="agregarFavorito(${elemento.id})"></i>
                     </a>
                     <div class="text-center mt-2">
-                        <a class="btn button-card" href="/pages/descripcion_producto.html" onclick="verProducto(${elemento.id})" role="button">Ver Producto</a> 
+                        <a class="btn button-card" href="/pages/descripcion_producto" onclick="verProducto(${elemento.id})" role="button">Ver Producto</a> 
                     </div>                        
                 </div>
             </div>`;
@@ -116,7 +116,7 @@ export function mostrarFavoritos() {
                         <div class="card-body">
                             <h5 class="card-title">${elemento.nombre}</h5>
                             <p>Categoría: ${elemento.categoria}</p>
-                            <a class="btn button-card" href="/pages/descripcion_producto.html" onclick="verProducto(${elemento.id})" role="button">Ver Producto</a> 
+                            <a class="btn button-card" href="/pages/descripcion_producto" onclick="verProducto(${elemento.id})" role="button">Ver Producto</a> 
                             <button class="btn btn-danger btn-sm" onclick="eliminarFavorito(${elemento.id})">Eliminar</button>
                         </div>
                     </div>
@@ -147,7 +147,7 @@ export function primeraMayuscula(usuario) {
 
 export function rol() {
     let rol = "usuario";
-    if (window.location.href.includes("/pages/registro.html")) {
+    if (window.location.href.includes("/pages/registro")) {
         return rol;
     }
     rol = "admin";

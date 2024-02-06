@@ -25,7 +25,7 @@ function eliminarSesion() {
     sessionStorage.removeItem("sesion");
     sessionStorage.removeItem("modal");
 
-    window.location.replace("/index.html");
+    window.location.replace("/index");
 }
 
 if (sesion !== undefined) {

@@ -62,7 +62,7 @@ function inicio_sesion(e) {
         sessionStorage.setItem("modal", "true");
         sessionStorage.getItem("modal");
 
-        window.location.replace("/index.html");
+        window.location.replace("/index");
     } else {
         if (verificarClaveInicioSesion(claveIngresada) && validarEmailInicioSesion(emailIngresado,emailInicioSesion)) {
             Swal.fire({

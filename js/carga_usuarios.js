@@ -93,7 +93,7 @@ function crearUsuario(e) {
 
         limpiarFormulario(); 
         
-        if (window.location.href.includes("/admin.html")) {
+        if (window.location.href.includes("/admin")) {
             setTimeout(function() {
                 location.reload();
             }, 1500);
@@ -170,7 +170,7 @@ function limpiarFormulario() {
 
 
 // solo al administrador "Pepito" le muestra el botón para agregar administradores
-if (window.location.href.includes("/admin.html")) {
+if (window.location.href.includes("/admin")) {
     if (sesion.email === 'pepito@gmail.com') {
         agregarAdmin.classList.remove("d-none");
     } else {

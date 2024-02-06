@@ -51,17 +51,17 @@ if (arrayUsuarios.length === 0 || !pepitoExiste) {
     localStorage.getItem("usuarios");
 }
 
-if (window.location.href.includes("/admin.html") && sesion === undefined) {
-    window.location.replace("/index.html");
-} else if (window.location.href.includes("/admin.html") && sesion !== undefined && !verificarRol(sesion)) {
-    window.location.replace("/index.html");
+if (window.location.href.includes("/admin") && sesion === undefined) {
+    window.location.replace("/index");
+} else if (window.location.href.includes("/admin") && sesion !== undefined && !verificarRol(sesion)) {
+    window.location.replace("/index");
 }
 
-if (window.location.href.includes("/pages/favoritos.html") && sesion === undefined) {
-    window.location.replace("/index.html");
+if (window.location.href.includes("/pages/favoritos") && sesion === undefined) {
+    window.location.replace("/index");
 }
 
-if (window.location.href.includes("/index.html")) {
+if (window.location.href.includes("/index")) {
 /* 
     Código para que aparezca la ventana modal de la página principal preguntado si el que entra al sitio es +18
 */
