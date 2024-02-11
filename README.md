@@ -27,9 +27,12 @@
    -[Remixicon](https://remixicon.com/)
    -[Sweetalert](https://sweetalert2.github.io/)
 
+## **Errores**
+- Falta corregir un error a la hora de marcar como "Favorito" luego de realizar una búsqueda con el filtro del buscador.
+
 ## **Intengrantes**
    -Armedía Sergio Jeremías
    -Botta Julio Rafael
-   -Illia Juan
+   -Illa Juan
    -Lencina Céliz Luciana
    -Surriable Marvel Omar
